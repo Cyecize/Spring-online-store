@@ -1,0 +1,15 @@
+package com.cyecize.skatefixers.areas.language.annotations;
+
+import com.cyecize.skatefixers.areas.language.enums.LanguageLocaleType;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface LocalLang {
+
+    LanguageLocaleType langType();
+}

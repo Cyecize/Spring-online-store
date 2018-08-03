@@ -1,6 +1,8 @@
 package com.cyecize.skatefixers.controllers;
 
-import com.cyecize.skatefixers.services.lang.LocalLanguage;
+import com.cyecize.skatefixers.areas.language.annotations.LocalLang;
+import com.cyecize.skatefixers.areas.language.enums.LanguageLocaleType;
+import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

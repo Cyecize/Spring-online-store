@@ -1,6 +1,6 @@
-package com.cyecize.skatefixers.services.lang.languagePacks;
+package com.cyecize.skatefixers.areas.language.languagePacks;
 
-import com.cyecize.skatefixers.enums.LanguageLocaleType;
+import com.cyecize.skatefixers.areas.language.enums.LanguageLocaleType;
 
 public interface Dictionary {
 
