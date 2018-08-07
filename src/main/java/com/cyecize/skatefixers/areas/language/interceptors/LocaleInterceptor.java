@@ -1,5 +1,6 @@
 package com.cyecize.skatefixers.areas.language.interceptors;
 
+import com.cyecize.skatefixers.areas.language.Constants;
 import com.cyecize.skatefixers.areas.language.annotations.LocalLang;
 import com.cyecize.skatefixers.areas.language.enums.LanguageLocaleType;
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
@@ -61,6 +62,8 @@ public class LocaleInterceptor extends HandlerInterceptorAdapter {
 
     private void initCookie(HttpServletResponse response) {
         Cookie cookie = new Cookie(WebConstants.COOKIE_LANG_NAME, LanguageLocaleType.DEFAULT.getName());
+        cookie.setPath("/");
+        cookie.setMaxAge(Constants.COOKIE_MAX_AGE);
         response.addCookie(cookie);
     }
 }

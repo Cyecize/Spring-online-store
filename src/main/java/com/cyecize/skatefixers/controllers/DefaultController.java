@@ -9,23 +9,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class DefaultController {
+public class DefaultController extends BaseController{
 
-    private final LocalLanguage localLanguage;
 
     @Autowired
     public DefaultController(LocalLanguage localLanguage) {
-        this.localLanguage = localLanguage;
+        super(localLanguage);
     }
 
     @GetMapping("/")
     @ResponseBody
     public String indexAction() {
         return String.format("Hello, my locale is %s, some examples:<br>%s<br>%s<br>%s",
-                this.localLanguage.getLocaleType(),
-                this.localLanguage.dictionary().aboutUs(),
-                this.localLanguage.dictionary().contacts(),
-                this.localLanguage.dictionary().register()
+                super.language.getLocaleType(),
+                super.language.dictionary().aboutUs(),
+                super.language.dictionary().contacts(),
+                super.language.dictionary().register()
         );
     }
 }

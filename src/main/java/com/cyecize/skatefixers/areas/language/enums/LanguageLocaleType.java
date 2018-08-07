@@ -3,7 +3,7 @@ package com.cyecize.skatefixers.areas.language.enums;
 public enum LanguageLocaleType {
     BG, EN;
 
-    public static final LanguageLocaleType DEFAULT = LanguageLocaleType.BG;
+    public static final LanguageLocaleType DEFAULT = LanguageLocaleType.EN;
 
     LanguageLocaleType(){
 
