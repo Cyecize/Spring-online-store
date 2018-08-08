@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @Controller
 public class DefaultController extends BaseController{
 
-    private final CategoryService categoryService;
-
     @Autowired
-    public DefaultController(LocalLanguage language, TwigUtil twigUtil, TwigInformer twigInformer, CategoryService categoryService) {
+    public DefaultController(LocalLanguage language, TwigUtil twigUtil, TwigInformer twigInformer) {
         super(language, twigUtil, twigInformer);
-        this.categoryService = categoryService;
     }
 
     @GetMapping("/haah")
@@ -30,13 +30,16 @@ public class DefaultController extends BaseController{
     }
 
     @GetMapping("/")
-    public ModelAndView homeAction(HttpServletRequest request){
-        return view("default/index");
+    public ModelAndView homeAction(ModelAndView modelAndView){
+        modelAndView.addObject("date", LocalDateTime.now());
+        modelAndView.addObject("dateOld", new Date());
+
+        return view("default/index", modelAndView);
     }
 
 
     @GetMapping("/hoe")
-    public ModelAndView homeAction(){
+    public ModelAndView homeActionn(){
         return view("default/hoe");
     }
 

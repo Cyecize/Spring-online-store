@@ -1,15 +1,20 @@
 package com.cyecize.skatefixers.config;
 
-import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
-import com.cyecize.skatefixers.areas.language.services.LocalLanguageImpl;
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 public class BeanConfig {
 
-//    @Bean
-//    LocalLanguage getLocalLang(){
-//        return new LocalLanguageImpl();
-//    }
+    @Bean
+    public ModelMapper modelMapper(){
+        return new ModelMapper();
+    }
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 }

@@ -11,6 +11,8 @@ public class MvcConfig implements WebMvcConfigurer {
 
     private final LocaleInterceptor localeInterceptor;
 
+   // private final TwigInterceptor twigInterceptor;
+
     @Autowired
     public MvcConfig(LocaleInterceptor logInterceptor) {
         this.localeInterceptor = logInterceptor;
@@ -19,5 +21,6 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(this.localeInterceptor);
+      //  registry.addInterceptor(this.twigInterceptor);
     }
 }

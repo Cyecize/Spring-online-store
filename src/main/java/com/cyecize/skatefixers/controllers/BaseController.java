@@ -2,8 +2,13 @@ package com.cyecize.skatefixers.controllers;
 
 import com.cyecize.skatefixers.areas.language.languagePacks.Dictionary;
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
+import com.cyecize.skatefixers.areas.users.entities.User;
+import com.cyecize.skatefixers.constants.WebConstants;
 import com.cyecize.skatefixers.services.TwigInformer;
 import com.cyecize.skatefixers.services.TwigUtil;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.web.servlet.ModelAndView;
 
 public abstract class BaseController {
@@ -14,7 +19,7 @@ public abstract class BaseController {
     private static final String INFORMER_NAME = "informer";
     private static final String REDIRECT_ACTION = "redirect:";
 
-    private final TwigInformer thymeleafBaseInformer;
+    private final TwigInformer twigInformer;
 
     private final TwigUtil twigUtil;
 
@@ -22,8 +27,26 @@ public abstract class BaseController {
 
     protected BaseController(LocalLanguage language, TwigUtil twigUtil, TwigInformer twigInformer) {
         this.language = language;
-        this.thymeleafBaseInformer = twigInformer;
+        this.twigInformer = twigInformer;
         this.twigUtil = twigUtil;
+    }
+
+    private boolean isAuthenticated() {
+        return SecurityContextHolder.getContext().getAuthentication().isAuthenticated() &&
+                !(SecurityContextHolder.getContext().getAuthentication()
+                        instanceof AnonymousAuthenticationToken) ;
+    }
+
+    private ModelAndView finalizeView(ModelAndView modelAndView){
+        if(modelAndView.getModel().containsKey(WebConstants.TWIG_BINDING_RESULT_OBJ_NAME))
+            this.twigUtil.setBindingResult((BeanPropertyBindingResult) modelAndView.getModelMap().get(WebConstants.TWIG_BINDING_RESULT_OBJ_NAME));
+        if(this.isAuthenticated())
+            this.twigInformer.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        modelAndView.addObject(DICTIONARY_NAME, this.dictionary());
+        modelAndView.addObject(UTIL_NAME, this.twigUtil);
+        modelAndView.addObject(INFORMER_NAME, this.twigInformer);
+        modelAndView.addObject(LOCALE_SMALL_NAME, this.language.getLocaleType().getName().toLowerCase());
+        return  modelAndView;
     }
 
     protected ModelAndView redirect(String url) {
@@ -45,13 +68,6 @@ public abstract class BaseController {
         return this.finalizeView(modelAndView);
     }
 
-    private ModelAndView finalizeView(ModelAndView modelAndView){
-        modelAndView.addObject(DICTIONARY_NAME, this.dictionary());
-        modelAndView.addObject(UTIL_NAME, this.twigUtil);
-        modelAndView.addObject(INFORMER_NAME, this.thymeleafBaseInformer);
-        modelAndView.addObject(LOCALE_SMALL_NAME, this.language.getLocaleType().getName().toLowerCase());
-        return  modelAndView;
-    }
 
     protected Dictionary dictionary(){
         return this.language.dictionary();
