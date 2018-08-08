@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- title -->
+    <title>{% block title %}Sakte fixers{% endblock %}</title>
+
+    <!-- metas -->
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- fonts -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Cookie"/>
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+
+    <!-- css -->
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link href="/styles/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/styles/plugins/materialDesignBootstrap/css/mdb.min.css" rel="stylesheet">
+
+    <link href="/styles/css/custom.css" rel="stylesheet" type="text/css"/>
+
+    {% block stylesheets %}{% endblock %}
+
+    <!-- jQuery -->
+    <script src="/styles/js/jQuery331.js"></script>
+</head>
+<body>
+{% embed 'partials/header.html.twig' %} {% endembed %}
+{% block body %}{% endblock %}
+{% embed 'partials/footer.html.twig' %} {% endembed %}
+<!-- scripts -->
+{% embed 'partials/scripts.html.twig' %} {% endembed %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

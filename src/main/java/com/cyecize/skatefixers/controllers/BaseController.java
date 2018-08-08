@@ -2,23 +2,28 @@ package com.cyecize.skatefixers.controllers;
 
 import com.cyecize.skatefixers.areas.language.languagePacks.Dictionary;
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import com.cyecize.skatefixers.services.TwigInformer;
+import com.cyecize.skatefixers.services.TwigUtil;
 import org.springframework.web.servlet.ModelAndView;
 
-@Component
 public abstract class BaseController {
 
-    private static final String BASE_LAYOUT_NAME = "base-layout";
     private static final String DICTIONARY_NAME = "dict";
-    private static final String VIEW_MODEL_NAME = "view";
+    private static final String UTIL_NAME = "util";
+    private static final String LOCALE_SMALL_NAME  = "locale";
+    private static final String INFORMER_NAME = "informer";
     private static final String REDIRECT_ACTION = "redirect:";
+
+    private final TwigInformer thymeleafBaseInformer;
+
+    private final TwigUtil twigUtil;
 
     protected final LocalLanguage language;
 
-    @Autowired
-    protected BaseController(LocalLanguage language) {
+    protected BaseController(LocalLanguage language, TwigUtil twigUtil, TwigInformer twigInformer) {
         this.language = language;
+        this.thymeleafBaseInformer = twigInformer;
+        this.twigUtil = twigUtil;
     }
 
     protected ModelAndView redirect(String url) {
@@ -36,18 +41,19 @@ public abstract class BaseController {
     }
 
     protected ModelAndView view(String viewName, ModelAndView modelAndView){
-        modelAndView.addObject(VIEW_MODEL_NAME, viewName);
+        modelAndView.setViewName(viewName);
         return this.finalizeView(modelAndView);
     }
 
     private ModelAndView finalizeView(ModelAndView modelAndView){
-        modelAndView.setViewName(BASE_LAYOUT_NAME);
         modelAndView.addObject(DICTIONARY_NAME, this.dictionary());
+        modelAndView.addObject(UTIL_NAME, this.twigUtil);
+        modelAndView.addObject(INFORMER_NAME, this.thymeleafBaseInformer);
+        modelAndView.addObject(LOCALE_SMALL_NAME, this.language.getLocaleType().getName().toLowerCase());
         return  modelAndView;
     }
 
     protected Dictionary dictionary(){
         return this.language.dictionary();
     }
-
 }

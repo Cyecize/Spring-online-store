@@ -1,0 +1,60 @@
+<footer class="page-footer font-small stylish-color-dark pt-4">
+    <div class="container text-center text-md-left">
+        <div class="row">
+            <div class="col-md-2 mx-auto">
+
+                <h5 class="font-weight-bold text-uppercase mt-3 mb-4">{{ dict.menu }}</h5>
+                <div class="language-selection">
+                    <div><label class="m-0">BG<input name="lang" type="radio" value="bg"></label></div>
+                    <div><label class="m-0">EN<input  name="lang" type="radio" value="en"></label></div>
+                </div>
+                <ul class="list-unstyled">
+                    <li><a href="#!">{{ dict.aboutUs }}</a></li>
+                    <li><a href="#!" >{{ dict.products }}</a></li>
+                    <li><a href="#!">{{ dict.contacts }}</a></li>
+                    <li><a href="#!">{{ dict.login }}</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 mx-auto">
+                <h5 class="font-weight-bold text-uppercase mt-3 mb-4">{{ dict.categories }}</h5>
+                <h5 class="font-weight-bold text-uppercase mt-3 mb-4"></h5>
+
+                <ul class="list-unstyled">
+                   {% for category in informer.getCategoriesToDisplay() %}
+                        <li>
+                            <a href="">{{ util.getLocalCategoryName(category) }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-4 mx-auto">
+                <h5 class="font-weight-bold text-uppercase mt-3 mb-4">
+                    <span class="font-cookie font-2em">Skate <span>  Fixers</span></span>
+                </h5>
+                {% embed 'lang/' ~ locale ~ '/footer-about.html.twig' %} {% endembed %}
+            </div>
+        </div>
+    </div>
+    <hr>
+    <ul class="list-unstyled list-inline text-center">
+        <li class="list-inline-item">
+            <a class="btn-floating btn-social btn-fb mx-1"><i class="fab fa-facebook-f"> </i></a>
+        </li>
+        <li class="list-inline-item">
+            <a class="btn-floating btn-social btn-tw mx-1"><i class="fab fa-twitter"> </i></a>
+        </li>
+        <li class="list-inline-item">
+            <a class="btn-floating btn-social btn-gplus mx-1"><i class="fab fa-google-plus-g"> </i></a>
+        </li>
+        <li class="list-inline-item">
+            <a class="btn-floating btn-social btn-li mx-1"><i class="fab fa-linkedin-in"> </i></a>
+        </li>
+        <li class="list-inline-item">
+            <a class="btn-floating btn-social btn-dribbble mx-1"><i class="fab fa-dribbble"> </i></a>
+        </li>
+    </ul>
+
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+        <a href="https://www.linkedin.com/in/cyecize/" target="_blank"> Tsvetelin Yakimov</a>
+    </div>
+</footer>

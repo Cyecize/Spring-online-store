@@ -17,10 +17,10 @@ public class Category {
     @JoinColumn(name = "parent_category", nullable = true)
     private Category parentCategory;
 
-    @Column(name = "category_name_latin", nullable = false)
+    @Column(name = "category_name_latin", nullable = false, unique = true)
     private String categoryNameLatin;
 
-    @Column(name = "category_name_cyrillic", nullable = false)
+    @Column(name = "category_name_cyrillic", nullable = false, unique = true)
     private String categoryNameCyrillic;
 
     @OneToMany(targetEntity = Category.class, mappedBy = "parentCategory")

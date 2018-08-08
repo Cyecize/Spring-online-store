@@ -67,6 +67,21 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jtwig/jtwig-spring-boot-starter -->
+        <dependency>
+            <groupId>org.jtwig</groupId>
+            <artifactId>jtwig-spring-boot-starter</artifactId>
+            <version>5.87.0.RELEASE</version>
+            <scope>runtime</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

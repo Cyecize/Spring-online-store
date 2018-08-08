@@ -17,7 +17,6 @@ public class ClothesProduct extends BaseProduct {
     @JoinTable(name = "products_sizes", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "size_id"))
     private List<ProductSize> sizes;
 
-
     public ClothesProduct(){
         super();
     }
