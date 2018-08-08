@@ -18,13 +18,14 @@ public class DefaultController extends BaseController{
     }
 
     @GetMapping("/")
-    @ResponseBody
     public String indexAction() {
-        return String.format("Hello, my locale is %s, some examples:<br>%s<br>%s<br>%s",
-                super.language.getLocaleType(),
-                super.language.dictionary().aboutUs(),
-                super.language.dictionary().contacts(),
-                super.language.dictionary().register()
-        );
+//        return String.format("Hello, my locale is %s, some examples:<br>%s<br>%s<br>%s",
+//                super.language.getLocaleType(),
+//                super.language.dictionary().aboutUs(),
+//                super.language.dictionary().contacts(),
+//                super.language.dictionary().register()
+//        );
+
+        return "base-layout";
     }
 }

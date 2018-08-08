@@ -29,6 +29,9 @@ public class LocaleInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+        if(!(handler instanceof HandlerMethod))
+            return true;
         Method method = ((HandlerMethod) handler).getMethod();
         if (!method.isAnnotationPresent(LocalLang.class)) {
             this.localLanguage.updateLanguage(this.extractLangFromCookie(request, response));

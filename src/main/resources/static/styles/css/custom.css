@@ -1,0 +1,222 @@
+body {
+    font-family: 'Work Sans', sans-serif;
+}
+
+/* TABLE OF CONTENT
+
+    0 fonts
+
+    1 navbar
+
+    2 social button styles
+
+    3 BACK TO TOP
+ */
+
+/*
+FONTS
+ */
+
+.font-cookie {
+    font-family: Cookie, sans-serif;
+    font-variant: normal;
+}
+
+.font-2em {
+    font-size: 2em;
+}
+
+.font-cookie span {
+    color: #5383d3;
+}
+
+/*
+end fonts
+ */
+
+.bg-trans-dark {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.stylish-trans-dark {
+    background-color: rgba(62, 69, 81, 0.8);
+}
+
+/* navbar  */
+
+
+nav.navbar.shrink {
+    padding: 0px;
+}
+
+
+nav.navbar.shrink a {
+    font-size: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+nav.navbar.shrink .shopping-cart{
+    width:30px;
+    height: 30px;
+    font-size: 13px;
+    padding: 7px;
+}
+
+nav.navbar.shrink .shopping-cart-items-count{
+    padding: 4px;
+}
+
+nav, nav.navbar.shrink, nav.navbar.shrink button, nav.navbar.shrink input, nav.navbar input {
+    transition: all 0.3s ease;
+}
+
+.shopping-cart{
+    width:40px;
+    height: 40px;
+    overflow: visible;
+    background: black;
+    padding: 10px;
+    color: white;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+
+}
+
+.shopping-cart .shopping-cart-items-count{
+    /*position: absolute;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    /*background: red;*/
+    /*top:-3px;*/
+    /*left: -3px;*/
+    /*width:9px;*/
+    /*height: 9px;*/
+    /*padding: 9px;*/
+    /*-webkit-border-radius: 50%;*/
+    /*-moz-border-radius: 50%;*/
+    /*border-radius: 50%;*/
+    /*color: white;*/
+    /*font-size: 1em;*/
+    position: absolute;
+    top: -10px;
+    left: -5px;
+    text-align: center;
+    width: 18px;
+    height: 18px;
+    background-color: #eb4800;
+    color: white;
+    font-size: 0.65em;
+    border-radius: 50%;
+    box-shadow: 1px 1px 1px gray;
+}
+
+/* end navbar */
+
+/* SOCIAL button styles */
+.btn-social {
+    padding: 5px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 2em;
+}
+
+.btn-fb {
+    background-color: #3b5998 !important;
+    color: #fff !important;
+}
+
+.btn-tw {
+    background-color: #55acee !important;
+    color: #fff !important;
+}
+
+.btn-gplus {
+    background-color: #dd4b39 !important;
+    color: #fff !important;
+}
+
+.btn-li {
+    background-color: #0082ca !important;
+    color: #fff !important;
+}
+
+.btn-dribbble {
+    background-color: #ec4a89 !important;
+    color: #fff !important;
+}
+
+/* END SOCIAL button styles */
+
+/*
+    BACK TO TOP
+ */
+.back-to-top {
+    display: none;
+    padding: 0px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    width: 70px;
+    height: 70px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.back-to-top:hover {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+    -webkit-transition-duration: 0.7s;
+    -moz-transition-duration: 0.7s;
+    -o-transition-duration: 0.7s;
+    transition-duration: 0.7s;
+    background-color: red;
+}
+
+.back-to-top .fa {
+    position: absolute;
+    font-size: 2.8em;
+    left: 20px;
+    top: 14px;
+}
+
+
+/*
+    end BACK TO TOP
+ */
+
+/**
+ Responsive
+ */
+@media screen and (max-width: 991px) {
+    .language-selection div{
+        display: inline-block;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 20px;
+    }
+    .back-to-top .fa {
+        font-size: 1.5em;
+        left: 12px;
+        top: 11px;
+    }
+
+}
