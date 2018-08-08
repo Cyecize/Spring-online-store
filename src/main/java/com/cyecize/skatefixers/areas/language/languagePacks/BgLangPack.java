@@ -11,6 +11,9 @@ public class BgLangPack implements Dictionary {
     public static final String REGISTER = "Регистрация";
     public static final String LOGOUT = "Изход";
     public static final String GO = "Напред";
+    public static final String MENU = "Меню";
+    public static final String PRODUCTS = "Продукти";
+    public static final String CATEGORIES = "Категории";
 
     @Override
     public LanguageLocaleType getLocaleType() {
@@ -50,5 +53,20 @@ public class BgLangPack implements Dictionary {
     @Override
     public String go() {
         return GO;
+    }
+
+    @Override
+    public String menu() {
+        return MENU;
+    }
+
+    @Override
+    public String products() {
+        return PRODUCTS;
+    }
+
+    @Override
+    public String categories() {
+        return CATEGORIES;
     }
 }

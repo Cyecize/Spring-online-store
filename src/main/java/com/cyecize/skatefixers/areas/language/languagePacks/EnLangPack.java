@@ -10,6 +10,9 @@ public class EnLangPack implements Dictionary {
     public static final String REGISTER = "Register";
     public static final String LOGOUT = "Logout";
     public static final String GO = "Go";
+    public static final String MENU = "Menu";
+    public static final String PRODUCTS = "Product";
+    public static final String CATEGORIES = "Categories";
 
     @Override
     public LanguageLocaleType getLocaleType() {
@@ -49,5 +52,20 @@ public class EnLangPack implements Dictionary {
     @Override
     public String go() {
         return GO;
+    }
+
+    @Override
+    public String menu() {
+        return MENU;
+    }
+
+    @Override
+    public String products() {
+        return PRODUCTS;
+    }
+
+    @Override
+    public String categories() {
+        return CATEGORIES;
     }
 }

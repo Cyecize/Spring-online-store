@@ -19,4 +19,10 @@ public interface Dictionary {
     String logout();
 
     String go();
+
+    String menu();
+
+    String products();
+
+    String categories();
 }

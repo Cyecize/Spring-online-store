@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- title -->
-    <title>Exam</title>
+    <title>Skate Fixers</title>
 
     <!-- fonts -->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Cookie"/>
@@ -106,7 +106,7 @@
 
 <!-- Footer -->
 <footer class="page-footer font-small stylish-color-dark pt-4">
-
+    <!--/*@thymesVar id="dict" type="com.cyecize.skatefixers.areas.language.languagePacks.Dictionary"*/-->
     <!-- Footer Links -->
     <div class="container text-center text-md-left">
 
@@ -117,23 +117,23 @@
             <div class="col-md-2 mx-auto">
 
                 <!-- Links -->
-                <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Menu</h5>
+                <h5 class="font-weight-bold text-uppercase mt-3 mb-4" th:text="${dict.menu()}"></h5>
                 <div class="language-selection">
                     <div><label class="m-0">BG<input name="lang" type="radio" value="bg"></label></div>
                     <div><label class="m-0">EN<input  name="lang" type="radio" value="en"></label></div>
                 </div>
                 <ul class="list-unstyled">
                     <li>
-                        <a href="#!">About us</a>
+                        <a href="#!" th:text="${dict.aboutUs()}"></a>
                     </li>
                     <li>
-                        <a href="#!">Products</a>
+                        <a href="#!" th:text="${dict.products()}"></a>
                     </li>
                     <li>
-                        <a href="#!">Contacts</a>
+                        <a href="#!" th:text="${dict.contacts()}"></a>
                     </li>
                     <li>
-                        <a href="#!">Login</a>
+                        <a href="#!" th:text="${dict.login()}"></a>
                     </li>
                 </ul>
 
@@ -144,7 +144,7 @@
             <div class="col-md-2 mx-auto">
 
                 <!-- Links -->
-                <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Категории</h5>
+                <h5 class="font-weight-bold text-uppercase mt-3 mb-4" th:text="${dict.categories()}"></h5>
 
                 <ul class="list-unstyled">
                     <li>
@@ -228,6 +228,7 @@
     <script src="/styles/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="/styles/plugins/materialDesignBootstrap/js/mdb.min.js"></script>
     <script src="/styles/js/custom.js"></script>
+    <script src="/styles/js/lang-manager.js"></script>
 </div>
 </body>
 </html>
