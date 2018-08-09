@@ -1,0 +1,50 @@
+<div id="homeSlider" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+
+        {% set ind = 0 %}
+        {% for sliderItem in sliderItems %}
+            <li data-target="#homeSlider" data-slide-to="{{ ind }}"></li>
+            {% set ind = ind + 1 %}
+        {% endfor %}
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        {% set ind = 0 %}
+        {% for sliderItem in sliderItems %}
+            {% set ind = ind + 1 %}
+            <div class="carousel-item {% if ind == 1 %}active{% endif %}"
+                 style="height: 600px;  background:linear-gradient(to right,rgba(0,0,0,0.5), rgba(0,0,0,0.6)),url('{{ sliderItem.banner.backgroundImageLink }}') center; -webkit-background-size: cover;background-size: cover;">
+                <div class="home_slider_content_container">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 slider-content">
+                                <h2>{{ sliderItem.banner.title }}</h2>
+                                <div class="slider-link">
+                                    <a href="{{ sliderItem.banner.url }}" class="text-light">
+                                        {{ dict.seeMore }} &nbsp;<i class="far fa-hand-point-right" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="home_slider_next_container" href="#homeSlider"  role="button" data-slide="next">
+                    <div class="home_slider_next" style="background:linear-gradient(to right,rgba(0,0,0,0.5), rgba(0,0,0,0.6)),url('{{ sliderItem.nextBanner.backgroundImageLink }}') center; -webkit-background-size: cover;background-size: cover;">
+                        <div class="home_slider_next_content trans_400">
+                            <p class="">{{ dict.next }}</p>
+                            <div class="home_slider_next_link">{{ sliderItem.nextBanner.title }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <a class="carousel-control-prev d-md-none d-lg-none" href="#homeSlider" role="button" data-slide="prev">
+        <span class="" aria-hidden="true"><i class="fa fa-chevron-left font-2em"></i></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next  d-md-none d-lg-none" href="#homeSlider" role="button" data-slide="next">
+        <span class="" aria-hidden="true"><i class="fa fa-chevron-right font-2em"></i></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>

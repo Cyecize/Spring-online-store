@@ -11,7 +11,7 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String LOGOUT = "Logout";
     public static final String GO = "Go";
     public static final String MENU = "Menu";
-    public static final String PRODUCTS = "Product";
+    public static final String PRODUCTS = "Products";
     public static final String CATEGORIES = "Categories";
     public static final String USERNAME_IS_NULL = "Username is empty";
     public static final String USERNAME_INVALID_FORMAT = "Invalid username format";
@@ -20,7 +20,35 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String EMAIL_IS_IN_USE = "Email is in use";
     public static final String PASSWORDS_DO_NOT_MATCH = "Passwords do not match";
     public static final String INCORRECT_PASSWORD = "Incorrect password";
+    public static final String USERNAME = "Username";
+    public static final String EMAIL = "Email";
+    public static final String PASSWORD = "Password";
+    public static final String REMEMBER_ME = "Remember me";
+    public static final String PROFILE = "Profile";
+    public static final String NEXT = "Next";
+    public static final String SEE_MORE = "See more";
+    public static final String SEARCH = "Search";
 
+
+
+    @Override
+    public String next() {
+        return NEXT;
+    }
+
+    @Override
+    public String seeMore() {
+        return SEE_MORE;
+    }
+
+    @Override
+    public String search() {
+        return SEARCH;
+    }
+    @Override
+    public String profile() {
+        return PROFILE;
+    }
 
     @Override
     public String usernameIsNull() {
@@ -117,5 +145,24 @@ public class DictionaryEnImpl implements Dictionary {
         return CATEGORIES;
     }
 
+    @Override
+    public String username() {
+        return USERNAME;
+    }
+
+    @Override
+    public String email() {
+        return EMAIL;
+    }
+
+    @Override
+    public String password() {
+        return PASSWORD;
+    }
+
+    @Override
+    public String rememberMe() {
+        return REMEMBER_ME;
+    }
 
 }

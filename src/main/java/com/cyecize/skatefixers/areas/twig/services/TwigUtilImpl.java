@@ -1,4 +1,4 @@
-package com.cyecize.skatefixers.services;
+package com.cyecize.skatefixers.areas.twig.services;
 
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.products.entities.Category;

@@ -21,6 +21,56 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String EMAIL_IS_IN_USE = "Email адресът е зает";
     public static final String PASSWORDS_DO_NOT_MATCH = "Паролите не съвпадат";
     public static final String INCORRECT_PASSWORD = "Грешна парола";
+    public static final String USERNAME = "Потр. име";
+    public static final String EMAIL = "Email";
+    public static final String PASSWORD = "Парола";
+    public static final String REMEMBER_ME = "Запомни ме";
+    public static final String PROFILE = "Моят профил";
+    public static final String NEXT = "Сладваща";
+    public static final String SEE_MORE = "Подробности";
+    public static final String SEARCH = "Търсене";
+
+
+    @Override
+    public String next() {
+        return NEXT;
+    }
+
+    @Override
+    public String seeMore() {
+        return SEE_MORE;
+    }
+
+    @Override
+    public String search() {
+        return SEARCH;
+    }
+
+    @Override
+    public String profile() {
+        return PROFILE;
+    }
+
+    @Override
+    public String username() {
+        return USERNAME;
+    }
+
+    @Override
+    public String email() {
+        return EMAIL;
+    }
+
+    @Override
+    public String password() {
+        return PASSWORD;
+    }
+
+    @Override
+    public String rememberMe() {
+        return REMEMBER_ME;
+    }
+
 
 
     @Override

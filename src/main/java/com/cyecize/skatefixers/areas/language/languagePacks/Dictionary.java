@@ -25,4 +25,21 @@ public interface Dictionary extends ErrorDictionary {
     String products();
 
     String categories();
+
+    String username();
+
+    String email();
+
+    String password();
+
+    String rememberMe();
+
+    String profile();
+
+    String next();
+
+    String seeMore();
+
+    String search();
+
 }

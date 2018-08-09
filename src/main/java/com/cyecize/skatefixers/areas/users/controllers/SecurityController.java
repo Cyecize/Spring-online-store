@@ -5,8 +5,8 @@ import com.cyecize.skatefixers.areas.users.bindingModels.UserRegisterBindingMode
 import com.cyecize.skatefixers.areas.users.services.UserService;
 import com.cyecize.skatefixers.constants.WebConstants;
 import com.cyecize.skatefixers.controllers.BaseController;
-import com.cyecize.skatefixers.services.TwigInformer;
-import com.cyecize.skatefixers.services.TwigUtil;
+import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
+import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

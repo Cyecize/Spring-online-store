@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark stylish-trans-dark fixed-top" id="navbar-main">
-        <div class="container">
-            <a class="navbar-brand" href="/"><img src="/files/images/logo.png" class="" style="max-height: 50px;">Skate
+        <div class="container" style="max-width: 1300px;">
+            <a class="navbar-brand font-kirang-hearang font-15em" href="/"><img src="/files/images/logo.png" class="" style="max-height: 50px;">Skate
                 Fixers </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,19 +12,30 @@
                 <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Продукти</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="products-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ dict.products }}</a>
+                        <div class="dropdown-menu" aria-labelledby="products-dropdown">
                             {% for cat in informer.getCategoriesToDisplay %}
                                 <a class="dropdown-item p-1" href="#">{{ util.getLocalCategoryName(cat) }}</a>
                             {% endfor %}
                         </div>
                     </li>
-                    {% if informer.user %}
+                    {% if informer.hasRole('ROLE_WORKER') %}
                         <li class="nav-item">
-                            <a class="nav-link pointer" id="logout" href="#">Logout</a>
+                            <a class="nav-link pointer" href="#">Prod. Management</a>
                         </li>
+                    {% endif %}
+                    {% if informer.hasRole('ROLE_ADMIN') %}
                         <li class="nav-item">
-                            <a class="nav-link pointer" id="logout" href="#">{{ informer.user.username }}</a>
+                            <a class="nav-link pointer" href="#">Admin</a>
+                        </li>
+                    {% endif %}
+                    {% if informer.user %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="user-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ informer.user.username }}</a>
+                            <div class="dropdown-menu" aria-labelledby="user-dropdown">
+                                <a class="dropdown-item p-1" href="#" id="logout">{{ dict.logout }}</a>
+                                <a class="dropdown-item p-1" href="#">{{ dict.profile }}</a>
+                            </div>
                         </li>
                     {% else %}
                         <li class="nav-item">
@@ -39,11 +50,10 @@
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <form class="form-inline">
-                            <input class="form-control mr-sm-2 btn-outline-cyan text-light" type="search"
-                                   placeholder="Search" aria-label="Search">
-                            <!--<button class="btn my-2 my-sm-0 btn-outline-success rounded" type="submit">Search</button>-->
+                    <li class="nav-item search_container">
+                        <form action="#">
+                            <input type="search" class="header_search_input" required="required" placeholder="{{ dict.search }}">
+                            <i class="fa fa-search header_search_icon" aria-hidden="true"></i>
                         </form>
                     </li>
                 </ul>

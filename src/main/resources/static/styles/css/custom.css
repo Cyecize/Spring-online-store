@@ -11,6 +11,8 @@ body {
     2 social button styles
 
     3 BACK TO TOP
+
+    4 base layout styles
  */
 
 /*
@@ -22,8 +24,16 @@ FONTS
     font-variant: normal;
 }
 
+.font-kirang-hearang {
+    font-family: 'Kirang Haerang', cursive;
+}
+
 .font-2em {
     font-size: 2em;
+}
+
+.font-15em{
+    font-size: 1.5em;
 }
 
 .font-cookie span {
@@ -98,6 +108,72 @@ nav, nav.navbar.shrink, nav.navbar.shrink button, nav.navbar.shrink input, nav.n
     border-radius: 50%;
     box-shadow: 1px 1px 1px gray;
 }
+
+        /* navbar search */
+.search_container form
+{
+    display: inline-block;
+    position: relative;
+}
+.header_search_input
+{
+    display: inline-block;
+    width: 200px;
+    height: 40px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding-left: 49px;
+    color: #FFFFFF;
+}
+.header_search_input::-webkit-input-placeholder
+{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: rgba(255,255,255,0.5) !important;
+}
+.header_search_input:-moz-placeholder
+{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: rgba(255,255,255,0.5) !important;
+}
+.header_search_input::-moz-placeholder
+{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: rgba(255,255,255,0.5) !important;
+}
+.header_search_input:-ms-input-placeholder
+{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: rgba(255,255,255,0.5) !important;
+}
+.header_search_input::input-placeholder
+{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: rgba(255,255,255,0.5) !important;
+}
+.header_search_icon
+{
+    position: absolute;
+    top: 50%;
+    left: 25px;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+        /*end nabbar search */
 
 /* end navbar */
 
@@ -182,12 +258,22 @@ nav, nav.navbar.shrink, nav.navbar.shrink button, nav.navbar.shrink input, nav.n
     end BACK TO TOP
  */
 
+/*base layout styles */
+.navbar-filler{
+    height: 80px;
+}
+
+/* end base layout styles */
+
 /**
  Responsive
  */
 @media screen and (max-width: 991px) {
     .language-selection div{
         display: inline-block;
+    }
+    .navbar-filler{
+        display: none;
     }
 
 }
@@ -204,5 +290,6 @@ nav, nav.navbar.shrink, nav.navbar.shrink button, nav.navbar.shrink input, nav.n
         left: 12px;
         top: 11px;
     }
+
 
 }

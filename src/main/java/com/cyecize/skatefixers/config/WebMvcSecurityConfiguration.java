@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 
 @Configuration
 @EnableWebSecurity
@@ -35,18 +35,26 @@ public class WebMvcSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 //.antMatchers("/admin/**").hasAuthority("ADMIN")
                 //.anyRequest().authenticated()
                 //.and()
-                .formLogin().loginPage("/login")
-                .usernameParameter("username").passwordParameter("password")
-                .defaultSuccessUrl("/home")
+                    .formLogin()
+                    .loginPage("/login")
+                    .usernameParameter("username").passwordParameter("password")
+                    .defaultSuccessUrl("/home")
                 .and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/")
+                    .logout()
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/")
                 .and()
-                .rememberMe().rememberMeParameter("rememberMe").key("REM_KEY").rememberMeCookieName("REM_MEH").tokenValiditySeconds(60).userDetailsService(this.userService)
+                    .rememberMe()
+                    .rememberMeParameter("rememberMe")
+                    .key("theQuickBrownFoxJumpsOverEmLazyGods")
+                    .rememberMeCookieName("rememberMe")
+                    .tokenValiditySeconds(7200)
+                    .userDetailsService(this.userService)
                 .and()
-                .exceptionHandling().accessDeniedPage("/unauthorized")
+                    .exceptionHandling()
+                    .accessDeniedPage("/unauthorized")
                 .and();
 
-        // super.configure(http);
     }
 
     private CsrfTokenRepository csrfTokenRepository() {

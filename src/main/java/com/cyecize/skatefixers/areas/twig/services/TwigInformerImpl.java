@@ -1,13 +1,11 @@
-package com.cyecize.skatefixers.services;
+package com.cyecize.skatefixers.areas.twig.services;
 
 import com.cyecize.skatefixers.areas.products.entities.Category;
 import com.cyecize.skatefixers.areas.products.services.CategoryService;
 import com.cyecize.skatefixers.areas.users.entities.User;
-import com.cyecize.skatefixers.areas.users.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.Principal;
 import java.util.List;
 
 @Service
