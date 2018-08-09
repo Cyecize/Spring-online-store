@@ -2,6 +2,7 @@ package com.cyecize.skatefixers.areas.home.controllers;
 
 import com.cyecize.skatefixers.areas.home.services.BannerService;
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
+import com.cyecize.skatefixers.areas.products.services.BaseProductService;
 import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
 import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
 import com.cyecize.skatefixers.controllers.BaseController;
@@ -18,18 +19,20 @@ public class HomeController extends BaseController {
 
     private final BannerService bannerService;
 
+    private final BaseProductService productService;
+
+
     @Autowired
-    public HomeController(LocalLanguage language, TwigUtil twigUtil, TwigInformer twigInformer, BannerService bannerService) {
+    public HomeController(LocalLanguage language, TwigUtil twigUtil, TwigInformer twigInformer, BannerService bannerService, BaseProductService productService) {
         super(language, twigUtil, twigInformer);
         this.bannerService = bannerService;
+        this.productService = productService;
     }
 
     @GetMapping("/")
     public ModelAndView homeAction(ModelAndView modelAndView){
-        modelAndView.addObject("date", LocalDateTime.now());
-        modelAndView.addObject("dateOld", new Date());
         modelAndView.addObject("sliderItems", bannerService.forgeIntoSlider());
-
+        modelAndView.addObject("trendingProducts", this.productService.findTrendyProducts());
         return view("default/index", modelAndView);
     }
 }

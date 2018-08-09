@@ -28,139 +28,132 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String NEXT = "Next";
     public static final String SEE_MORE = "See more";
     public static final String SEARCH = "Search";
+    public static final String POPULAR_PRODUCTS = "Popular Products";
+    public static final String DETAILS = "Details";
+    public static final String BUY = "Buy";
+    public static final String NEW_PRODUCTS = "New Products";
 
 
+    public String popularProducts() {
+        return POPULAR_PRODUCTS;
+    }
 
-    @Override
+    public String details() {
+        return DETAILS;
+    }
+
+    public String buy() {
+        return BUY;
+    }
+
+    public String newProducts() {
+        return NEW_PRODUCTS;
+    }
+
     public String next() {
         return NEXT;
     }
 
-    @Override
     public String seeMore() {
         return SEE_MORE;
     }
 
-    @Override
     public String search() {
         return SEARCH;
     }
-    @Override
+
     public String profile() {
         return PROFILE;
     }
 
-    @Override
     public String usernameIsNull() {
         return USERNAME_IS_NULL;
     }
 
-    @Override
     public String usernameInvalidFormat() {
         return USERNAME_INVALID_FORMAT;
     }
 
-    @Override
     public String usernameTaken() {
         return USERNAME_TAKEN;
     }
 
-    @Override
     public String emailIsNull() {
         return EMAIL_IS_NULL;
     }
 
-    @Override
     public String emailTaken() {
         return EMAIL_IS_IN_USE;
     }
 
-    @Override
     public String passwordLengthIsLessThan() {
         return "Password is less than " + 6 + " characters long";
     }
 
-    @Override
     public String passwordsDoNotMatch() {
         return PASSWORDS_DO_NOT_MATCH;
     }
 
-    @Override
     public String passwordIsIncorrect() {
         return INCORRECT_PASSWORD;
     }
 
-    @Override
     public LanguageLocaleType getLocaleType() {
         return LanguageLocaleType.EN;
     }
 
-    @Override
     public String home() {
         return HOME;
     }
 
-    @Override
     public String contacts() {
         return CONTACTS;
     }
 
-    @Override
     public String aboutUs() {
         return ABOUT_US;
     }
 
-    @Override
     public String login() {
         return LOGIN;
     }
 
-    @Override
     public String register() {
         return REGISTER;
     }
 
-    @Override
     public String logout() {
         return LOGOUT;
     }
 
-    @Override
     public String go() {
         return GO;
     }
 
-    @Override
     public String menu() {
         return MENU;
     }
 
-    @Override
     public String products() {
         return PRODUCTS;
     }
 
-    @Override
     public String categories() {
         return CATEGORIES;
     }
 
-    @Override
     public String username() {
         return USERNAME;
     }
 
-    @Override
     public String email() {
         return EMAIL;
     }
 
-    @Override
     public String password() {
         return PASSWORD;
     }
 
-    @Override
     public String rememberMe() {
         return REMEMBER_ME;
     }

@@ -6,10 +6,13 @@ $(function () {
      * 1 -> Init navbar
      *
      * 2 -> BACK TO TOp
+     *
+     * 3 -> init slider
      */
 
     initNavbar();
     backToTop();
+    initSlider();
 
     //1 -> INIT navbar
     function initNavbar() {
@@ -57,7 +60,6 @@ $(function () {
 
     // END INIT Navbar fixed or normal position
 
-
     /*
         2 BACK TO TOP
      */
@@ -97,5 +99,19 @@ $(function () {
     /*
     end BACK TO TOP
      */
+
+    /* 3 init slider */
+    function initSlider() {
+        adjust();
+        window.onresize = adjust;
+
+        function adjust() {
+            var docHeight = $(window).height();
+            $('.carousel-home-item').each(function (e, t) {
+                $(t).height(docHeight - 100);
+            })
+        }
+    }
+    /* !init slider */
 
 });

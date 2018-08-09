@@ -2,7 +2,9 @@ package com.cyecize.skatefixers.areas.products.entities;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "product_categories")
@@ -30,7 +32,8 @@ public class Category {
     private List<BaseProduct> products;
 
     public Category(){
-
+        this.subCategories = new ArrayList<>();
+        this.products = new ArrayList<>();
     }
 
     public Long getId() {
@@ -79,5 +82,16 @@ public class Category {
 
     public void setProducts(List<BaseProduct> products) {
         this.products = products;
+    }
+
+    public List<BaseProduct> activeProducts(){
+        return this.products.stream().filter(BaseProduct::isEnabled).collect(Collectors.toList());
+    }
+
+    public List<BaseProduct> activeProductsRecursive(){
+        List<BaseProduct> products = new ArrayList<>(this.activeProducts());
+        for(Category c : this.subCategories)
+            products.addAll(c.activeProductsRecursive());
+        return products;
     }
 }

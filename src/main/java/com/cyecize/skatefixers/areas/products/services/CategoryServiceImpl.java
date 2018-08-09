@@ -1,10 +1,12 @@
 package com.cyecize.skatefixers.areas.products.services;
 
+import com.cyecize.skatefixers.areas.products.entities.BaseProduct;
 import com.cyecize.skatefixers.areas.products.entities.Category;
 import com.cyecize.skatefixers.areas.products.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,6 +23,7 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> findMainCategories() {
         return this.repository.findMainCategories();
     }
+
 
     @Override
     public Category findOneByName(String name) {

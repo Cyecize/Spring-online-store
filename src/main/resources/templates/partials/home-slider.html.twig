@@ -11,8 +11,8 @@
         {% set ind = 0 %}
         {% for sliderItem in sliderItems %}
             {% set ind = ind + 1 %}
-            <div class="carousel-item {% if ind == 1 %}active{% endif %}"
-                 style="height: 600px;  background:linear-gradient(to right,rgba(0,0,0,0.5), rgba(0,0,0,0.6)),url('{{ sliderItem.banner.backgroundImageLink }}') center; -webkit-background-size: cover;background-size: cover;">
+            <div class="carousel-item carousel-home-item {% if ind == 1 %}active{% endif %}"
+                 style="height: 700px;  background:linear-gradient(to right,rgba(0,0,0,0.5), rgba(0,0,0,0.6)),url('{{ sliderItem.banner.backgroundImageLink }}') center; -webkit-background-size: cover;background-size: cover;">
                 <div class="home_slider_content_container">
                     <div class="container">
                         <div class="row">

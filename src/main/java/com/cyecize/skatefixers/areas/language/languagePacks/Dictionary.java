@@ -42,4 +42,14 @@ public interface Dictionary extends ErrorDictionary {
 
     String search();
 
+    String popularProducts();
+
+    String details();
+
+    String buy();
+
+    String newProducts();
+
+    
+
 }

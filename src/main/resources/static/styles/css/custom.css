@@ -1,5 +1,18 @@
+
+::selection {
+    text-shadow: none;
+    /*background: #fed136;*/
+    /* background: #FA6A2E; */
+    background: rebeccapurple;
+    color: white;
+}
+
 body {
     font-family: 'Work Sans', sans-serif;
+}
+
+.bg-gray {
+    background: #f8f8f8;
 }
 
 /* TABLE OF CONTENT
@@ -13,6 +26,8 @@ body {
     3 BACK TO TOP
 
     4 base layout styles
+
+    5 sidebar
  */
 
 /*
@@ -48,9 +63,14 @@ end fonts
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+.bg-trans-light{
+    background-color: rgba(255,255,255,0.5);
+}
+
 .stylish-trans-dark {
     background-color: rgba(62, 69, 81, 0.8);
 }
+
 
 /* navbar  */
 
@@ -264,6 +284,33 @@ nav, nav.navbar.shrink, nav.navbar.shrink button, nav.navbar.shrink input, nav.n
 }
 
 /* end base layout styles */
+
+/* sidebar */
+.sidebar-section{
+
+}
+
+.sidebar-background{
+    background: #ededed;
+}
+
+.sidebar-item{
+    padding: 5px;
+}
+
+.side-product{
+    cursor: pointer;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.side-product:hover{
+    background-color: #00c851!important;
+    color: #fff!important;
+}
+/* end sidebar */
 
 /**
  Responsive

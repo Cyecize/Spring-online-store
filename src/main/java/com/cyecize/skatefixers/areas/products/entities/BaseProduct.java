@@ -30,7 +30,10 @@ public abstract class BaseProduct {
     private String image;
 
     @Column(name = "is_enabled")
-    private boolean isEnabled;
+    private Boolean isEnabled;
+
+    @Column(name = "weekly_views")
+    private Integer weeklyViews;
 
     @ManyToOne(targetEntity = Brand.class)
     @JoinColumn(name = "brand_id", referencedColumnName = "id", nullable = false)
@@ -47,6 +50,7 @@ public abstract class BaseProduct {
     protected BaseProduct(){
         this.gallery = new ArrayList<>();
         this.isEnabled = true;
+        this.weeklyViews = 0;
     }
 
     public Long getId() {
@@ -103,6 +107,14 @@ public abstract class BaseProduct {
 
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
+    }
+
+    public Integer getWeeklyViews() {
+        return weeklyViews;
+    }
+
+    public void setWeeklyViews(Integer weeklyViews) {
+        this.weeklyViews = weeklyViews;
     }
 
     public Brand getBrand() {

@@ -6,21 +6,75 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-9">
-                    <h1>{{ _csrf.parameterName }} {{ _csrf.token }} </h1>
-                    <h1>has role Admin: <span style="background: rebeccapurple;">{{ informer.hasRole('ROLE_ADMIN') }}</span></h1>
-                    <h1>has role Worker: <span style="background: rebeccapurple;">{{ informer.hasRole('ROLE_WORKER') }}</span></h1>
-                    <h1>has role user: <span style="background: rebeccapurple;">{{ informer.hasRole('ROLE_USER') }}</span></h1>
-                    <h1>is auth: <span style="background: rebeccapurple;">{{ informer.isAuthenticated() }}</span></h1>
-                    {% if informer.user %}
-                        <p> Hello, <strong>{{ informer.user.username }}</strong></p>
-                    {% endif %}
+                    <section class="bg-gray popular-products-section p-1">
+                        <div class="text-center">
+                            <p class="font-2em">{{ dict.popularProducts }}</p>
+                        </div>
 
-                    {{ date.format(util.simpleFormat()) }} <br>
-                    {{ dateOld|date("m/d/Y") }}
+                        <div class="row">
+                            {% for product in trendingProducts %}
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <a href="#"><img class="card-img-top" src="{{ product.image }}" height="200px"
+                                                         alt="{{ product.description }}"></a>
+                                        <div class="card-body">
+                                            <h4 class="card-title">
+                                                <a href="#" class="text-success">{{ product.brand.brandName }}</a>
+                                            </h4>
+                                            <h5>${{ product.price }}</h5>
+                                            <p class="card-text">{{ product.productName }}</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted row">
+                                                <a class="col-md-5 btn btn-sm btn-success " href="#/details">{{ dict.details }}</a>
+                                                <button class="col-md-5 btn btn-sm btn-dark ml-auto">{{ dict.buy }}</button>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </section>
                 </div>
-                <div class="col-lg-3">
-                    <h3 class="font-kirang-hearang">Sidebar</h3>
-                </div>
+                {% embed '../partials/sidebar/sidebar.html.twig' %}
+                    {% block sidebarBody %}
+                        {% embed '../partials/sidebar/categories.html.twig' with {'title':dict.categories, 'categories':informer.getCategoriesToDisplay } %} {% endembed %}
+                        <div class="sidebar-item">
+                            <p class="font-15em">{{ dict.newProducts }}</p>
+                            {% for product in informer.getNewProducts %}
+                                <div class="d-flex align-items-xl-center align-items-center justify-content-start mt-1 side-product">
+                                    <div class="side-product-image d-flex align-items-center p-1">
+                                        <img src="{{ product.image }}" style="max-width: 70px; max-height: 70px;">
+                                    </div>
+                                    <div class="side-product-content p-1">
+                                        <small>{{ product.productName }}</small>
+                                        <hr class="hr-dark m-0">
+                                        <small><b>{{ product.brand.brandName }}</b></small>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="sidebar-item">
+                            <p class="font-15em">Dev_info</p>
+                            <p>{{ _csrf.parameterName }} {{ _csrf.token }} </p>
+                            <p>has role Admin: <span
+                                        style="background: rebeccapurple; color: yellowgreen;">{{ informer.hasRole('ROLE_ADMIN') }}</span>
+                            </p>
+                            <p>has role Worker: <span
+                                        style="background: rebeccapurple;color: yellowgreen;">{{ informer.hasRole('ROLE_WORKER') }}</span>
+                            </p>
+                            <p>has role user: <span
+                                        style="background: rebeccapurple;color: yellowgreen;">{{ informer.hasRole('ROLE_USER') }}</span>
+                            </p>
+                            {% if informer.user %}
+                                <p> Hello, <strong>{{ informer.user.username }}</strong></p>
+                            {% endif %}
+
+                            {#{{ date.format(util.simpleFormat()) }} <br>#}
+                            {#{{ dateOld|date("m/d/Y") }}#}
+                        </div>
+                    {% endblock %}
+                {% endembed %}
             </div>
         </div>
     </main>
