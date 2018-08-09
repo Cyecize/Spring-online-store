@@ -68,6 +68,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findOneByEmail(String email) {
+        return this.userRepository.findUserByEmail(email);
+    }
+
+    @Override
     public void disableUser(User user) {
         user.setEnabled(false);
         this.userRepository.saveAndFlush(user);

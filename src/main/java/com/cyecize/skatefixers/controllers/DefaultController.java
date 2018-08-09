@@ -5,6 +5,7 @@ import com.cyecize.skatefixers.areas.products.services.CategoryService;
 import com.cyecize.skatefixers.services.TwigInformer;
 import com.cyecize.skatefixers.services.TwigUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +36,13 @@ public class DefaultController extends BaseController{
         modelAndView.addObject("dateOld", new Date());
 
         return view("default/index", modelAndView);
+    }
+
+    @GetMapping("/home")
+    @ResponseBody
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public String home(){
+        return "heello";
     }
 
 

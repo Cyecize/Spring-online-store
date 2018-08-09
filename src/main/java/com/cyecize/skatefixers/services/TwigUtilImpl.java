@@ -65,9 +65,14 @@ public class TwigUtilImpl implements TwigUtil {
         List<String> errors = new ArrayList<>();
         for (FieldError fieldError : bindingResult.getFieldErrors()) {
             if(fieldError.getField().equals(fieldName))
-                errors.add(fieldError.getDefaultMessage());
+                errors.add(this.localLanguage.forName(fieldError.getDefaultMessage()));
         }
         return errors;
+    }
+
+    @Override
+    public String translate(String text) {
+        return this.localLanguage.forName(text);
     }
 
 

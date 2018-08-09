@@ -31,6 +31,28 @@
 {% embed 'partials/footer.html.twig' %} {% endembed %}
 <!-- scripts -->
 {% embed 'partials/scripts.html.twig' %} {% endembed %}
+<script>
+    $(function () {
+        var header = '{{_csrf.headerName}}';
+        var token = '{{_csrf.token}}';
+
+        $('#logout').on('click', function () {
+            $.ajax({
+                url: '/logout',
+                type: 'POST',
+                data: token,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader(header, token);
+                },
+                success: function (data) {
+                    window.location = "/";
+                    console.log("logged out");
+                },
+                error:console.error
+            });
+        });
+    });
+</script>
 {% block javascripts %}{% endblock %}
 </body>
 </html>

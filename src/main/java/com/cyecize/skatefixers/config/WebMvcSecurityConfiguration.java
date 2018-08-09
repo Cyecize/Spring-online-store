@@ -9,11 +9,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebMvcSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
     private final UserService userService;
 
     @Autowired
@@ -25,33 +27,23 @@ public class WebMvcSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .cors().disable()
-                .csrf()
-                    .csrfTokenRepository(csrfTokenRepository())
+                .csrf().csrfTokenRepository(csrfTokenRepository())
                 .and()
                 // .csrf().disable()
                 //.authorizeRequests()
-                //.antMatchers("/","/register", "/login", "/js/**", "/css/**").permitAll()
+                //.antMatchers("/register", "/login", "/styles/**", "/files/**").permitAll()
                 //.antMatchers("/admin/**").hasAuthority("ADMIN")
                 //.anyRequest().authenticated()
                 //.and()
-                .formLogin()
-                    .loginPage("/login")
-                    .usernameParameter("username").passwordParameter("password")
-                    .defaultSuccessUrl("/home")
+                .formLogin().loginPage("/login")
+                .usernameParameter("username").passwordParameter("password")
+                .defaultSuccessUrl("/home")
                 .and()
-                .logout()
-                    .logoutUrl("/logout")
-                    .logoutSuccessUrl("/")
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/")
                 .and()
-                .rememberMe()
-                    .rememberMeParameter("rememberMe")
-                    .key("theQuickBrownFoxJumpsOverEmLazyGods")
-                    .rememberMeCookieName("remember")
-                    .tokenValiditySeconds(7200)
-                    .userDetailsService(this.userService)
+                .rememberMe().rememberMeParameter("rememberMe").key("REM_KEY").rememberMeCookieName("REM_MEH").tokenValiditySeconds(60).userDetailsService(this.userService)
                 .and()
-                .exceptionHandling()
-                    .accessDeniedPage("/unauthorized")
+                .exceptionHandling().accessDeniedPage("/unauthorized")
                 .and();
 
         // super.configure(http);

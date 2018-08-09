@@ -42,6 +42,8 @@ public abstract class BaseController {
             this.twigUtil.setBindingResult((BeanPropertyBindingResult) modelAndView.getModelMap().get(WebConstants.TWIG_BINDING_RESULT_OBJ_NAME));
         if(this.isAuthenticated())
             this.twigInformer.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        else
+            this.twigInformer.setUser(null);
         modelAndView.addObject(DICTIONARY_NAME, this.dictionary());
         modelAndView.addObject(UTIL_NAME, this.twigUtil);
         modelAndView.addObject(INFORMER_NAME, this.twigInformer);

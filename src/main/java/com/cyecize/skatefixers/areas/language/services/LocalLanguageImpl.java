@@ -1,14 +1,11 @@
 package com.cyecize.skatefixers.areas.language.services;
 
 import com.cyecize.skatefixers.areas.language.enums.LanguageLocaleType;
-import com.cyecize.skatefixers.areas.language.languagePacks.BgLangPack;
+import com.cyecize.skatefixers.areas.language.languagePacks.DictionaryBgImpl;
 import com.cyecize.skatefixers.areas.language.languagePacks.Dictionary;
-import com.cyecize.skatefixers.areas.language.languagePacks.EnLangPack;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.cyecize.skatefixers.areas.language.languagePacks.DictionaryEnImpl;
+import com.cyecize.skatefixers.areas.language.languagePacks.ErrorDictionary;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
 
 @Service
 public class LocalLanguageImpl implements LocalLanguage {
@@ -21,6 +18,11 @@ public class LocalLanguageImpl implements LocalLanguage {
 
     @Override
     public Dictionary dictionary() {
+        return this.dictionary;
+    }
+
+    @Override
+    public ErrorDictionary errors() {
         return this.dictionary;
     }
 
@@ -45,10 +47,10 @@ public class LocalLanguageImpl implements LocalLanguage {
             return;
         switch (localeType) {
             case BG:
-                this.dictionary = new BgLangPack();
+                this.dictionary = new DictionaryBgImpl();
                 break;
             case EN:
-                this.dictionary = new EnLangPack();
+                this.dictionary = new DictionaryEnImpl();
                 break;
         }
     }

@@ -2,7 +2,7 @@ package com.cyecize.skatefixers.areas.language.languagePacks;
 
 import com.cyecize.skatefixers.areas.language.enums.LanguageLocaleType;
 
-public interface Dictionary {
+public interface Dictionary extends ErrorDictionary {
 
     LanguageLocaleType getLocaleType();
 

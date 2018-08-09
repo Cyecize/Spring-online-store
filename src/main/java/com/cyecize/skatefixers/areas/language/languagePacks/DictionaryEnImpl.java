@@ -2,7 +2,7 @@ package com.cyecize.skatefixers.areas.language.languagePacks;
 
 import com.cyecize.skatefixers.areas.language.enums.LanguageLocaleType;
 
-public class EnLangPack implements Dictionary {
+public class DictionaryEnImpl implements Dictionary {
     public static final String HOME = "Home";
     public static final String CONTACTS = "Contacts";
     public static final String ABOUT_US = "About us";
@@ -13,6 +13,54 @@ public class EnLangPack implements Dictionary {
     public static final String MENU = "Menu";
     public static final String PRODUCTS = "Product";
     public static final String CATEGORIES = "Categories";
+    public static final String USERNAME_IS_NULL = "Username is empty";
+    public static final String USERNAME_INVALID_FORMAT = "Invalid username format";
+    public static final String USERNAME_TAKEN = "Username is in use";
+    public static final String EMAIL_IS_NULL = "Email is empty";
+    public static final String EMAIL_IS_IN_USE = "Email is in use";
+    public static final String PASSWORDS_DO_NOT_MATCH = "Passwords do not match";
+    public static final String INCORRECT_PASSWORD = "Incorrect password";
+
+
+    @Override
+    public String usernameIsNull() {
+        return USERNAME_IS_NULL;
+    }
+
+    @Override
+    public String usernameInvalidFormat() {
+        return USERNAME_INVALID_FORMAT;
+    }
+
+    @Override
+    public String usernameTaken() {
+        return USERNAME_TAKEN;
+    }
+
+    @Override
+    public String emailIsNull() {
+        return EMAIL_IS_NULL;
+    }
+
+    @Override
+    public String emailTaken() {
+        return EMAIL_IS_IN_USE;
+    }
+
+    @Override
+    public String passwordLengthIsLessThan() {
+        return "Password is less than " + 6 + " characters long";
+    }
+
+    @Override
+    public String passwordsDoNotMatch() {
+        return PASSWORDS_DO_NOT_MATCH;
+    }
+
+    @Override
+    public String passwordIsIncorrect() {
+        return INCORRECT_PASSWORD;
+    }
 
     @Override
     public LanguageLocaleType getLocaleType() {
@@ -68,4 +116,6 @@ public class EnLangPack implements Dictionary {
     public String categories() {
         return CATEGORIES;
     }
+
+
 }

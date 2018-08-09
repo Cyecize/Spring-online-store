@@ -2,7 +2,7 @@ package com.cyecize.skatefixers.areas.language.languagePacks;
 
 import com.cyecize.skatefixers.areas.language.enums.LanguageLocaleType;
 
-public class BgLangPack implements Dictionary {
+public class DictionaryBgImpl implements Dictionary {
 
     public static final String HOME = "Начало";
     public static final String CONTACTS = "Контакти";
@@ -14,6 +14,55 @@ public class BgLangPack implements Dictionary {
     public static final String MENU = "Меню";
     public static final String PRODUCTS = "Продукти";
     public static final String CATEGORIES = "Категории";
+    public static final String USERNAME_IS_NULL = "Потребителското име е празно";
+    public static final String USERNAME_INVALID_FORMAT = "Невалиден формат на потр.име";
+    public static final String USERNAME_TAKEN = "Потр. име е заето";
+    public static final String EMAIL_IS_NULL = "Email адресът е празен";
+    public static final String EMAIL_IS_IN_USE = "Email адресът е зает";
+    public static final String PASSWORDS_DO_NOT_MATCH = "Паролите не съвпадат";
+    public static final String INCORRECT_PASSWORD = "Грешна парола";
+
+
+    @Override
+    public String usernameIsNull() {
+        return USERNAME_IS_NULL;
+    }
+
+    @Override
+    public String usernameInvalidFormat() {
+        return USERNAME_INVALID_FORMAT;
+    }
+
+    @Override
+    public String usernameTaken() {
+        return USERNAME_TAKEN;
+    }
+
+    @Override
+    public String emailIsNull() {
+        return EMAIL_IS_NULL;
+    }
+
+    @Override
+    public String emailTaken() {
+        return EMAIL_IS_IN_USE;
+    }
+
+    @Override
+    public String passwordLengthIsLessThan() {
+        return "Паролата е под " + 6 + " знака";
+    }
+
+    @Override
+    public String passwordsDoNotMatch() {
+        return PASSWORDS_DO_NOT_MATCH;
+    }
+
+    @Override
+    public String passwordIsIncorrect() {
+        return INCORRECT_PASSWORD;
+    }
+
 
     @Override
     public LanguageLocaleType getLocaleType() {

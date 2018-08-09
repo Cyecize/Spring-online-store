@@ -1,29 +1,37 @@
 package com.cyecize.skatefixers.areas.users.bindingModels;
 
 
+import com.cyecize.skatefixers.areas.language.annotations.LocalLang;
+import com.cyecize.skatefixers.areas.language.languagePacks.DictionaryEnImpl;
+import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.users.bindingModels.validator.FieldMatch;
+import com.cyecize.skatefixers.areas.users.bindingModels.validator.UniqueEmail;
+import com.cyecize.skatefixers.areas.users.bindingModels.validator.UniqueUsername;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-@FieldMatch(first = "password", second = "passwordConfirm", message = "Passwords Did not Match")
+@FieldMatch(first = "password", second = "passwordConfirm", message = "passwordsDoNotMatch")
 public class UserRegisterBindingModel {
 
-    @NotNull(message = "Username cannot be null")
-    @NotEmpty(message = "Username cannot be empty")
-    @Length(min = 3, message = "Username len should be 3 or more")
-    @Pattern(regexp = "^[a-zA-Z0-9\\-_.*~]{3,}$", message = "Skapan ivalid, napishi edno ime kato orata")
+
+    @NotNull(message = "usernameIsNull")
+    @NotEmpty(message = "usernameIsNull")
+    @Pattern(regexp = "^[^\\s]{3,}$", message = "usernameInvalidFormat")
+    @UniqueUsername(message = "usernameTaken")
     private String username;
 
-    @NotNull(message = "Email cannot be null")
-    @NotEmpty(message = "Email cannot be empty")
+    @NotNull(message = "emailIsNull")
+    @NotEmpty(message = "emailIsNull")
+    @UniqueEmail(message = "emailTaken")
     private String email;
 
-    @NotNull(message = "Password cannot be null or empty")
-    @NotEmpty(message = "Password cannot be null or empty" )
-    @Length(min = 6, message = "pass Len cannot be less than 6")
+    @NotNull(message = "passwordLengthIsLessThan")
+    @NotEmpty(message = "passwordLengthIsLessThan" )
+    @Length(min = 6, message = "passwordLengthIsLessThan")
     private String password;
 
     private String passwordConfirm;

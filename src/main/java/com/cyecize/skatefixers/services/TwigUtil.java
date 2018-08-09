@@ -20,5 +20,5 @@ public interface TwigUtil {
 
     List<String> getErrors(String fieldName);
 
-
+    String translate(String text);
 }

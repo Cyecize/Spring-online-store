@@ -16,6 +16,8 @@ public interface UserService extends UserDetailsService {
 
     User findOneByUsername(String username);
 
+    User findOneByEmail(String email);
+
     void disableUser(User user);
 
     void enableUser(User user);
