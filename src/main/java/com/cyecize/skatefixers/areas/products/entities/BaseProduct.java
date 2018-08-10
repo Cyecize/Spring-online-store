@@ -26,6 +26,9 @@ public abstract class BaseProduct {
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "size", nullable = true)
+    private String size;
+
     @Column(name = "image", nullable = false)
     private String image;
 
@@ -91,6 +94,14 @@ public abstract class BaseProduct {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public String getImage() {
