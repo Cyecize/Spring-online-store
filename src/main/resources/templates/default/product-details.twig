@@ -1,0 +1,25 @@
+{% extends '../base.html.twig' %}
+{% block title %}{{ product.productName }}{% endblock %}
+{% block body %}
+    {% embed '../partials/home-banner.html.twig' with {'title':product.brand.brandName } %} {% endembed %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img src="{{ product.image }}" width="100%" height="100%">
+                    </div>
+                    <div class="col-md-6 border-dark rounded">
+                        <div class="row p-2">
+                            <p class="col-md-8 font-weight-bold mr-auto">{{ product.productName }}</p>
+                            <p class="col-sm-2 font-2em text-info ml-auto">${{ product.price|number_format(2, '.', ',') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% embed '../partials/sidebar/sidebar.html.twig' %}
+
+            {% endembed %}
+        </div>
+    </div>
+{% endblock %}

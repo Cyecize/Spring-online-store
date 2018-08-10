@@ -29,7 +29,7 @@ public class ProductController  extends BaseController {
     @GetMapping("/{id:[\\d+]+}")
     public ModelAndView productDetails(@PathVariable Long id){
         BaseProduct product = this.productService.findOneById(id);
-        return super.view("");
+        return super.view("default/product-details", "product", product);
     }
 
     @GetMapping("/all")
