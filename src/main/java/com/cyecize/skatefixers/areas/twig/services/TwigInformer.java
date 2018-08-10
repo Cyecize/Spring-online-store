@@ -1,5 +1,6 @@
 package com.cyecize.skatefixers.areas.twig.services;
 
+import com.cyecize.skatefixers.areas.home.entities.Banner;
 import com.cyecize.skatefixers.areas.products.entities.BaseProduct;
 import com.cyecize.skatefixers.areas.products.entities.Category;
 import com.cyecize.skatefixers.areas.users.entities.User;
@@ -13,6 +14,8 @@ public interface TwigInformer {
     List<BaseProduct> getNewProducts();
 
     List<BaseProduct> getNewProducts(int limit);
+
+    Banner getBanner();
 
     User getUser();
 

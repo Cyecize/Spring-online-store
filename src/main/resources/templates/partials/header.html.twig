@@ -15,8 +15,9 @@
                         <a class="nav-link dropdown-toggle" href="#" id="products-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ dict.products }}</a>
                         <div class="dropdown-menu" aria-labelledby="products-dropdown">
                             {% for cat in informer.getCategoriesToDisplay %}
-                                <a class="dropdown-item p-1" href="#">{{ util.getLocalCategoryName(cat) }}</a>
+                                <a class="dropdown-item p-1" href="/categories/{{ cat.categoryNameLatin }}">{{ util.getLocalCategoryName(cat) }}</a>
                             {% endfor %}
+                            <a class="dropdown-item p-1" href="/categories">{{ dict.all }}</a>
                         </div>
                     </li>
                     {% if informer.hasRole('ROLE_WORKER') %}

@@ -9,4 +9,5 @@ public interface BannerRepository extends JpaRepository<Banner, Long> {
 
     List<Banner> findBannersByIsDisabled(boolean disabled);
 
+    Banner findFirstByIsDisabledOrderByIdDesc(Boolean isDisabled);
 }

@@ -59,4 +59,9 @@ public class BannerServiceImpl implements BannerService {
         }
         return slides;
     }
+
+    @Override
+    public Banner findLatestBanner() {
+        return this.bannerRepository.findFirstByIsDisabledOrderByIdDesc(false);
+    }
 }

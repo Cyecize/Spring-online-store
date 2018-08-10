@@ -16,9 +16,11 @@ public interface TwigUtil {
 
     String getError(String fieldName);
 
+    String translate(String text);
+
     DateTimeFormatter simpleFormat();
 
     List<String> getErrors(String fieldName);
 
-    String translate(String text);
+    List<Integer> range(Object from , Object to);
 }

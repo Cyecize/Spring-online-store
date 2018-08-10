@@ -33,7 +33,27 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String DETAILS = "Детайли";
     public static final String BUY = "Купи";
     public static final String NEW_PRODUCTS = "Нови продукти";
+    public static final String ALL = "Всички";
+    public static final String SUB_CATEGORIES = "Под категории";
+    public static final String PREVIOUS = "Предишна";
+    public static final String PRODUCT_NOT_FOUND = "Продукта не беше намерен";
 
+
+    public String productNotFound() {
+        return PRODUCT_NOT_FOUND;
+    }
+
+    public String previous() {
+        return PREVIOUS;
+    }
+
+    public String subCategories() {
+        return SUB_CATEGORIES;
+    }
+
+    public String all() {
+        return ALL;
+    }
 
     public String popularProducts() {
         return POPULAR_PRODUCTS;

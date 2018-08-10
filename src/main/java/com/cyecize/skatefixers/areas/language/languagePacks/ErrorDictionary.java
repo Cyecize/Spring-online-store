@@ -18,4 +18,6 @@ public interface ErrorDictionary  {
 
     String passwordIsIncorrect();
 
+    String productNotFound();
+
 }

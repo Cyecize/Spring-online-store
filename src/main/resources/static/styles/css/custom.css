@@ -310,7 +310,32 @@ nav, nav.navbar.shrink, nav.navbar.shrink button, nav.navbar.shrink input, nav.n
     background-color: #00c851!important;
     color: #fff!important;
 }
+
+
 /* end sidebar */
+
+/* home banner  */
+.home-banner-content{
+    position: absolute;
+    top: 40%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+}
+
+.home-banner-info{
+    background: rgba(0,0,0,0.4);
+    padding: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    color: white;
+}
+/* !home banner */
 
 /**
  Responsive

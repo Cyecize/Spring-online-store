@@ -14,4 +14,6 @@ public interface BannerService {
     List<Banner> findOnlyDisabled();
 
     List<HomeSliderBannerViewModel> forgeIntoSlider();
+
+    Banner findLatestBanner();
 }

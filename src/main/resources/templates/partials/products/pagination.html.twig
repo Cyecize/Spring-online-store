@@ -1,0 +1,13 @@
+<ul class="pagination">
+    {% set currentPage = pageable.getPageable().getPageNumber() %}
+    <li class="page-item {% if currentPage < 1 %} disabled {% endif %}">
+        <a class="page-link" href="?page={{ currentPage -1 }}&size={{ pageable.getPageable().getPageSize() }}" tabindex="-1">{{ dict.previous }}</a>
+    </li>
+
+    {% for page in  util.range(0, pageable.getTotalPages() -1) %}
+        <li class="page-item {% if currentPage ==  page %} active {% endif %}"><a class="page-link" href="?page={{ page }}&size={{ pageable.getPageable().getPageSize() }}">{{ page + 1 }}</a></li>
+    {% endfor %}
+    <li class="page-item {% if currentPage >=  pageable.getTotalPages() -1 %} disabled {% endif %}">
+        <a class="page-link" href="?page={{ currentPage + 1 }}&size={{ pageable.getPageable().getPageSize() }}">{{ dict.next }}</a>
+    </li>
+</ul>

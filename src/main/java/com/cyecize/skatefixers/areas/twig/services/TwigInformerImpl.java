@@ -1,5 +1,7 @@
 package com.cyecize.skatefixers.areas.twig.services;
 
+import com.cyecize.skatefixers.areas.home.entities.Banner;
+import com.cyecize.skatefixers.areas.home.services.BannerService;
 import com.cyecize.skatefixers.areas.products.entities.BaseProduct;
 import com.cyecize.skatefixers.areas.products.entities.Category;
 import com.cyecize.skatefixers.areas.products.services.BaseProductService;
@@ -17,12 +19,15 @@ public class TwigInformerImpl implements TwigInformer {
 
     private final BaseProductService productService;
 
+    private final BannerService bannerService;
+
     private User principal;
 
     @Autowired
-    public TwigInformerImpl(CategoryService categoryService, BaseProductService productService) {
+    public TwigInformerImpl(CategoryService categoryService, BaseProductService productService, BannerService bannerService) {
         this.categoryService = categoryService;
         this.productService = productService;
+        this.bannerService = bannerService;
     }
 
     @Override
@@ -38,6 +43,11 @@ public class TwigInformerImpl implements TwigInformer {
     @Override
     public List<BaseProduct> getNewProducts(int limit) {
         return this.productService.findNewProducts(limit);
+    }
+
+    @Override
+    public Banner getBanner() {
+        return this.bannerService.findLatestBanner();
     }
 
     @Override

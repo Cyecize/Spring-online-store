@@ -1,0 +1,12 @@
+<div style="height: 500px; background:linear-gradient(to right,rgba(0,0,0,0.5), rgba(0,0,0,0.6)),url('{% if  background is defined %}{{ background }}{% else %}{{ informer.getBanner().backgroundImageLink }}{% endif %}') center; -webkit-background-size: cover;background-size: cover;">
+    <div class="home-banner-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 home-banner-info">
+                    <h2>{{ title }}</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

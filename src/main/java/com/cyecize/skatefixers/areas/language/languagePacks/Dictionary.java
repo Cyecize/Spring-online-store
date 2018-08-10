@@ -50,6 +50,9 @@ public interface Dictionary extends ErrorDictionary {
 
     String newProducts();
 
+    String all();
     
+    String subCategories();
 
+    String previous();
 }

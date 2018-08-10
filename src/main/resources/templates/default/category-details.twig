@@ -1,0 +1,31 @@
+{% extends '../base.html.twig' %}
+
+{% block body %}
+    <main>
+        {% embed '../partials/home-banner.html.twig' with {'title':"FIX ME LATER"} %} {% endembed %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <section class="bg-gray popular-products-section p-1">
+                        <div class="text-center">
+                            <p class="font-2em">{{ dict.products }}</p>
+                        </div>
+
+                        <div class="row">
+                            {% for product in viewModel.products %}
+                                {% embed '../partials/products/regular-product-cart.html.twig' with {'product':product} %} {% endembed %}
+                            {% endfor %}
+                        </div>
+                        {% embed '../partials/products/pagination.html.twig' with {'pageable':viewModel.products} %} {% endembed %}
+                    </section>
+                </div>
+                {% embed '../partials/sidebar/sidebar.html.twig' %}
+                    {% block sidebarBody %}
+                        {% embed '../partials/sidebar/categories.html.twig' with {'title':dict.subCategories, 'categories':viewModel.subCategories } %} {% endembed %}
+                    {% endblock %}
+                {% endembed %}
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

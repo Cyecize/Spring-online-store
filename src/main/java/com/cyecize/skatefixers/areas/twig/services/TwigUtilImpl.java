@@ -71,6 +71,14 @@ public class TwigUtilImpl implements TwigUtil {
     }
 
     @Override
+    public List<Integer> range(Object from , Object to) {
+        List<Integer> integers = new ArrayList<>();
+        for (int i = Integer.parseInt(from +""); i <= Integer.parseInt(to+""); i++)
+            integers.add(i);
+        return integers;
+    }
+
+    @Override
     public String translate(String text) {
         return this.localLanguage.forName(text);
     }

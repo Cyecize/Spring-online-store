@@ -32,23 +32,33 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String DETAILS = "Details";
     public static final String BUY = "Buy";
     public static final String NEW_PRODUCTS = "New Products";
+    public static final String ALL = "All";
+    public static final String SUB_CATEGORIES = "Sub Categories";
+    public static final String PREVIOUS = "Previous";
+    public static final String PRODUCT_NOT_FOUND = "Product was not found";
 
 
-    public String popularProducts() {
-        return POPULAR_PRODUCTS;
+    public String productNotFound() {
+        return PRODUCT_NOT_FOUND;
     }
 
-    public String details() {
-        return DETAILS;
+    public String previous() {
+        return PREVIOUS;
     }
 
-    public String buy() {
-        return BUY;
+    public String subCategories() {
+        return SUB_CATEGORIES;
     }
 
-    public String newProducts() {
-        return NEW_PRODUCTS;
-    }
+    public String all() { return ALL; }
+
+    public String popularProducts() { return POPULAR_PRODUCTS; }
+
+    public String details() { return DETAILS; }
+
+    public String buy() { return BUY; }
+
+    public String newProducts() { return NEW_PRODUCTS; }
 
     public String next() {
         return NEXT;
