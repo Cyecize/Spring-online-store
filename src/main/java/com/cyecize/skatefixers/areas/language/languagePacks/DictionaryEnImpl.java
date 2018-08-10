@@ -36,7 +36,18 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String SUB_CATEGORIES = "Sub Categories";
     public static final String PREVIOUS = "Previous";
     public static final String PRODUCT_NOT_FOUND = "Product was not found";
+    public static final String BRAND = "Brand";
+    public static final String QUANTITY = "Quantity";
 
+
+    public String brand() {
+        return BRAND;
+    }
+
+
+    public String quantity() {
+        return QUANTITY;
+    }
 
     public String productNotFound() {
         return PRODUCT_NOT_FOUND;

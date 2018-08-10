@@ -173,7 +173,7 @@ CREATE TABLE `products` (
   KEY `FK6t5dtw6tyo83ywljwohuc6g7k` (`category_id`),
   CONSTRAINT `FK6t5dtw6tyo83ywljwohuc6g7k` FOREIGN KEY (`category_id`) REFERENCES `product_categories` (`id`),
   CONSTRAINT `FKa3a4mpsfdf4d2y6r8ra3sc8mv` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,7 +182,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES ('Skateboard',1,'<p>Quite a good board </p>','https://insomniacollective.com/media/7/11052.png','',90,'СКЕЙТ ДЪСКА CHOCOLATE ALVAREZ CITY COWBOYS 8\" + ШКУРКА',11,8,1,3,55),('Skateboard',2,'Insane board with kanadski klen','https://insomniacollective.com/media/7/11010.png','',120,'СКЕЙТБОРД ДЪСКА GIRL MALTO 93 TIL 7.75\" + ШКУРКА и допълнителни колелца и като цяло много други неша, може да попитате',10,8.1,6,3,12),('Product',3,'Quality Indi socks man','https://insomniacollective.com/media/7/3790.jpg','',18,'ЧОРАПИ INDEPENDENT FINISHLINE- 2 БР.',2,NULL,5,4,1),('Product',4,'Very cool hat mane','https://insomniacollective.com/media/7/8217.jpg','',36,'ЗИМНА ШАПКА OSIRIS CLIP',11,NULL,2,4,14),('Skateboard',5,'Характеристики на скейтборд комплекта:\r\n\r\nConcave: Medium\r\n\r\nРазмер: 7.6\" x 32\"\r\n\r\nСъстав: Hard Rock Maple - 7 Plies\r\n\r\nКолесари: Classic 5.0\r\n\r\nКолела: 52mm - 100A\r\n\r\nЛагери: Abec 5','https://insomniacollective.com/media/7/9261.jpg','',118,'СКЕЙТБОРД КОМПЛЕКТ ALOIKI TRIANGLE MC 7.6',2,7.75,6,3,1),('ClothesProduct',6,'Състав:\r\nВъншна част: текстил\r\nВътрешна част: синтетика\r\nПодметка: каучук\r\n \r\n\r\nЗабележка: От вътрешната част на обувката има отвори за проветрение.','https://insomniacollective.com/media/7/10419.jpg','',106,'ОБУВКИ DC EVAN SMITH TX SE',13,NULL,2,1,70),('ClothesProduct',7,'Състав:\r\nВъншна част: текстил и синтетична кожа\r\nВътрешна част: синтетика\r\nПодметка: каучук','https://insomniacollective.com/media/7/9182.jpg','',77,'ОБУВКИ DVS AVERSA ',2,NULL,5,1,54);
+INSERT INTO `products` VALUES ('Skateboard',1,'<p>Quite a good board </p>','https://insomniacollective.com/media/7/11052.png','',90,'СКЕЙТ ДЪСКА CHOCOLATE ALVAREZ CITY COWBOYS 8\" + ШКУРКА',11,8,1,3,55),('Skateboard',2,'Insane board with kanadski klen','https://insomniacollective.com/media/7/11010.png','',120,'СКЕЙТБОРД ДЪСКА GIRL MALTO 93 TIL 7.75\" + ШКУРКА и допълнителни колелца и като цяло много други неша, може да попитате',10,8.1,6,3,12),('Product',3,'Quality Indi socks man','https://insomniacollective.com/media/7/3790.jpg','',18,'ЧОРАПИ INDEPENDENT FINISHLINE- 2 БР.',2,NULL,5,4,1),('Product',4,'Very cool hat mane','https://insomniacollective.com/media/7/8217.jpg','',36,'ЗИМНА ШАПКА OSIRIS CLIP',11,NULL,2,4,14),('Skateboard',5,'Характеристики на скейтборд комплекта:\r\n\r\nConcave: Medium\r\n\r\nРазмер: 7.6\" x 32\"\r\n\r\nСъстав: Hard Rock Maple - 7 Plies\r\n\r\nКолесари: Classic 5.0\r\n\r\nКолела: 52mm - 100A\r\n\r\nЛагери: Abec 5','https://insomniacollective.com/media/7/9261.jpg','',118,'СКЕЙТБОРД КОМПЛЕКТ ALOIKI TRIANGLE MC 7.6',2,7.75,6,3,1),('ClothesProduct',6,'Състав:\r\nВъншна част: текстил\r\nВътрешна част: синтетика\r\nПодметка: каучук\r\n \r\n\r\nЗабележка: От вътрешната част на обувката има отвори за проветрение.','https://insomniacollective.com/media/7/10419.jpg','',106,'ОБУВКИ DC EVAN SMITH TX SE',13,NULL,2,1,70),('ClothesProduct',7,'Състав:\r\nВъншна част: текстил и синтетична кожа\r\nВътрешна част: синтетика\r\nПодметка: каучук','https://insomniacollective.com/media/7/9182.jpg','',77,'ОБУВКИ DVS AVERSA ',2,NULL,5,1,54),('Product',8,'Nice girl\r\n  Very Sexy','https://thechive.files.wordpress.com/2018/03/weekend-morning-awesomeness-36-photos-171.jpg?quality=85&strip=info&w=600','',991.249,'Girl ass rainbow',1,NULL,7,2,152),('Product',9,'Rainbow in the forest','https://static.boredpanda.com/blog/wp-content/uploads/2016/10/best-action-photos-2016-red-bull-illume-48-57f6150f74455__880.jpg','',119.363,'Another rainbow',2,NULL,7,4,542);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -313,4 +313,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-10  1:04:02
+-- Dump completed on 2018-08-10 21:58:49

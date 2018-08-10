@@ -55,4 +55,8 @@ public interface Dictionary extends ErrorDictionary {
     String subCategories();
 
     String previous();
+
+    String brand();
+
+    String quantity();
 }

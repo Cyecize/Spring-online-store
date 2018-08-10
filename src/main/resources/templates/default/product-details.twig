@@ -3,16 +3,46 @@
 {% block body %}
     {% embed '../partials/home-banner.html.twig' with {'title':product.brand.brandName } %} {% endembed %}
     <div class="container">
-        <div class="row">
-            <div class="col-lg-9">
+        <div class="row pt-3">
+            <div class="col-lg-9 bg-gray pt-1 pb-1">
                 <div class="row">
                     <div class="col-md-5">
-                        <img src="{{ product.image }}" width="100%" height="100%">
+                        <img src="{{ product.image }}" class="product-image">
                     </div>
-                    <div class="col-md-6 border-dark rounded">
-                        <div class="row p-2">
-                            <p class="col-md-8 font-weight-bold mr-auto">{{ product.productName }}</p>
-                            <p class="col-sm-2 font-2em text-info ml-auto">${{ product.price|number_format(2, '.', ',') }}</p>
+                    <div class="col-md-6 border-dark pt-1 product-description-holder bg-white">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="font-weight-bold ">{{ product.productName }}</span>
+                            </div>
+                            <div class="col-sm font-2em text-info">
+                                <span>${{ product.price|number_format(2, '.', ',') }}</span>
+                            </div>
+                        </div>
+                        <hr class="bg-trans-gray">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span><span class="text-muted"> {{ dict.brand }}</span>: <strong>{{ product.brand.brandName }}</strong></span>
+                            </div>
+                        </div>
+                        <hr class="bg-trans-gray">
+                        {% if product.description %}
+                            <div class="row">
+                                <div class="col-lg-9 ">
+                                    <span class="text-muted raw-content">{{ product.description }}</span>
+                                </div>
+                            </div>
+                            <hr class="bg-trans-gray">
+                        {% endif %}
+                        <div class="row">
+                            <div class="col-sm">
+                               <input type="number" id="orderQuantity" value="1" class="form-control">
+                            </div>
+                            <div class="col-sm"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm">
+                                <button id="orderBtn" class="orderBtn btn btn-dark">{{ dict.buy }}</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -22,4 +52,11 @@
             {% endembed %}
         </div>
     </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link type="text/css" rel="stylesheet" href="/styles/css/product-page.css">
+{% endblock %}
+{% block javascripts %}
+    <script src="/styles/js/product-details.js"></script>
 {% endblock %}

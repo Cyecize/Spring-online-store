@@ -67,10 +67,19 @@ end fonts
     background-color: rgba(255,255,255,0.5);
 }
 
+.bg-trans-gray{
+    border-top-color: rgba(169,169,169,0.5) ;
+    background-color: rgba(169,169,169,0.5);
+}
+
 .stylish-trans-dark {
     background-color: rgba(62, 69, 81, 0.8);
 }
 
+
+.raw-content{
+    white-space: pre-wrap;
+}
 
 /* navbar  */
 
