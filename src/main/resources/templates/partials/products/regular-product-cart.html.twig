@@ -12,7 +12,7 @@
         <div class="card-footer">
             <small class="text-muted row">
                 <a class="col-md-5 btn btn-sm btn-success " href="/products/{{ product.id }}">{{ dict.details }}</a>
-                <button class="col-md-5 btn btn-sm btn-dark ml-auto">{{ dict.buy }}</button>
+                {% block disableBuyBtn %}<button class="col-md-5 btn btn-sm btn-dark ml-auto">{{ dict.buy }}</button>{% endblock %}
             </small>
         </div>
     </div>

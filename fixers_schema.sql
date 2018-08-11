@@ -84,7 +84,7 @@ CREATE TABLE `product_categories` (
   PRIMARY KEY (`id`),
   KEY `FKtqtx4nhmyodqxppbbn4bekf1g` (`parent_category`),
   CONSTRAINT `FKtqtx4nhmyodqxppbbn4bekf1g` FOREIGN KEY (`parent_category`) REFERENCES `product_categories` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `product_categories` (
 
 LOCK TABLES `product_categories` WRITE;
 /*!40000 ALTER TABLE `product_categories` DISABLE KEYS */;
-INSERT INTO `product_categories` VALUES (1,'Обувки','Shoes',NULL),(2,'Дрехи','Clothes',NULL),(3,'Скейтборд','Skateboards',NULL),(4,'Аксесоари','Accessories',NULL);
+INSERT INTO `product_categories` VALUES (1,'Обувки','Shoes',NULL),(2,'Дрехи','Clothes',NULL),(3,'Скейтборд','Skateboards',NULL),(4,'Аксесоари','Accessories',NULL),(5,'Дъги','Rainbows',4);
 /*!40000 ALTER TABLE `product_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +111,7 @@ CREATE TABLE `product_images` (
   PRIMARY KEY (`id`),
   KEY `FKqnq71xsohugpqwf3c9gxmsuy` (`product_id`),
   CONSTRAINT `FKqnq71xsohugpqwf3c9gxmsuy` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,32 +120,8 @@ CREATE TABLE `product_images` (
 
 LOCK TABLES `product_images` WRITE;
 /*!40000 ALTER TABLE `product_images` DISABLE KEYS */;
+INSERT INTO `product_images` VALUES (1,'https://s-i.huffpost.com/gen/1326478/images/o-RAINBOW-facebook.jpg',8),(2,'https://cdn.thinglink.me/api/image/741719476105379840/1240/10/scaletowidth',8),(3,'https://cdn.shopify.com/s/files/1/1890/6475/products/product-image-359298695_530x.jpg?v=1513239599',8),(4,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxEadkp5FnpEUc94xJGXcTLiRqbcBj8b6OjxwWbRucyAsu4fZh',8),(5,'https://insomniacollective.com/media/7/11052.png',8),(6,'https://insomniacollective.com/media/7/9182.jpg',8),(7,'https://zatvarachki.com/product-gallery/categories/Avtomatichni%20zatvarachki/1512840224Optimized-15128401811.jpg',8);
 /*!40000 ALTER TABLE `product_images` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `product_sizes`
---
-
-DROP TABLE IF EXISTS `product_sizes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `product_sizes` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `size_name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_fcnhoh0bg0mujss7omqsiysa3` (`size_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `product_sizes`
---
-
-LOCK TABLES `product_sizes` WRITE;
-/*!40000 ALTER TABLE `product_sizes` DISABLE KEYS */;
-INSERT INTO `product_sizes` VALUES (4,'L'),(3,'M'),(2,'S'),(5,'XL'),(1,'XS'),(6,'XXL'),(7,'XXXL');
-/*!40000 ALTER TABLE `product_sizes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -164,16 +140,16 @@ CREATE TABLE `products` (
   `price` double DEFAULT NULL,
   `product_name` varchar(255) NOT NULL,
   `quantity` int(11) DEFAULT NULL,
-  `board_width` double DEFAULT NULL,
   `brand_id` bigint(20) NOT NULL,
   `category_id` bigint(20) NOT NULL,
   `weekly_views` int(11) DEFAULT NULL,
+  `size` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKa3a4mpsfdf4d2y6r8ra3sc8mv` (`brand_id`),
   KEY `FK6t5dtw6tyo83ywljwohuc6g7k` (`category_id`),
   CONSTRAINT `FK6t5dtw6tyo83ywljwohuc6g7k` FOREIGN KEY (`category_id`) REFERENCES `product_categories` (`id`),
   CONSTRAINT `FKa3a4mpsfdf4d2y6r8ra3sc8mv` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,34 +158,8 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES ('Skateboard',1,'<p>Quite a good board </p>','https://insomniacollective.com/media/7/11052.png','',90,'СКЕЙТ ДЪСКА CHOCOLATE ALVAREZ CITY COWBOYS 8\" + ШКУРКА',11,8,1,3,55),('Skateboard',2,'Insane board with kanadski klen','https://insomniacollective.com/media/7/11010.png','',120,'СКЕЙТБОРД ДЪСКА GIRL MALTO 93 TIL 7.75\" + ШКУРКА и допълнителни колелца и като цяло много други неша, може да попитате',10,8.1,6,3,12),('Product',3,'Quality Indi socks man','https://insomniacollective.com/media/7/3790.jpg','',18,'ЧОРАПИ INDEPENDENT FINISHLINE- 2 БР.',2,NULL,5,4,1),('Product',4,'Very cool hat mane','https://insomniacollective.com/media/7/8217.jpg','',36,'ЗИМНА ШАПКА OSIRIS CLIP',11,NULL,2,4,14),('Skateboard',5,'Характеристики на скейтборд комплекта:\r\n\r\nConcave: Medium\r\n\r\nРазмер: 7.6\" x 32\"\r\n\r\nСъстав: Hard Rock Maple - 7 Plies\r\n\r\nКолесари: Classic 5.0\r\n\r\nКолела: 52mm - 100A\r\n\r\nЛагери: Abec 5','https://insomniacollective.com/media/7/9261.jpg','',118,'СКЕЙТБОРД КОМПЛЕКТ ALOIKI TRIANGLE MC 7.6',2,7.75,6,3,1),('ClothesProduct',6,'Състав:\r\nВъншна част: текстил\r\nВътрешна част: синтетика\r\nПодметка: каучук\r\n \r\n\r\nЗабележка: От вътрешната част на обувката има отвори за проветрение.','https://insomniacollective.com/media/7/10419.jpg','',106,'ОБУВКИ DC EVAN SMITH TX SE',13,NULL,2,1,70),('ClothesProduct',7,'Състав:\r\nВъншна част: текстил и синтетична кожа\r\nВътрешна част: синтетика\r\nПодметка: каучук','https://insomniacollective.com/media/7/9182.jpg','',77,'ОБУВКИ DVS AVERSA ',2,NULL,5,1,54),('Product',8,'Nice girl\r\n  Very Sexy','https://thechive.files.wordpress.com/2018/03/weekend-morning-awesomeness-36-photos-171.jpg?quality=85&strip=info&w=600','',991.249,'Girl ass rainbow',1,NULL,7,2,152),('Product',9,'Rainbow in the forest','https://static.boredpanda.com/blog/wp-content/uploads/2016/10/best-action-photos-2016-red-bull-illume-48-57f6150f74455__880.jpg','',119.363,'Another rainbow',2,NULL,7,4,542);
+INSERT INTO `products` VALUES ('Product',1,'<p>Quite a good board </p>','https://insomniacollective.com/media/7/11052.png','',90,'СКЕЙТ ДЪСКА CHOCOLATE ALVAREZ CITY COWBOYS 8\" + ШКУРКА',11,1,3,55,'8'),('Product',2,'Insane board with kanadski klen','https://insomniacollective.com/media/7/11010.png','',120,'СКЕЙТБОРД ДЪСКА GIRL MALTO 93 TIL 7.75\" + ШКУРКА и допълнителни колелца и като цяло много други неша, може да попитате',10,6,3,12,'8'),('Product',3,'Quality Indi socks man','https://insomniacollective.com/media/7/3790.jpg','',18,'ЧОРАПИ INDEPENDENT FINISHLINE- 2 БР.',2,5,4,1,'standard'),('Product',4,'Very cool hat mane','https://insomniacollective.com/media/7/8217.jpg','',36,'ЗИМНА ШАПКА OSIRIS CLIP',11,2,4,14,NULL),('Product',5,'Характеристики на скейтборд комплекта:\r\n\r\nConcave: Medium\r\n\r\nРазмер: 7.6\" x 32\"\r\n\r\nСъстав: Hard Rock Maple - 7 Plies\r\n\r\nКолесари: Classic 5.0\r\n\r\nКолела: 52mm - 100A\r\n\r\nЛагери: Abec 5','https://insomniacollective.com/media/7/9261.jpg','',118,'СКЕЙТБОРД КОМПЛЕКТ ALOIKI TRIANGLE MC 7.6',2,6,3,1,'8.1'),('Product',6,'Състав:\r\nВъншна част: текстил\r\nВътрешна част: синтетика\r\nПодметка: каучук\r\n \r\n\r\nЗабележка: От вътрешната част на обувката има отвори за проветрение.','https://insomniacollective.com/media/7/10419.jpg','',106,'ОБУВКИ DC EVAN SMITH TX SE',13,2,1,70,NULL),('Product',7,'Състав:\r\nВъншна част: текстил и синтетична кожа\r\nВътрешна част: синтетика\r\nПодметка: каучук','https://insomniacollective.com/media/7/9182.jpg','',77,'ОБУВКИ DVS AVERSA ',2,5,1,54,NULL),('Product',8,'Характеристики на скейтборд комплекта:\r\n\r\nConcave: Medium\r\n\r\nРазмер: 7.6\" x 32\"\r\n\r\nСъстав: Hard Rock Maple - 7 Plies\r\n\r\nКолесари: Classic 5.0\r\n\r\nКолела: 52mm - 100A\r\n\r\nЛагери: Abec 5','https://thechive.files.wordpress.com/2018/03/weekend-morning-awesomeness-36-photos-171.jpg?quality=85&strip=info&w=600','',991.249,'Girl ass rainbow',1,7,5,152,'small'),('Product',9,'Rainbow in the forest','https://static.boredpanda.com/blog/wp-content/uploads/2016/10/best-action-photos-2016-red-bull-illume-48-57f6150f74455__880.jpg','',119.363,'Another rainbow',2,7,5,542,NULL),('Product',10,'Rainbow girl\r\nvery naas\r\n    -> good girl\r\n    -> good rainbow \r\n-----> what more do y want','https://st2.depositphotos.com/6367796/9267/v/950/depositphotos_92675558-stock-illustration-pop-art-rainbow-unicorn-woman.jpg','',19.9,'Rainbow six seige',1,4,5,9910,'Non xiztent'),('Product',11,'Like a \r\n      RAINBOW \r\n      INN\r\n      THE \r\nDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\r\nRRRRRKKKK\r\n\r\nYEAAAAAHH','https://ninecirclesblog.files.wordpress.com/2015/06/ronnie-james-dio.jpg','',200,'Rainbow in the dark',12,4,5,12,'World wide'),('Product',12,NULL,'https://orig00.deviantart.net/a14a/f/2010/264/b/8/rainbow_forest_by_twilightxgirl-d2z7jx6.png','',20,'Rainbow in the Forest',11,3,5,7,NULL);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `products_sizes`
---
-
-DROP TABLE IF EXISTS `products_sizes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `products_sizes` (
-  `product_id` bigint(20) NOT NULL,
-  `size_id` bigint(20) NOT NULL,
-  KEY `FK3nqg3jb20kybp2gg9ie352agk` (`size_id`),
-  KEY `FKddbtdcgrf05hypy7y2rol12tc` (`product_id`),
-  CONSTRAINT `FK3nqg3jb20kybp2gg9ie352agk` FOREIGN KEY (`size_id`) REFERENCES `product_sizes` (`id`),
-  CONSTRAINT `FKddbtdcgrf05hypy7y2rol12tc` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `products_sizes`
---
-
-LOCK TABLES `products_sizes` WRITE;
-/*!40000 ALTER TABLE `products_sizes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `products_sizes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -313,4 +263,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-10 21:58:49
+-- Dump completed on 2018-08-11 19:27:01

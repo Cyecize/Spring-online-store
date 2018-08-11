@@ -1,20 +1,30 @@
 {% extends '../base.html.twig' %}
 {% block title %}{{ product.productName }}{% endblock %}
 {% block body %}
+    {% set product = viewModel.product %}
     {% embed '../partials/home-banner.html.twig' with {'title':product.brand.brandName } %} {% endembed %}
-    <div class="container">
+    <div class="container-fluid" style="max-width: 1350px;">
         <div class="row pt-3">
             <div class="col-lg-9 bg-gray pt-1 pb-1">
+                <div class="text-center">
+                    <a href="/">{{ dict.home }}</a>
+                    {% for cat in viewModel.categories %}
+                        / <a href="#">{{ util.getLocalCategoryName(cat) }}</a>
+                    {% endfor %}
+                </div>
                 <div class="row">
-                    <div class="col-md-5" >
-                        <div class="text-center">
-                            <img id="productHighlightedPicture" src="{{ product.image }}" class="product-image" style="height: auto;">
+                    <div class="col-md-5">
+                        <div class="text-center" style="min-height: 420px;">
+                            <img id="productHighlightedPicture" src="{{ product.image }}" class="product-image"
+                                 style="height: auto;">
                         </div>
                         {% if product.gallery|length > 0 %}
                             <div class="d-flex flex-wrap align-items-center justify-content-around gallery-images-holder pt-2">
-                                <div class=" gallery-item"><img src="{{ product.image }}" width="100%" height="100%"></div>
+                                <div class=" gallery-item"><img src="{{ product.image }}" width="100%" height="100%">
+                                </div>
                                 {% for img in product.gallery %}
-                                    <div class="gallery-item"><img src="{{ img.imageUrl }}" width="100%" height="100%"></div>
+                                    <div class="gallery-item"><img src="{{ img.imageUrl }}" width="100%" height="100%">
+                                    </div>
                                 {% endfor %}
                             </div>
                         {% endif %}
@@ -44,16 +54,16 @@
                             <hr class="bg-trans-gray">
                         {% endif %}
                         {% if product.size %}
-                        <div class="row">
-                            <div class="col-md-6">
-                                <span><span class="text-muted">Size: </span>{{ product.size }}</span>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span><span class="text-muted">Size: </span>{{ product.size }}</span>
+                                </div>
                             </div>
-                        </div>
-                        <hr class="bg-trans-gray">
+                            <hr class="bg-trans-gray">
                         {% endif %}
                         <div class="row">
                             <div class="col-sm">
-                               <input type="number" id="orderQuantity" value="1" class="form-control">
+                                <input type="number" id="orderQuantity" value="1" class="form-control">
                             </div>
                             <div class="col-sm"></div>
                         </div>
@@ -64,9 +74,29 @@
                         </div>
                     </div>
                 </div>
+                <section class="bg-gray similar-products-section p-1">
+                    <div class="text-center">
+                        <p class="font-2em">{{ dict.similarProducts }}</p>
+                    </div>
+
+                    <div class="row">
+                        {% set count = 0 %}
+                        {% for product in viewModel.similarProducts %}
+                            {% if count < 3 %}
+                                {% embed '../partials/products/regular-product-cart.html.twig' with {'product':product} %}
+                                    {% block disableBuyBtn %} {% endblock %}
+                                {% endembed %}
+                            {% endif %}
+                            {% set count = count + 1 %}
+                        {% endfor %}
+                    </div>
+                </section>
             </div>
             {% embed '../partials/sidebar/sidebar.html.twig' %}
-
+                {% block sidebarBody %}
+                    {% embed '../partials/sidebar/products.html.twig' with {'products':viewModel.similarProducts, 'title':dict.similarProducts} %}{% endembed %}
+                    {% embed '../partials/sidebar/products.html.twig' with {'products':informer.getNewProducts, 'title':dict.newProducts} %} {% endembed %}
+                {% endblock %}
             {% endembed %}
         </div>
     </div>
@@ -77,4 +107,30 @@
 {% endblock %}
 {% block javascripts %}
     <script src="/styles/js/product-details.js"></script>
+    <script>
+        $(function () {
+            viewProduct();
+            var header = '{{_csrf.headerName}}';
+            var token = '{{_csrf.token}}';
+
+            function viewProduct() {
+                document.onreadystatechange = function () {
+                    setTimeout(function () {
+                        $.ajax({
+                            type:"POST",
+                            url:'/products/view/{{ product.id }}',
+                            data: token,
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader(header, token);
+                            },
+                            success:function (data) {
+                                console.log(data);
+                            },
+                            error:console.error
+                        });
+                    }, 3000);
+                };
+            }
+        })
+    </script>
 {% endblock %}

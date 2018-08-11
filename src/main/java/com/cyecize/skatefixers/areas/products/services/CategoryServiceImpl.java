@@ -24,6 +24,15 @@ public class CategoryServiceImpl implements CategoryService {
         return this.repository.findMainCategories();
     }
 
+    @Override
+    public List<Category> findAllParentCategories(Category category) {
+        List<Category> categories = new ArrayList<>();
+        if(category.getParentCategory() != null)
+            categories.addAll(this.findAllParentCategories((category.getParentCategory())));
+        categories.add(category);
+        return categories;
+    }
+
 
     @Override
     public Category findOneByName(String name) {

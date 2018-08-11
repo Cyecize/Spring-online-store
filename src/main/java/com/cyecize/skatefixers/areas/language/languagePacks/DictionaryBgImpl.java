@@ -39,6 +39,12 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String PRODUCT_NOT_FOUND = "Продукта не беше намерен";
     public static final String BRAND = "Марка";
     public static final String QUANTITY = "Количество";
+    public static final String SIMILAR_PRODUCTS = "Подобни продукти";
+
+
+    public String similarProducts() {
+        return SIMILAR_PRODUCTS;
+    }
 
     public String brand() {
         return BRAND;

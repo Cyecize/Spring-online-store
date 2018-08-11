@@ -70,7 +70,6 @@ public abstract class BaseController {
         return this.finalizeView(modelAndView);
     }
 
-
     protected Dictionary dictionary(){
         return this.language.dictionary();
     }
