@@ -14,4 +14,5 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     @Query(value = "select * from product_categories as c where c.parent_category IS NULL ", nativeQuery = true)
     List<Category> findMainCategories();
+
 }

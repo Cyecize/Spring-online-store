@@ -8,8 +8,8 @@
             <div class="col-lg-9 bg-gray pt-1 pb-1">
                 <div class="text-center">
                     <a href="/">{{ dict.home }}</a>
-                    {% for cat in viewModel.categories %}
-                        / <a href="#">{{ util.getLocalCategoryName(cat) }}</a>
+                    {% for cat in viewModel.categories %} {% set catName = util.getLocalCategoryName(cat) %}
+                        / <a href="/categories/{{ catName }}">{{ catName }}</a>
                     {% endfor %}
                 </div>
                 <div class="row">

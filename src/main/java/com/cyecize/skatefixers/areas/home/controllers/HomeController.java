@@ -1,16 +1,12 @@
 package com.cyecize.skatefixers.areas.home.controllers;
 
 import com.cyecize.skatefixers.areas.home.services.BannerService;
-import com.cyecize.skatefixers.areas.home.viewModels.CategoriesPageViewModel;
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.products.services.BaseProductService;
-import com.cyecize.skatefixers.areas.products.services.CategoryService;
 import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
 import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
 import com.cyecize.skatefixers.controllers.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;

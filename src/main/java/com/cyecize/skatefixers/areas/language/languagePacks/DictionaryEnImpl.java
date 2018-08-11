@@ -39,7 +39,30 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String BRAND = "Brand";
     public static final String QUANTITY = "Quantity";
     public static final String SIMILAR_PRODUCTS = "Similar Products";
+    public static final String PAGE_IS_EMPTY = "This page is empty.";
+    public static final String BRANDS = "Brands";
+    public static final String OTHERS = "Other";
 
+
+    public String brandWithNameDoesNotExist(String brandName) {
+        return String.format("Brand with name %s does not exist", brandName);
+    }
+
+    public String brands() {
+        return BRANDS;
+    }
+
+    public String others() {
+        return OTHERS;
+    }
+
+    public String pageIsEmpty() {
+        return PAGE_IS_EMPTY;
+    }
+
+    public String categoryWithNameWasNotFound(String catName) {
+        return String.format("Category with name %s was not found.", catName);
+    }
 
     public String similarProducts() {
         return SIMILAR_PRODUCTS;

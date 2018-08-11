@@ -2,12 +2,15 @@ package com.cyecize.skatefixers.areas.products.services;
 
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.products.entities.BaseProduct;
+import com.cyecize.skatefixers.areas.products.entities.Brand;
+import com.cyecize.skatefixers.areas.products.entities.Category;
 import com.cyecize.skatefixers.areas.products.entities.products.Product;
 import com.cyecize.skatefixers.areas.products.repositories.BaseProductRepository;
 import com.cyecize.skatefixers.exceptions.JsonException;
 import com.cyecize.skatefixers.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -48,6 +51,24 @@ public class BaseProductServiceImpl implements BaseProductService {
     @Override
     public Page<BaseProduct> findAll(Pageable pageable) {
         return this.productRepository.findBaseProductsByIsEnabled(true, pageable);
+    }
+
+    @Override
+    public Page<BaseProduct> findCategoryProductsRecursive(Category category, Pageable pageable) {
+        List<BaseProduct> products = category.activeProductsRecursive();
+        return new PageImpl<>(
+                products.stream()
+                        .skip(pageable.getOffset())
+                        .limit(pageable.getPageSize())
+                        .collect(Collectors.toList()),
+                pageable,
+                products.size()
+        );
+    }
+
+    @Override
+    public Page<BaseProduct> findProductByBrand(Brand brand, Pageable pageable) {
+        return this.productRepository.findBaseProductsByBrand(brand,pageable);
     }
 
     @Override

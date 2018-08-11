@@ -20,4 +20,9 @@ public interface ErrorDictionary  {
 
     String productNotFound();
 
+    String categoryWithNameWasNotFound(String catName);
+
+    String pageIsEmpty();
+
+    String brandWithNameDoesNotExist(String brandName);
 }

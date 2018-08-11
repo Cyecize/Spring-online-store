@@ -1,9 +1,18 @@
 <div class="sidebar-item">
-    <p class="font-15em">{{ title }}</p>
+    <p class="font-15em">
+        {{ title }}
+        {% if subCat is defined %}
+            {% if  subCat != null and subCat.parentCategory != null %}
+                {% set parentCatName = util.getLocalCategoryName(subCat.parentCategory) %}
+                <a href="/categories/{{ parentCatName }}"><i class="fa fa-chevron-up" aria-hidden="true"></i> </a>
+            {% endif %}
+        {% endif %}
+    </p>
     <ul class="list-group" style="-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;">
         {% for category in categories %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a href="#">{{ util.getLocalCategoryName(category) }}</a>
+                {% set catName = util.getLocalCategoryName(category) %}
+                <a href="/categories/{{ catName }}">{{ catName }}</a>
                 <span class="badge badge-primary badge-pill">{{ category.activeProductsRecursive()|length }}</span>
             </li>
         {% endfor %}

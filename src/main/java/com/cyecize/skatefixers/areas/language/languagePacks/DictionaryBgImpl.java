@@ -40,7 +40,29 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String BRAND = "Марка";
     public static final String QUANTITY = "Количество";
     public static final String SIMILAR_PRODUCTS = "Подобни продукти";
+    public static final String PAGE_IS_EMPTY = "Страницата е празна";
+    public static final String BRANDS = "Марки";
+    public static final String OTHERS = "Други";
 
+    public String brandWithNameDoesNotExist(String brandName) {
+        return String.format("Не беше намерена марка с име %s.", brandName);
+    }
+
+    public String brands() {
+        return BRANDS;
+    }
+
+    public String others() {
+        return OTHERS;
+    }
+
+    public String pageIsEmpty() {
+        return PAGE_IS_EMPTY;
+    }
+
+    public String categoryWithNameWasNotFound(String catName) {
+        return String.format("Категория с име %s не беше намерена.", catName);
+    }
 
     public String similarProducts() {
         return SIMILAR_PRODUCTS;

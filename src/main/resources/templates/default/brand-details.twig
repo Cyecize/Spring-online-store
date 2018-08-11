@@ -1,0 +1,40 @@
+{% extends '../base.html.twig' %}
+
+{% block title %}
+    Skate fixers: {{ brand.brandName }}
+{% endblock %}
+
+{% block body %}
+    <main>
+
+        {% embed '../partials/home-banner.html.twig' with {'title':brand.brandName} %} {% endembed %}
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-9">
+                    <section class="bg-gray brand-products-section p-1">
+                        <div class="text-center">
+                            <p class="font-15em">{{ brand.brandName }}: {{ dict.products }}</p>
+                        </div>
+                        {% if products|length < 1 %}
+                            <h3 class="alert alert-warning">{{ dict.pageIsEmpty }}</h3>
+                        {% endif %}
+                        <div class="row">
+                            {% for product in products %}
+                                {% embed '../partials/products/regular-product-cart.html.twig' with {'product':product} %} {% endembed %}
+                            {% endfor %}
+                        </div>
+                        {% embed '../partials/products/pagination.html.twig' with {'pageable':products} %} {% endembed %}
+                    </section>
+                </div>
+                {% embed '../partials/sidebar/sidebar.html.twig' %}
+                    {% block sidebarBody %}
+                        {% embed '../partials/sidebar/brands.html.twig' with {'title':dict.all ~ ' ' ~ dict.brands, 'brands':informer.getAllBrands } %} {% endembed %}
+                        {% embed '../partials/sidebar/products.html.twig' with {'products':informer.getNewProducts, 'title':dict.newProducts} %} {% endembed %}
+                    {% endblock %}
+                {% endembed %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

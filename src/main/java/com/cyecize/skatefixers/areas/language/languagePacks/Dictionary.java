@@ -61,4 +61,8 @@ public interface Dictionary extends ErrorDictionary {
     String quantity();
 
     String similarProducts();
+
+    String brands();
+
+    String others();
 }

@@ -12,4 +12,6 @@ public interface CategoryService {
     List<Category> findAllParentCategories(Category category);
 
     Category findOneByName(String name);
+
+
 }

@@ -1,6 +1,7 @@
 package com.cyecize.skatefixers.areas.products.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "brands")
@@ -13,6 +14,9 @@ public class Brand {
 
     @Column(name = "brand_name", nullable = false, unique = true)
     private String brandName;
+
+    @OneToMany(targetEntity = BaseProduct.class, mappedBy = "brand")
+    private List<BaseProduct> products;
 
     public Brand(){
         //TODO persist some brands in none present on app startup
@@ -32,5 +36,13 @@ public class Brand {
 
     public void setBrandName(String brandName) {
         this.brandName = brandName;
+    }
+
+    public List<BaseProduct> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<BaseProduct> products) {
+        this.products = products;
     }
 }

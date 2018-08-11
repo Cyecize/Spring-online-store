@@ -14,6 +14,7 @@ public class ProductDetailsViewModel {
 
     private List<BaseProduct> similarProducts;
 
+
     public ProductDetailsViewModel(BaseProduct product, List<Category> categories, List<BaseProduct> similarProducts) {
         this.product = product;
         this.categories = categories;

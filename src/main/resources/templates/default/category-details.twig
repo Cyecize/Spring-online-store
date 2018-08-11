@@ -1,15 +1,24 @@
 {% extends '../base.html.twig' %}
+{% block title %}Skate fixers: {% if viewModel.category %}{{ util.getLocalCategoryName(viewModel.category) }}{% else %}{{ dict.products }}{% endif %}{% endblock %}
 
 {% block body %}
+    {% set title = dict.all %}
+    {% if viewModel.category %}{% set title = util.getLocalCategoryName(viewModel.category) %}{% endif %}
     <main>
-        {% embed '../partials/home-banner.html.twig' with {'title':"FIX ME LATER"} %} {% endembed %}
+
+        {% embed '../partials/home-banner.html.twig' with {'title':title} %} {% endembed %}
+
         <div class="container">
+
             <div class="row">
                 <div class="col-lg-9">
                     <section class="bg-gray popular-products-section p-1">
                         <div class="text-center">
                             <p class="font-2em">{{ dict.products }}</p>
                         </div>
+                        {% if viewModel.products|length < 1 %}
+                            <h3 class="alert alert-warning">{{ dict.pageIsEmpty }}</h3>
+                        {% endif %}
 
                         <div class="row">
                             {% for product in viewModel.products %}
@@ -21,7 +30,7 @@
                 </div>
                 {% embed '../partials/sidebar/sidebar.html.twig' %}
                     {% block sidebarBody %}
-                        {% embed '../partials/sidebar/categories.html.twig' with {'title':dict.subCategories, 'categories':viewModel.subCategories } %} {% endembed %}
+                        {% embed '../partials/sidebar/categories.html.twig' with {'title':dict.subCategories, 'categories':viewModel.subCategories, 'subCat':viewModel.category } %} {% endembed %}
                     {% endblock %}
                 {% endembed %}
             </div>
