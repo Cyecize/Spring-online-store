@@ -1,5 +1,36 @@
 {% extends '../base.html.twig' %}
+{% block title %}Skate fixers: {{ dict.all  }} {{ dict.brands }}{% endblock %}
 
 {% block body %}
+    <main>
+        {% embed '../partials/home-banner.html.twig' with {'title':dict.all ~ ' ' ~ dict.brands} %} {% endembed %}
 
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="bg-gray popular-products-section p-1">
+                        <div class="row">
+                            {% for brand in brands %}
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <a href="/brands/{{ brand.brandName }}"><img class="card-img-top" src="{{ brand.image }}"
+                                                                                  alt="{{ brand.brandName }}"></a>
+                                        <div class="card-body">
+                                            <p class="card-text">{{ brand.brandName }} (<small>{{ brand.products|length }}</small>)</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted row">
+                                                <a class="col-md-5 btn btn-sm btn-success " href="/brands/{{ brand.brandName }}">{{ dict.details }}</a>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}

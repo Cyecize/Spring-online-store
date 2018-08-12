@@ -9,11 +9,12 @@
                     <div><label class="m-0">EN<input  name="lang" type="radio" value="en"></label></div>
                 </div>
                 <ul class="list-unstyled">
-                    <li><a href="#!">{{ dict.home }}</a></li>
-                    <li><a href="#!">{{ dict.aboutUs }}</a></li>
-                    <li><a href="#!" >{{ dict.products }}</a></li>
-                    <li><a href="#!">{{ dict.contacts }}</a></li>
-                    <li><a href="#!">{{ dict.login }}</a></li>
+                    <li><a href="/">{{ dict.home }}</a></li>
+                    <li><a href="/about">{{ dict.aboutUs }}</a></li>
+                    <li><a href="/products/all" >{{ dict.products }}</a></li>
+                    <li><a href="/brands/all" >{{ dict.brands }}</a></li>
+                    <li><a href="/contacts">{{ dict.contacts }}</a></li>
+                    <li><a href="/login">{{ dict.login }}</a></li>
                 </ul>
             </div>
             <div class="col-md-2 mx-auto">
@@ -23,7 +24,8 @@
                 <ul class="list-unstyled">
                    {% for category in informer.getCategoriesToDisplay() %}
                         <li>
-                            <a href="">{{ util.getLocalCategoryName(category) }}</a>
+                            {% set catName = util.getLocalCategoryName(category) %}
+                            <a href="/categories/{{ catName }}">{{ catName }}</a>
                         </li>
                     {% endfor %}
                 </ul>

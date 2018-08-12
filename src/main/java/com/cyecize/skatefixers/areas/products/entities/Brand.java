@@ -15,6 +15,9 @@ public class Brand {
     @Column(name = "brand_name", nullable = false, unique = true)
     private String brandName;
 
+    @Column(name = "image", nullable = false)
+    private String image;
+
     @OneToMany(targetEntity = BaseProduct.class, mappedBy = "brand")
     private List<BaseProduct> products;
 
@@ -36,6 +39,14 @@ public class Brand {
 
     public void setBrandName(String brandName) {
         this.brandName = brandName;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public List<BaseProduct> getProducts() {

@@ -30,8 +30,9 @@ public class BrandController extends BaseController {
     }
 
     @GetMapping("/all")
-    public ModelAndView allBrandsAction() {
-        return null;
+    public ModelAndView allBrandsAction(ModelAndView modelAndView) {
+        modelAndView.addObject("brands", this.brandService.findAll());
+        return view("default/brands-all", modelAndView);
     }
 
     @GetMapping("/{brandName}")
