@@ -16,11 +16,11 @@ public @interface FieldMatch
     String first();
     String second();
 
-    @Target(ElementType.TYPE)
-    @Retention(RetentionPolicy.RUNTIME)
-    @Documented
-    @interface List
-    {
-        FieldMatch[] value();
-    }
+//    @Target(ElementType.TYPE)
+//    @Retention(RetentionPolicy.RUNTIME)
+//    @Documented
+//    @interface List
+//    {
+//        FieldMatch[] value();
+//    }
 }

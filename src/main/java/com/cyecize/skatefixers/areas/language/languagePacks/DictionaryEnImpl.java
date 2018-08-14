@@ -1,6 +1,7 @@
 package com.cyecize.skatefixers.areas.language.languagePacks;
 
 import com.cyecize.skatefixers.areas.language.enums.LanguageLocaleType;
+import com.cyecize.skatefixers.areas.products.entities.Image;
 
 public class DictionaryEnImpl implements Dictionary {
     public static final String HOME = "Home";
@@ -42,7 +43,31 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String PAGE_IS_EMPTY = "This page is empty.";
     public static final String BRANDS = "Brands";
     public static final String OTHERS = "Other";
+    public static final String FIELD_CANNOT_BE_EMPTY = "Field cannot be empty";
+    public static final String BRAND_NAME_TAKEN = "Brand name is taken";
+    public static final String BACK = "Back";
+    public static final String NEW = "New";
+    public static final String BRAND_NAME = "Brand Name";
+    public static final String IMAGE = "Image";
 
+
+    public String image() { return IMAGE; }
+
+    public String brandName() { return BRAND_NAME; }
+
+    public String _new() { return NEW; }
+
+    public String back() {
+        return BACK;
+    }
+
+    public String fieldCannotBeEmpty() {
+        return FIELD_CANNOT_BE_EMPTY;
+    }
+
+    public String brandNameTaken() {
+        return BRAND_NAME_TAKEN;
+    }
 
     public String brandWithNameDoesNotExist(String brandName) {
         return String.format("Brand with name %s does not exist", brandName);

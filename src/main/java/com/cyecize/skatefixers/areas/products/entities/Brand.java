@@ -46,7 +46,7 @@ public class Brand {
     }
 
     public void setImage(String image) {
-        this.image = image;
+        this.image = String.format("https://drive.google.com/uc?id=%s&export=download", image) ;
     }
 
     public List<BaseProduct> getProducts() {

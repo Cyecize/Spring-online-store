@@ -36,4 +36,5 @@ public class GlobalExceptionController extends BaseController {
         response.setStatus(e.getStatus().value());
         return  new JsonException(e.getMessage(), e.getBody(), e.getStatus());
     }
+
 }

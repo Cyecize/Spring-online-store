@@ -43,6 +43,31 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String PAGE_IS_EMPTY = "Страницата е празна";
     public static final String BRANDS = "Марки";
     public static final String OTHERS = "Други";
+    public static final String FIELD_CANNOT_BE_EMPTY = "Полето не може да бъде празно";
+    public static final String BRAND_NAME_TAKEN = "Името на марката е заето";
+    public static final String BACK = "Назад";
+    public static final String NEW = "Нова";
+    public static final String BRAND_NAME = "Име на марка";
+    public static final String IMAGE = "Снимка";
+
+
+    public String image() { return IMAGE; }
+
+    public String brandName() { return BRAND_NAME; }
+
+    public String _new() { return NEW; }
+
+    public String back() {
+        return BACK;
+    }
+
+    public String fieldCannotBeEmpty() {
+        return FIELD_CANNOT_BE_EMPTY;
+    }
+
+    public String brandNameTaken() {
+        return BRAND_NAME_TAKEN;
+    }
 
     public String brandWithNameDoesNotExist(String brandName) {
         return String.format("Не беше намерена марка с име %s.", brandName);

@@ -1,7 +1,7 @@
 {% extends '../base.html.twig' %}
 
 {% block body %}
-<div class="navbar-filler"></div>
+    {% embed '../partials/home-banner.html.twig' with {'title':dict.login } %} {% endembed %}
     <div class="container">
         <div class="row ">
 
@@ -36,6 +36,12 @@
                     </div>
                 </form>
             </div>
+            {% embed '../partials/sidebar/sidebar.html.twig' %}
+                {% block sidebarBody %}
+                    {% embed '../partials/sidebar/categories.html.twig' with {'title':dict.categories, 'categories':informer.getCategoriesToDisplay } %} {% endembed %}
+                    {% embed '../partials/sidebar/products.html.twig' with {'products':informer.getNewProducts, 'title':dict.newProducts} %} {% endembed %}
+                {% endblock %}
+            {% endembed %}
         </div>
     </div>
 {% endblock %}

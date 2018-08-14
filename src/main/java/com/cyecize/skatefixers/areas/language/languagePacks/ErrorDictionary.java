@@ -25,4 +25,10 @@ public interface ErrorDictionary  {
     String pageIsEmpty();
 
     String brandWithNameDoesNotExist(String brandName);
+
+    String brandNameTaken();
+
+    String fieldCannotBeEmpty();
+
+
 }

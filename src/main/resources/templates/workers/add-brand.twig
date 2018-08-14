@@ -1,0 +1,36 @@
+{% extends '../base.html.twig' %}
+
+{% block body %}
+    <main class="container">
+        <div class="navbar-filler"></div>
+        <div>
+            <h2>{{ dict._new ~ ' ' ~ dict.brand }}</h2>
+            <a href="/workers/panel">{{ dict.back }}</a>
+        </div>
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="">
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="brandName">{{ dict.brandName }}</label>
+                            <input type="text" maxlength="20" required class="form-control" name="brandName" id="brandName">
+                            <p class="text-danger">{{ util.getError('brandName') }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="brandImage">{{ dict.image }}</label>
+                            <input type="file" required class="form-control" name="file" id="brandImage">
+                            <p class="text-danger">{{ util.getError('file') }}</p>
+                        </div>
+                        {% embed '../partials/csrf.twig' %} {% endembed %}
+                        <button type="submit" class="btn btn-dark">{{ dict.go }}</button>
+                    </form>
+                </div>
+            </div>
+            {% embed '../partials/sidebar/sidebar.html.twig' %}
+                {% block sidebarBody %}
+                    {% embed '../partials/sidebar/brands.html.twig' with {'title':dict.all ~ ' ' ~ dict.brands, 'brands':informer.getAllBrands } %} {% endembed %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </main>
+{% endblock %}

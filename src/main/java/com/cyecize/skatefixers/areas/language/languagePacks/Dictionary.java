@@ -65,4 +65,12 @@ public interface Dictionary extends ErrorDictionary {
     String brands();
 
     String others();
+
+    String back();
+
+    String _new();
+
+    String brandName();
+
+    String image();
 }

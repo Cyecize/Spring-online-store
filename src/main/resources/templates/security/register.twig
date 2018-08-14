@@ -1,6 +1,6 @@
 {% extends '../base.html.twig' %}
 {% block body %}
-    <div style="height: 100px;" class="d-md-block d-sm-none"></div>
+    {% embed '../partials/home-banner.html.twig' with {'title':dict.register } %} {% endembed %}
 
     <div class="container">
         <div class="text-center"><h2>Register</h2></div>
