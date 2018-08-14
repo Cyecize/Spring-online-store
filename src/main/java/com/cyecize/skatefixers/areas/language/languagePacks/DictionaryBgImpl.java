@@ -49,7 +49,17 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String NEW = "Нова";
     public static final String BRAND_NAME = "Име на марка";
     public static final String IMAGE = "Снимка";
+    public static final String SELECT = "Избор";
+    public static final String EDIT = "Редакция";
+    public static final String INVALID_IMAGE = "Невалидна снимка / формат";
 
+    public String invalidImage() {
+        return INVALID_IMAGE;
+    }
+
+    public String edit() { return EDIT; }
+
+    public String select() { return SELECT; }
 
     public String image() { return IMAGE; }
 

@@ -42,7 +42,6 @@ public class BrandController extends BaseController {
 
     private final BaseProductService productService;
 
-
     @Autowired
     public BrandController(LocalLanguage language, TwigUtil twigUtil, TwigInformer twigInformer, BrandService brandService, BaseProductService productService) {
         super(language, twigUtil, twigInformer);
@@ -65,6 +64,12 @@ public class BrandController extends BaseController {
         return super.view("workers/add-brand", modelAndView);
     }
 
+    @GetMapping("/create-q")
+    @PreAuthorize("hasAuthority('ROLE_WORKER')")
+    public ModelAndView addBrandQuery(){
+        return super.view("workers/queries/add-brand-query");
+    }
+
     @PostMapping("/create")
     @PreAuthorize("hasAuthority('ROLE_WORKER')")
     public String addBrandAction(@Valid @ModelAttribute("brandBindingModel") BrandBindingModel bindingModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
@@ -73,14 +78,23 @@ public class BrandController extends BaseController {
         if (bindingResult.hasErrors())
             return "redirect:create";
         this.brandService.createBrand(bindingModel, MultipartToFileConverter.convert(bindingModel.getFile()));
-        return "redirect:all";
+        return "redirect:/worker-panel";
+    }
+
+    @GetMapping("/find-for-edit")
+    @PreAuthorize("hasAuthority('ROLE_WORKER')")
+    public ModelAndView findForEditAction(){
+        return super.view("workers/edit-brand-select-brands", "brands", this.brandService.findAll());
+    }
+
+    @GetMapping("/edit/{brandName}")
+    @PreAuthorize("hasAuthority('ROLE_WORKER')")
+    public ModelAndView editBrandRequest(@PathVariable String brandName){
+        return super.view("workers/edit-brand", "brand", this.brandService.findBrandByName(brandName));
     }
 
     @GetMapping("/{brandName}")
-    public ModelAndView brandDetailsAction(
-            @PathVariable("brandName") String brandName,
-            @PageableDefault(size = 6, page = 0) Pageable pageable,
-            ModelAndView modelAndView) {
+    public ModelAndView brandDetailsAction(@PathVariable("brandName") String brandName, @PageableDefault(size = 6, page = 0) Pageable pageable, ModelAndView modelAndView) {
         Brand brand = this.brandService.findBrandByName(brandName);
         modelAndView.addObject("brand", brand);
         modelAndView.addObject("products", this.productService.findProductByBrand(brand, pageable));

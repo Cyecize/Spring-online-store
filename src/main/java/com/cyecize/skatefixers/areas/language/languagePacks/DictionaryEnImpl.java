@@ -49,7 +49,18 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String NEW = "New";
     public static final String BRAND_NAME = "Brand Name";
     public static final String IMAGE = "Image";
+    public static final String SELECT = "Select";
+    public static final String EDIT = "Edit";
+    public static final String INVALID_IMAGE = "Invalid image";
 
+
+    public String invalidImage() {
+        return INVALID_IMAGE;
+    }
+
+    public String edit() { return EDIT; }
+
+    public String select() { return SELECT; }
 
     public String image() { return IMAGE; }
 

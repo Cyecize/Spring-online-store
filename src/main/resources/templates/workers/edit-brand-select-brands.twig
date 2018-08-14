@@ -1,0 +1,17 @@
+<div class="col-md-4">
+    <h3 class="text-info">{{ dict.brand  ~ ': ' ~ dict.select }}</h3>
+    <select id="brandsList" class="form-control">
+        {% for brand in brands %}
+            <option>{{ brand.brandName }}</option>
+        {% endfor %}
+    </select>
+    <button type="button" id="chooseBrand" class="btn btn-dark">{{ dict.select }}</button>
+    <script>
+        $(function () {
+            $('#chooseBrand').on('click', function () {
+                var brandName = $('#brandsList').val();
+              workersController.callGetRequest('/brands/edit/'+brandName, $('#section-content'));
+            });
+        });
+    </script>
+</div>

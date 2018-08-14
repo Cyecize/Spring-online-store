@@ -30,5 +30,6 @@ public interface ErrorDictionary  {
 
     String fieldCannotBeEmpty();
 
+    String invalidImage();
 
 }

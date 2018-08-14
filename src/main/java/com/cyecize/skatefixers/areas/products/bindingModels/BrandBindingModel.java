@@ -1,6 +1,7 @@
 package com.cyecize.skatefixers.areas.products.bindingModels;
 
 import com.cyecize.skatefixers.areas.products.bindingModels.validators.UniqueBrandName;
+import com.cyecize.skatefixers.areas.products.bindingModels.validators.ValidImage;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotEmpty;
@@ -14,6 +15,7 @@ public class BrandBindingModel {
     private String brandName;
 
     @NotNull(message = "fieldCannotBeEmpty")
+    @ValidImage
     private MultipartFile file;
 
     public BrandBindingModel(){

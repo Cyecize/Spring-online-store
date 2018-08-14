@@ -73,4 +73,8 @@ public interface Dictionary extends ErrorDictionary {
     String brandName();
 
     String image();
+
+    String edit();
+
+    String select();
 }

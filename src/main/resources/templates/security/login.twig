@@ -10,7 +10,7 @@
                     <h2>{{ dict.login }}</h2>
                 </div>
                 <div class="sky-color-separator"></div>
-                <form method="post" enctype="multipart/form-data" class="w-50">
+                <form method="post" enctype="multipart/form-data" class="w-50" action="/login">
                     {% if error %}
                         <h2 class="alert alert-danger">{{ error }}</h2>
                     {% endif %}
