@@ -10,33 +10,26 @@
                         <div class="sidebar-item">
                             <p class="font-15em">{{ dict.brands }}</p>
                             <ul class="list-group">
-                                <li class="list-group-item"><a href="/brands/create-q"
-                                                               class="clickable-sidebar-menu">{{ dict._new }} {{ dict.brand }}</a>
+                                <li class="list-group-item"><a href="/brands/create">{{ dict._new }} {{ dict.brand }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="/brands/find-for-edit" class="clickable-sidebar-menu">
-                                        {{ dict.brand }}: {{ dict.edit }}
-                                    </a>
+                                    <a href="/brands/find-for-edit">{{ dict.brand }}: {{ dict.edit }}</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="sidebar-item">
                             <p class="font-15em">{{ dict.categories }}</p>
                             <ul class="list-group">
-                                <li class="list-group-item"><a href="/brands/create"
-                                                               class="clickable-sidebar-menu">{{ dict._new }} {{ dict.brand }}</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a href="/brands/find-for-edit" class="clickable-sidebar-menu">
-                                        {{ dict.brand }}: {{ dict.edit }}
-                                    </a>
+                                <li class="list-group-item"><a href="/brands/create">{{ dict._new }} {{ dict.brand }}</a>
                                 </li>
                             </ul>
                         </div>
                     {% endblock %}
                 {% endembed %}
-                <div class="col-lg-9" id="section-content">
-
+                <div class="col-lg-9" id="section-content" style="display:none;">
+                    {% block workerBody %}
+                        <h3 class="alert alert-warning">Select option from the menu</h3>
+                    {% endblock %}
                 </div>
             </div>
         </div>
@@ -46,33 +39,7 @@
 {% block javascripts %}
     <script>
         $(function () {
-            var holder = $('#section-content');
-
-            $('.clickable-sidebar-menu').on('click', function (e) {
-                var ctx = $(this);
-                e.preventDefault();
-                var href = ctx.attr('href');
-
-                workersController.callGetRequest(href, holder);
-            });
+           $('#section-content').fadeIn(300);
         });
-
-        var workersController = (function () {
-            function callGetRequest(url, destinationElement) {
-                $.ajax({
-                    method: "GET",
-                    url: url,
-                    success: function (html) {
-                        destinationElement.hide();
-                        destinationElement.html(html);
-                        destinationElement.fadeIn(300);
-                    },
-                    error: console.error
-                });
-            }
-
-            return {callGetRequest: callGetRequest};
-        })();
-
     </script>
 {% endblock %}

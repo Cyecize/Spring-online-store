@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface GoogleDriveManager {
 
+    boolean deleteFile(String fileId);
+
     List<File> findAllFilesByFolder(String folderId);
 
     File findFileById(String id);

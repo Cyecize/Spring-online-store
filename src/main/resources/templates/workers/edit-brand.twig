@@ -1,20 +1,12 @@
-<h3 class="text-info">{{ dict.brand }}: {{ dict.edit }}</h3>
-<div class="">
-    <form method="post" enctype="multipart/form-data" action="/brands/create">
-        <div class="form-group">
-            <label for="brandName">{{ dict.brandName }}</label>
-            <input type="text" maxlength="20" required class="form-control" value="{{ brand.brandName }}" name="brandName" id="brandName">
-            <p class="text-danger">{{ util.getError('brandName') }}</p>
-        </div>
-        <div style="max-width: 400px;">
-            <img src="{{ brand.image }}" width="100%">
-        </div>
-        <div class="form-group">
-            <label for="brandImage">{{ dict.image }}</label>
-            <input type="file" class="form-control" name="file" id="brandImage">
-            <p class="text-danger">{{ util.getError('file') }}</p>
-        </div>
-        {% embed '../partials/csrf.twig' %} {% endembed %}
-        <button type="submit" class="btn btn-dark">{{ dict.go }}</button>
-    </form>
-</div>
+{% extends 'index.twig' %}
+
+{% block workerBody %}
+
+    <h3 class="text-info">{{ dict.brand }}: {{ dict.edit }}</h3>
+    <div class="">
+        {% embed 'partials/edit-brand-form.twig' %} {% endembed %}
+    </div>
+
+
+{% endblock %}
+

@@ -3,6 +3,7 @@ package com.cyecize.skatefixers.areas.products.services;
 import com.cyecize.skatefixers.areas.googleDrive.services.GoogleDriveManager;
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.products.bindingModels.BrandBindingModel;
+import com.cyecize.skatefixers.areas.products.bindingModels.BrandEditBindingModel;
 import com.cyecize.skatefixers.areas.products.entities.Brand;
 import com.cyecize.skatefixers.areas.products.repositories.BrandRepository;
 import com.cyecize.skatefixers.exceptions.NotFoundException;
@@ -63,4 +64,27 @@ public class BrandServiceImpl implements BrandService {
         }
         this.brandRepository.saveAndFlush(brand);
     }
+
+    @Override
+    public void editBrand(String oldBrandName, BrandEditBindingModel bindingModel) {
+        Brand brand = this.findBrandByName(oldBrandName);
+        brand.setBrandName(bindingModel.getBrandName());
+        this.brandRepository.saveAndFlush(brand);
+    }
+
+    @Override
+    @Async
+    public void editBrand(String oldBrandName, BrandEditBindingModel bindingModel, File image) {
+        Brand brand = this.findBrandByName(oldBrandName);
+        brand.setBrandName(bindingModel.getBrandName());
+        try {
+            this.driveManager.deleteFile(brand.extractId());
+            brand.setImage(this.driveManager.uploadFile(image, BRANDS_FOLDER_ID, "ImgForBrandId_"+brand.getId()));
+            this.brandRepository.saveAndFlush(brand);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

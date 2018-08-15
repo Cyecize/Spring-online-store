@@ -1,9 +1,9 @@
 package com.cyecize.skatefixers.areas.products.controllers;
 
-import com.cyecize.skatefixers.areas.googleDrive.services.GoogleDriveManager;
 import com.cyecize.skatefixers.areas.googleDrive.util.MultipartToFileConverter;
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.products.bindingModels.BrandBindingModel;
+import com.cyecize.skatefixers.areas.products.bindingModels.BrandEditBindingModel;
 import com.cyecize.skatefixers.areas.products.entities.Brand;
 import com.cyecize.skatefixers.areas.products.services.BaseProductService;
 import com.cyecize.skatefixers.areas.products.services.BrandService;
@@ -11,27 +11,20 @@ import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
 import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
 import com.cyecize.skatefixers.constants.WebConstants;
 import com.cyecize.skatefixers.controllers.BaseController;
-import com.cyecize.skatefixers.http.JsonResponse;
-import com.google.api.services.drive.model.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
+
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -49,12 +42,6 @@ public class BrandController extends BaseController {
         this.productService = productService;
     }
 
-    @GetMapping("/all")
-    public ModelAndView allBrandsAction(ModelAndView modelAndView) {
-        modelAndView.addObject("brands", this.brandService.findAll());
-        return view("default/brands-all", modelAndView);
-    }
-
     @GetMapping("/create")
     @PreAuthorize("hasAuthority('ROLE_WORKER')")
     public ModelAndView addBrandRequest(ModelAndView modelAndView, Model model) {
@@ -62,12 +49,6 @@ public class BrandController extends BaseController {
         modelAndView.addObject("brandBindingModel", map.get("brandBindingModel"));
         modelAndView.addObject(WebConstants.TWIG_BINDING_RESULT_OBJ_NAME, map.get(WebConstants.TWIG_BINDING_RESULT_OBJ_NAME));
         return super.view("workers/add-brand", modelAndView);
-    }
-
-    @GetMapping("/create-q")
-    @PreAuthorize("hasAuthority('ROLE_WORKER')")
-    public ModelAndView addBrandQuery(){
-        return super.view("workers/queries/add-brand-query");
     }
 
     @PostMapping("/create")
@@ -83,15 +64,46 @@ public class BrandController extends BaseController {
 
     @GetMapping("/find-for-edit")
     @PreAuthorize("hasAuthority('ROLE_WORKER')")
-    public ModelAndView findForEditAction(){
+    public ModelAndView findForEditAction() {
         return super.view("workers/edit-brand-select-brands", "brands", this.brandService.findAll());
     }
 
+
     @GetMapping("/edit/{brandName}")
     @PreAuthorize("hasAuthority('ROLE_WORKER')")
-    public ModelAndView editBrandRequest(@PathVariable String brandName){
-        return super.view("workers/edit-brand", "brand", this.brandService.findBrandByName(brandName));
+    public ModelAndView editBrandRequest(@PathVariable String brandName, Model model, ModelAndView modelAndView) {
+        Map<String, Object> map = model.asMap();
+        modelAndView.addObject("brandBindingModel", map.get("brandBindingModel"));
+        modelAndView.addObject(WebConstants.TWIG_BINDING_RESULT_OBJ_NAME, map.get(WebConstants.TWIG_BINDING_RESULT_OBJ_NAME));
+        modelAndView.addObject("brand", this.brandService.findBrandByName(brandName));
+        return super.view("workers/edit-brand", modelAndView);
     }
+
+    @PostMapping("/edit/{brandName}")
+    @PreAuthorize("hasAuthority('ROLE_WORKER')")
+    public String editBrandAction(
+            @PathVariable("brandName") String brandName,
+            @Valid @ModelAttribute("brandBindingModel") BrandEditBindingModel bindingModel,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes
+    ) {
+        redirectAttributes.addFlashAttribute(WebConstants.TWIG_BINDING_RESULT_OBJ_NAME, bindingResult);
+        redirectAttributes.addFlashAttribute("brandBindingModel", bindingModel);
+        if (bindingResult.hasErrors())
+            return "redirect:/brands/edit/" + brandName;
+        if (bindingModel.getFile().isEmpty())
+            this.brandService.editBrand(brandName, bindingModel);
+        else
+            this.brandService.editBrand(brandName, bindingModel, MultipartToFileConverter.convert(bindingModel.getFile()));
+        return "redirect:/worker-panel";
+    }
+
+    @GetMapping("/all")
+    public ModelAndView allBrandsAction(ModelAndView modelAndView) {
+        modelAndView.addObject("brands", this.brandService.findAll());
+        return view("default/brands-all", modelAndView);
+    }
+
 
     @GetMapping("/{brandName}")
     public ModelAndView brandDetailsAction(@PathVariable("brandName") String brandName, @PageableDefault(size = 6, page = 0) Pageable pageable, ModelAndView modelAndView) {

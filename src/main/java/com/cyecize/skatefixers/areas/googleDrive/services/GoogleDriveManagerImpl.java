@@ -25,6 +25,16 @@ public class GoogleDriveManagerImpl implements GoogleDriveManager {
     }
 
     @Override
+    public boolean deleteFile(String fileId) {
+        try {
+            this.driveService.files().delete(fileId).execute();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+    @Override
     public List<File> findAllFilesByFolder(String folderId) {
         try {
             FileList result = this.driveService.files().list()

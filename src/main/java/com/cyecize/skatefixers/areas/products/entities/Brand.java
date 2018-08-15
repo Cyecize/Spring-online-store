@@ -2,6 +2,8 @@ package com.cyecize.skatefixers.areas.products.entities;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Entity
 @Table(name = "brands")
@@ -20,6 +22,7 @@ public class Brand {
 
     @OneToMany(targetEntity = BaseProduct.class, mappedBy = "brand")
     private List<BaseProduct> products;
+
 
     public Brand(){
         //TODO persist some brands in none present on app startup
@@ -45,8 +48,16 @@ public class Brand {
         return image;
     }
 
+
     public void setImage(String image) {
         this.image = String.format("https://drive.google.com/uc?id=%s&export=download", image) ;
+    }
+
+    public String extractId(){
+        Matcher matcher = Pattern.compile("id=(.*?)&").matcher(this.image);
+        if(matcher.find())
+            return matcher.group(1);
+        return null;
     }
 
     public List<BaseProduct> getProducts() {

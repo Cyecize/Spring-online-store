@@ -1,4 +1,7 @@
-<div class="col-md-4">
+{% extends 'index.twig' %}
+
+{% block workerBody %}
+<div class="col-md-4" id="brandEditHolder">
     <h3 class="text-info">{{ dict.brand  ~ ': ' ~ dict.select }}</h3>
     <select id="brandsList" class="form-control">
         {% for brand in brands %}
@@ -10,8 +13,10 @@
         $(function () {
             $('#chooseBrand').on('click', function () {
                 var brandName = $('#brandsList').val();
-              workersController.callGetRequest('/brands/edit/'+brandName, $('#section-content'));
+                location.href = "/brands/edit/" + brandName;
             });
         });
     </script>
 </div>
+
+{% endblock %}

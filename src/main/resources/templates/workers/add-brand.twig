@@ -1,23 +1,12 @@
-{% extends '../base.html.twig' %}
+{% extends 'index.twig' %}
+{% block title %}New Brand{% endblock %}
+{% block workerBody %}
+    <div>
+        <h3 class="text-info">{{ dict._new ~ ' ' ~ dict.brand }}</h3>
+        <a href="/worker-panel">{{ dict.back }}</a>
+    </div>
 
-{% block body %}
-    <main class="container">
-        <div class="navbar-filler"></div>
-        <div>
-            <h2>{{ dict._new ~ ' ' ~ dict.brand }}</h2>
-            <a href="/worker-panel">{{ dict.back }}</a>
-        </div>
-        <div class="row">
-            <div class="col-lg-9">
-                <div class="">
-                   {% embed 'partials/add-brand-form.twig' %} {% endembed %}
-                </div>
-            </div>
-            {% embed '../partials/sidebar/sidebar.html.twig' %}
-                {% block sidebarBody %}
-                    {% embed '../partials/sidebar/brands.html.twig' with {'title':dict.all ~ ' ' ~ dict.brands, 'brands':informer.getAllBrands } %} {% endembed %}
-                {% endblock %}
-            {% endembed %}
-        </div>
-    </main>
+    <div class="">
+        {% embed 'partials/add-brand-form.twig' %} {% endembed %}
+    </div>
 {% endblock %}
