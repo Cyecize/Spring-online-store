@@ -2,7 +2,7 @@
 
 {% block workerBody %}
     <div class="col-md-4" id="brandEditHolder">
-        <h3 class="text-info">{{ dict.brand  ~ ': ' ~ dict.select }}</h3>
+        <h3 class="text-info">{{ dict.category  ~ ': ' ~ dict.select }}</h3>
         <select id="catList" class="form-control">
             {% for category in categories %}
                 <option>{{  util.getLocalCategoryName(category) }}</option>

@@ -11,11 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 @Service
+@Transactional
 public class BrandServiceImpl implements BrandService {
 
     private static final String BRANDS_FOLDER_ID = "19HMBkZ_4KuFzssP5rcQh_d0i2JtejRho";
@@ -80,7 +82,7 @@ public class BrandServiceImpl implements BrandService {
         try {
             this.driveManager.deleteFile(brand.extractId());
             brand.setImage(this.driveManager.uploadFile(image, BRANDS_FOLDER_ID, "ImgForBrandId_"+brand.getId()));
-            this.brandRepository.saveAndFlush(brand);
+            this.brandRepository.save(brand);
         } catch (IOException e) {
             e.printStackTrace();
         }

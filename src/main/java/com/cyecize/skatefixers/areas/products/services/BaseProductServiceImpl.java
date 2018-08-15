@@ -22,6 +22,8 @@ import java.util.stream.Collectors;
 @Service
 public class BaseProductServiceImpl implements BaseProductService {
 
+    private static final String PRODUCTS_FOLDER_ID = "1iib1PmVquOSNJEfTOi53QO24V9juDNIG";
+
     private final BaseProductRepository productRepository;
 
     private final LocalLanguage localLanguage;
