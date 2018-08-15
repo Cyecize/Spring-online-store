@@ -1,7 +1,6 @@
 package com.cyecize.skatefixers.areas.language.languagePacks;
 
 import com.cyecize.skatefixers.areas.language.enums.LanguageLocaleType;
-import com.cyecize.skatefixers.areas.products.entities.Image;
 
 public class DictionaryEnImpl implements Dictionary {
     public static final String HOME = "Home";
@@ -52,7 +51,45 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String SELECT = "Select";
     public static final String EDIT = "Edit";
     public static final String INVALID_IMAGE = "Invalid image";
+    public static final String CATEGORY = "Category";
+    public static final String PARENT_PATEGORY = "Parent Category";
+    public static final String THIS_IS_MAIN_CATEGORY = "This is main category";
+    public static final String LATIN_NAME = "Latin name";
+    public static final String CYRILLIC_NAME = "Cyrillic Name";
+    public static final String NAME_TAKEN = "Name taken";
+    public static final String CATEGORY_WAS_NOT_FOUND = "Category was not found";
+    public static final String REMOVE = "Remove";
 
+
+    public String remove() { return REMOVE; }
+
+    public String categoryWasNotFound() {
+        return CATEGORY_WAS_NOT_FOUND;
+    }
+
+    public String nameTaken() {
+        return NAME_TAKEN;
+    }
+
+    public String category(){
+        return CATEGORY;
+    }
+
+    public String parentCategory(){
+        return PARENT_PATEGORY;
+    }
+
+    public String thisIsMainCategory(){
+        return THIS_IS_MAIN_CATEGORY;
+    }
+
+    public String latinName(){
+        return LATIN_NAME;
+    }
+
+    public String cyrillicName(){
+        return CYRILLIC_NAME;
+    }
 
     public String invalidImage() {
         return INVALID_IMAGE;

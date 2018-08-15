@@ -1,0 +1,12 @@
+{% extends 'index.twig' %}
+{% block title %}New Category{% endblock %}
+{% block workerBody %}
+    <div>
+        <h3 class="text-info">{{ dict._new ~ ' ' ~ dict.category }}</h3>
+        <a href="/worker-panel">{{ dict.back }}</a>
+    </div>
+
+    <div class="">
+        {% embed 'partials/category-form.twig' %} {% endembed %}
+    </div>
+{% endblock %}

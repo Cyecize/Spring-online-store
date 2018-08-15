@@ -1,0 +1,22 @@
+{% extends 'index.twig' %}
+
+{% block workerBody %}
+    <div class="col-md-4" id="brandEditHolder">
+        <h3 class="text-info">{{ dict.brand  ~ ': ' ~ dict.select }}</h3>
+        <select id="catList" class="form-control">
+            {% for category in categories %}
+                <option>{{  util.getLocalCategoryName(category) }}</option>
+            {% endfor %}
+        </select>
+        <button type="button" id="chooseCat" class="btn btn-dark">{{ dict.select }}</button>
+        <script>
+            $(function () {
+                $('#chooseCat').on('click', function () {
+                    var catName = $('#catList').val();
+                    location.href = "/categories/edit/" + catName;
+                });
+            });
+        </script>
+    </div>
+
+{% endblock %}

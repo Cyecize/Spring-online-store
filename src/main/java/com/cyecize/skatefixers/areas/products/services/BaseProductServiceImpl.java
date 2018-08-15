@@ -42,6 +42,12 @@ public class BaseProductServiceImpl implements BaseProductService {
     }
 
     @Override
+    public void hideProduct(BaseProduct product) {
+        product.setEnabled(false);
+        this.productRepository.save(product);
+    }
+
+    @Override
     public BaseProduct findOneById(Long id) {
         if (!this.productRepository.findById(id).isPresent())
             throw new NotFoundException(localLanguage.errors().productNotFound());

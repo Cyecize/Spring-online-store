@@ -13,6 +13,8 @@ public interface BaseProductService {
 
     void viewProduct(Long productId);
 
+    void hideProduct(BaseProduct product);
+
     BaseProduct findOneById(Long id);
 
     Page<BaseProduct> findAll(Pageable pageable);

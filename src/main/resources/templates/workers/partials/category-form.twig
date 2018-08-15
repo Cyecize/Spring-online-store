@@ -1,0 +1,24 @@
+<form method="post"  enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="categoryNameLatin">{{ dict.latinName }}</label>
+        <input value="{{ currentCategory.categoryNameLatin }}" placeholder="{{ dict.latinName }}" type="text" maxlength="30" required class="form-control" name="categoryNameLatin" id="categoryNameLatin">
+        <p class="text-danger">{{ util.getError('categoryNameLatin') }}</p>
+    </div>
+    <div class="form-group">
+        <label for="categoryNameCyrillic">{{ dict.cyrillicName }}</label>
+        <input value="{{ currentCategory.categoryNameCyrillic }}" placeholder="{{ dict.cyrillicName }}" type="text" maxlength="30" required class="form-control" name="categoryNameCyrillic" id="categoryNameCyrillic">
+        <p class="text-danger">{{ util.getError('categoryNameCyrillic') }}</p>
+    </div>
+    <div class="form-group">
+        <label for="parentCategory">{{ dict.parentCategory }}</label>
+        <select class="form-control" name="parentCategoryId" id="parentCategory">
+            <option  selected value="-1">{{ dict.thisIsMainCategory }}</option>
+            {% for category in parents %}
+                <option {% if currentCategory.parentCategory.id == category.id  %} selected {% endif %}value="{{ category.id }}">{{ util.getLocalCategoryName(category) }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    {% embed '../../partials/csrf.twig' %} {% endembed %}
+    <button type="submit" class="btn btn-dark">{{ dict.go }}</button>
+</form>

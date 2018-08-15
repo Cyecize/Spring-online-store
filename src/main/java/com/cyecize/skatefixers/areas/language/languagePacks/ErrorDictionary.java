@@ -32,4 +32,8 @@ public interface ErrorDictionary  {
 
     String invalidImage();
 
+    String nameTaken();
+
+    String categoryWasNotFound();
+
 }

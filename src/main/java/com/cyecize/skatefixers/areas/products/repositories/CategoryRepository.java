@@ -12,7 +12,8 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     Category findCategoryByCategoryNameLatinOrCategoryNameCyrillic(String lat, String cyr);
 
-    @Query(value = "select * from product_categories as c where c.parent_category IS NULL ", nativeQuery = true)
+    //@Query(value = "select * from product_categories as c where c.parent_category IS NULL ", nativeQuery = true)
+    @Query(value = "SELECT c FROM Category c WHERE c.parentCategory IS NULL ")
     List<Category> findMainCategories();
 
 }

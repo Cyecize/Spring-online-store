@@ -52,6 +52,47 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String SELECT = "Избор";
     public static final String EDIT = "Редакция";
     public static final String INVALID_IMAGE = "Невалидна снимка / формат";
+    public static final String CATEGORY = "Категория";
+    public static final String PARENT_PATEGORY = "Бащина категория";
+    public static final String THIS_IS_MAIN_CATEGORY = "Това е главна категория";
+    public static final String LATIN_NAME = "Латинско име";
+    public static final String CYRILLIC_NAME = "Име на кирилица";
+    public static final String NAME_TAKEN = "Името е заето";
+    public static final String CATEGORY_WAS_NOT_FOUND = "Категорията не беше намерена";
+    public static final String REMOVE = "Изтриване";
+
+
+    public String remove() {
+        return REMOVE;
+    }
+
+    public String categoryWasNotFound() {
+        return CATEGORY_WAS_NOT_FOUND;
+    }
+
+    public String nameTaken() {
+        return NAME_TAKEN;
+    }
+
+    public String category(){
+        return CATEGORY;
+    }
+
+    public String parentCategory(){
+        return PARENT_PATEGORY;
+    }
+
+    public String thisIsMainCategory(){
+        return THIS_IS_MAIN_CATEGORY;
+    }
+
+    public String latinName(){
+        return LATIN_NAME;
+    }
+
+    public String cyrillicName(){
+        return CYRILLIC_NAME;
+    }
 
     public String invalidImage() {
         return INVALID_IMAGE;

@@ -1,0 +1,39 @@
+{% extends 'index.twig' %}
+{% block title %}Edit Category{% endblock %}
+{% block workerBody %}
+    <div>
+        <h3 class="text-info">{{ dict.category ~ ': ' ~ dict.edit }}</h3>
+        <a href="/worker-panel">{{ dict.back }}</a>
+    </div>
+
+    <div class="">
+        {% embed 'partials/category-form.twig' %} {% endembed %}
+        <hr>
+        <button catId = "{{ currentCategory.id }}"  class="btn btn-danger" type="button" id="removeCatBtn">{{ dict.remove }}</button>
+        <script>
+            $(function () {
+                $('#removeCatBtn').on('click', function () {
+                    var catId = $(this).attr('catId').trim();
+                    if(!confirm('Remove category, all sub categories and all related products?')){
+                        return;
+                    }
+                    var header = '{{_csrf.headerName}}';
+                    var token = '{{_csrf.token}}';
+                    $.ajax({
+                        method:"POST",
+                        url:"/categories/remove/"+catId,
+                        data: token,
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader(header, token);
+                        },
+                        success:function (data) {
+                            console.log(data);
+                            alert(data['message']);
+                            location.href = "/worker-panel";
+                        }
+                    });
+                }) ;
+            });
+        </script>
+    </div>
+{% endblock %}

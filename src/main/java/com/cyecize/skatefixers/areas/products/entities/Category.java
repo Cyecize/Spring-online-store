@@ -1,6 +1,8 @@
 package com.cyecize.skatefixers.areas.products.entities;
 
 
+import com.cyecize.skatefixers.areas.products.eventListeners.CategoryListener;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "product_categories")
+@EntityListeners(CategoryListener.class)
 public class Category {
 
     @Id
@@ -15,7 +18,7 @@ public class Category {
     @Column(name = "id", nullable = false, unique = true, updatable = false)
     private Long id;
 
-    @ManyToOne(targetEntity = Category.class)
+    @ManyToOne(targetEntity = Category.class, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "parent_category", nullable = true)
     private Category parentCategory;
 
@@ -25,10 +28,10 @@ public class Category {
     @Column(name = "category_name_cyrillic", nullable = false, unique = true)
     private String categoryNameCyrillic;
 
-    @OneToMany(targetEntity = Category.class, mappedBy = "parentCategory")
+    @OneToMany(targetEntity = Category.class, mappedBy = "parentCategory", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Category> subCategories;
 
-    @OneToMany(targetEntity = BaseProduct.class, mappedBy = "category")
+    @OneToMany(targetEntity = BaseProduct.class, mappedBy = "category", cascade = CascadeType.REMOVE)
     private List<BaseProduct> products;
 
     public Category(){

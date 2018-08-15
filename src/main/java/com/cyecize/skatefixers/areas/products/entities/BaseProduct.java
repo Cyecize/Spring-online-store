@@ -42,8 +42,8 @@ public abstract class BaseProduct {
     @JoinColumn(name = "brand_id", referencedColumnName = "id", nullable = false)
     private Brand brand;
 
-    @ManyToOne(targetEntity = Category.class)
-    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
+    @ManyToOne(targetEntity = Category.class, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
     @OneToMany(targetEntity = Image.class, mappedBy = "product")

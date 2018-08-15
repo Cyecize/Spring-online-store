@@ -77,4 +77,17 @@ public interface Dictionary extends ErrorDictionary {
     String edit();
 
     String select();
+
+    String category();
+
+    String parentCategory();
+
+    String thisIsMainCategory();
+
+    String latinName();
+
+    String cyrillicName();
+
+    String remove();
+
 }

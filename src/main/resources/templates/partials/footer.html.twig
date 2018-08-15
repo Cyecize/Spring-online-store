@@ -14,7 +14,12 @@
                     <li><a href="/products/all" >{{ dict.products }}</a></li>
                     <li><a href="/brands/all" >{{ dict.brands }}</a></li>
                     <li><a href="/contacts">{{ dict.contacts }}</a></li>
-                    <li><a href="/login">{{ dict.login }}</a></li>
+                    {% if informer.user %}
+                        <li><a href="/logout">{{ dict.logout }}</a></li>
+                    {% else %}
+                        <li><a href="/login">{{ dict.login }}</a></li>
+                        <li><a href="/register">{{ dict.register }}</a></li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="col-md-2 mx-auto">
