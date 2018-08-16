@@ -60,6 +60,46 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String NAME_TAKEN = "Името е заето";
     public static final String CATEGORY_WAS_NOT_FOUND = "Категорията не беше намерена";
     public static final String REMOVE = "Изтриване";
+    public static final String NAME = "Име";
+    public static final String PRICE = "Цена";
+    public static final String DESCRIPTION = "Описание";
+    public static final String SIZE = "Размер";
+    public static final String IS_ENABLED = "Видимо";
+    public static final String WEEKLY_VIEWS = "Седмични преглеждания";
+    public static final String GALLERY = "Галерия";
+    public static final String PRODUCT = "Стока";
+
+    public String product() {
+        return PRODUCT;
+    }
+
+    public String name() {
+        return NAME;
+    }
+
+    public String price() {
+        return PRICE;
+    }
+
+    public String description() {
+        return DESCRIPTION;
+    }
+
+    public String size() {
+        return SIZE;
+    }
+
+    public String isEnabled() {
+        return IS_ENABLED;
+    }
+
+    public String weeklyViews() {
+        return WEEKLY_VIEWS;
+    }
+
+    public String gallery() {
+        return GALLERY;
+    }
 
 
     public String remove() {

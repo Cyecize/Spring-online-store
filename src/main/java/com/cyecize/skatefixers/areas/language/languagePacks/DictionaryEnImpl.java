@@ -59,7 +59,46 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String NAME_TAKEN = "Name taken";
     public static final String CATEGORY_WAS_NOT_FOUND = "Category was not found";
     public static final String REMOVE = "Remove";
+    public static final String NAME = "Name";
+    public static final String PRICE = "Price";
+    public static final String DESCRIPTION = "Description";
+    public static final String SIZE = "Size";
+    public static final String IS_ENABLED = "Is enabled";
+    public static final String WEEKLY_VIEWS = "Weekly views";
+    public static final String GALLERY = "Gallery";
+    public static final String PRODUCT = "Product";
 
+    public String product() {
+        return PRODUCT;
+    }
+
+    public String name() {
+        return NAME;
+    }
+
+    public String price() {
+        return PRICE;
+    }
+
+    public String description() {
+        return DESCRIPTION;
+    }
+
+    public String size() {
+        return SIZE;
+    }
+
+    public String isEnabled() {
+        return IS_ENABLED;
+    }
+
+    public String weeklyViews() {
+        return WEEKLY_VIEWS;
+    }
+
+    public String gallery() {
+        return GALLERY;
+    }
 
     public String remove() { return REMOVE; }
 

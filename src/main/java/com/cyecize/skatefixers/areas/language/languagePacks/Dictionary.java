@@ -90,4 +90,19 @@ public interface Dictionary extends ErrorDictionary {
 
     String remove();
 
+    String name();
+
+    String price();
+
+    String description();
+
+    String size();
+
+    String isEnabled();
+
+    String weeklyViews();
+
+    String gallery();
+
+    String product();
 }

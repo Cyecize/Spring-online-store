@@ -12,7 +12,9 @@ import com.cyecize.skatefixers.exceptions.JsonException;
 import com.cyecize.skatefixers.http.JsonResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,7 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/products", method = {RequestMethod.GET, RequestMethod.POST})
+@RequestMapping(value = "/products")
+@PreAuthorize("hasAuthority('ROLE_WORKER')")
 public class ProductController  extends BaseController {
 
     private final BaseProductService productService;
@@ -34,7 +37,13 @@ public class ProductController  extends BaseController {
         this.categoryService = categoryService;
     }
 
+    @GetMapping("/create")
+    public ModelAndView createProductRequest(ModelAndView modelAndView, Model model){
+        return view("workers/products/add-product", modelAndView);
+    }
+
     @GetMapping("/{id:[\\d+]+}")
+    @PreAuthorize("permitAll()")
     public ModelAndView productDetails(@PathVariable Long id){
         BaseProduct product = this.productService.findOneById(id);
         return super.view("default/product-details", "viewModel",
@@ -47,12 +56,14 @@ public class ProductController  extends BaseController {
 
     @PostMapping(value = "/view/{id:[\\d+]+}", produces = "application/json")
     @ResponseBody
+    @PreAuthorize("permitAll()")
     public JsonResponse viewProductAction(@PathVariable("id") Long id){
         this.productService.viewProduct(id);
         return new JsonResponse("View was added");
     }
 
     @GetMapping("/all")
+    @PreAuthorize("permitAll()")
     public String allProds(){
         return "redirect:/categories";
     }
