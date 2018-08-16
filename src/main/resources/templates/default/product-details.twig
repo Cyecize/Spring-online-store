@@ -1,5 +1,5 @@
 {% extends '../base.html.twig' %}
-{% block title %}{{ product.productName }}{% endblock %}
+{% block title %}{{ product.name }}{% endblock %}
 {% block body %}
     {% set product = viewModel.product %}
     {% embed '../partials/home-banner.html.twig' with {'title':product.brand.brandName } %} {% endembed %}
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                         <hr class="bg-trans-gray">
-                        {% if product.description %}
+                        {% if product.description and product.description != '' %}
                             <div class="row">
                                 <div class="col-lg-9 ">
                                     <span class="text-muted raw-content">{{ product.description }}</span>
@@ -53,7 +53,7 @@
                             </div>
                             <hr class="bg-trans-gray">
                         {% endif %}
-                        {% if product.size %}
+                        {% if product.size and product.size != '' %}
                             <div class="row">
                                 <div class="col-md-6">
                                     <span><span class="text-muted">Size: </span>{{ product.size }}</span>

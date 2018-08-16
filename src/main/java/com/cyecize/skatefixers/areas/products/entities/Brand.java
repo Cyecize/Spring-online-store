@@ -1,5 +1,7 @@
 package com.cyecize.skatefixers.areas.products.entities;
 
+import com.cyecize.skatefixers.areas.googleDrive.util.ImageIdExtractor;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -50,14 +52,11 @@ public class Brand {
 
 
     public void setImage(String image) {
-        this.image = String.format("https://drive.google.com/uc?id=%s&export=download", image) ;
+        this.image = ImageIdExtractor.setFormat(image);
     }
 
     public String extractId(){
-        Matcher matcher = Pattern.compile("id=(.*?)&").matcher(this.image);
-        if(matcher.find())
-            return matcher.group(1);
-        return null;
+       return ImageIdExtractor.extractId(this.image);
     }
 
     public List<BaseProduct> getProducts() {

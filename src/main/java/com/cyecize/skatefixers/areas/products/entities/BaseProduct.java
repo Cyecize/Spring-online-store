@@ -1,5 +1,7 @@
 package com.cyecize.skatefixers.areas.products.entities;
 
+import com.cyecize.skatefixers.areas.googleDrive.util.ImageIdExtractor;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +31,7 @@ public abstract class BaseProduct {
     @Column(name = "size", nullable = true)
     private String size;
 
-    @Column(name = "image", nullable = false)
+    @Column(name = "image", nullable = true)
     private String image;
 
     @Column(name = "is_enabled")
@@ -109,7 +111,11 @@ public abstract class BaseProduct {
     }
 
     public void setImage(String image) {
-        this.image = image;
+        this.image = ImageIdExtractor.setFormat(image);
+    }
+
+    public String extractId(){
+        return ImageIdExtractor.extractId(this.image);
     }
 
     public boolean isEnabled() {

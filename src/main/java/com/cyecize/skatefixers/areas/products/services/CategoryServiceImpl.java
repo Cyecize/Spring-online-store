@@ -89,6 +89,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public Category findOneById(Long id) {
+        return this.repository.findById(id).get();
+    }
+
+    @Override
     public List<Category> findAll() {
         return this.repository.findAll();
     }

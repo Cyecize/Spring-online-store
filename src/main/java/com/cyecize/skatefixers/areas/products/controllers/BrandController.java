@@ -29,6 +29,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/brands")
+@PreAuthorize("hasAuthority('ROLE_WORKER')")
 public class BrandController extends BaseController {
 
     private final BrandService brandService;
@@ -43,7 +44,6 @@ public class BrandController extends BaseController {
     }
 
     @GetMapping("/create")
-    @PreAuthorize("hasAuthority('ROLE_WORKER')")
     public ModelAndView addBrandRequest(ModelAndView modelAndView, Model model) {
         Map<String, Object> map = model.asMap();
         modelAndView.addObject("brandBindingModel", map.get("brandBindingModel"));
@@ -52,7 +52,6 @@ public class BrandController extends BaseController {
     }
 
     @PostMapping("/create")
-    @PreAuthorize("hasAuthority('ROLE_WORKER')")
     public String addBrandAction(@Valid @ModelAttribute("brandBindingModel") BrandBindingModel bindingModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute(WebConstants.TWIG_BINDING_RESULT_OBJ_NAME, bindingResult);
         redirectAttributes.addFlashAttribute("brandBindingModel", bindingModel);
@@ -63,14 +62,12 @@ public class BrandController extends BaseController {
     }
 
     @GetMapping("/find-for-edit")
-    @PreAuthorize("hasAuthority('ROLE_WORKER')")
     public ModelAndView findForEditAction() {
         return super.view("workers/edit-brand-select-brands", "brands", this.brandService.findAll());
     }
 
 
     @GetMapping("/edit/{brandName}")
-    @PreAuthorize("hasAuthority('ROLE_WORKER')")
     public ModelAndView editBrandRequest(@PathVariable String brandName, Model model, ModelAndView modelAndView) {
         Map<String, Object> map = model.asMap();
         modelAndView.addObject("brandBindingModel", map.get("brandBindingModel"));
@@ -80,7 +77,6 @@ public class BrandController extends BaseController {
     }
 
     @PostMapping("/edit/{brandName}")
-    @PreAuthorize("hasAuthority('ROLE_WORKER')")
     public String editBrandAction(
             @PathVariable("brandName") String brandName,
             @Valid @ModelAttribute("brandBindingModel") BrandEditBindingModel bindingModel,
@@ -99,6 +95,7 @@ public class BrandController extends BaseController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("permitAll()")
     public ModelAndView allBrandsAction(ModelAndView modelAndView) {
         modelAndView.addObject("brands", this.brandService.findAll());
         return view("default/brands-all", modelAndView);
@@ -106,6 +103,7 @@ public class BrandController extends BaseController {
 
 
     @GetMapping("/{brandName}")
+    @PreAuthorize("permitAll()")
     public ModelAndView brandDetailsAction(@PathVariable("brandName") String brandName, @PageableDefault(size = 6, page = 0) Pageable pageable, ModelAndView modelAndView) {
         Brand brand = this.brandService.findBrandByName(brandName);
         modelAndView.addObject("brand", brand);

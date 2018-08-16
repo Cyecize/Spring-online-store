@@ -18,8 +18,10 @@ public interface CategoryService {
 
     List<Category> findAllParentCategories(Category category);
 
+    List<Category> findAll();
+
     Category findOneByName(String name);
 
-    List<Category> findAll();
+    Category findOneById(Long id);
 
 }

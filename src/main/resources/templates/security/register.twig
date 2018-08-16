@@ -3,46 +3,50 @@
     {% embed '../partials/home-banner.html.twig' with {'title':dict.register } %} {% endembed %}
 
     <div class="container">
-        <div class="text-center"><h2>Register</h2></div>
+        <div class="text-center"><h2>{{ dict.register }}</h2></div>
         <div class="row">
         <div class="col-lg-9">
 
             <form method="post" enctype="multipart/form-data" class="w-75">
 
                 <div class="form-group">
-                    <label for="username">Username</label>
-                    <input name="username" id="username" required type="text" value="{{ userRegisterModel.username }}"
-                           class="form-control">
+                    <label for="username">{{ dict.username }}</label>
+                    <input placeholder="{{ dict.username }}" name="username" id="username" required type="text" value="{{ userRegisterModel.username }}" class="form-control">
                     <p class="text-danger">{{ util.getError('username') }}</p>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input value="{{ userRegisterModel.email }}" name="email" id="email" required type="email"
+                    <label for="email">{{ dict.email }}</label>
+                    <input placeholder="{{ dict.email }}" value="{{ userRegisterModel.email }}" name="email" id="email" required type="email"
                            class="form-control">
                     <p class="text-danger">{{ util.getError('email') }}</p>
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input name="password" id="password" required type="password" class="form-control">
+                    <label for="password">{{ dict.password }}</label>
+                    <input placeholder="{{ dict.password }}" name="password" id="password" required type="password" class="form-control">
                     <p class="text-danger">{{ util.getError('password') }}</p>
                 </div>
 
                 <div class="form-group">
-                    <label for="passwordConfirm">Password Again</label>
-                    <input name="passwordConfirm" id="passwordConfirm" required type="password" class="form-control">
+                    <label for="passwordConfirm">{{ dict.password }} </label>
+                    <input placeholder="{{ dict.password }}" name="passwordConfirm" id="passwordConfirm" required type="password" class="form-control">
                 </div>
 
                 {% embed '../partials/csrf.twig' %} {% endembed %}
                 <div>
-                    <button type="submit" class="btn btn-success">{{ dict.go }}</button>
+                    <button type="submit" class="btn btn-success">{{ dict.register }}</button>
+                    <a href="/login" class="btn btn-dark">{{ dict.login }}</a>
                 </div>
             </form>
+
         </div>
-        <div class="col-lg-3">
-            <h3>Sidebar</h3>
-        </div>
+            {% embed '../partials/sidebar/sidebar.html.twig' %}
+                {% block sidebarBody %}
+                    {% embed '../partials/sidebar/categories.html.twig' with {'title':dict.categories, 'categories':informer.getCategoriesToDisplay } %} {% endembed %}
+                    {% embed '../partials/sidebar/products.html.twig' with {'products':informer.getNewProducts, 'title':dict.newProducts} %} {% endembed %}
+                {% endblock %}
+            {% endembed %}
 
     </div>
     </div>

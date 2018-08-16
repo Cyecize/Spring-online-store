@@ -16,11 +16,11 @@
                     {% endif %}
                     <div class="form-group">
                         <label for="username">{{ dict.username }} / {{ dict.email }}?</label>
-                        <input autofocus name="username" id="username" required type="text" class="form-control">
+                        <input placeholder="{{ dict.username }}" autofocus name="username" id="username" required type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="password">{{ dict.password }}</label>
-                        <input name="password" id="password" required type="password" class="form-control">
+                        <input placeholder="{{ dict.password }}" name="password" id="password" required type="password" class="form-control">
                     </div>
                     <div class="sky-color-separator"></div>
                     <div class="form-group">
@@ -33,8 +33,10 @@
 
                     <div >
                         <button type="submit" class="btn btn-primary">{{ dict.login }}</button>
+                        <a href="/register" class="btn btn-dark">{{ dict.register }}</a>
                     </div>
                 </form>
+
             </div>
             {% embed '../partials/sidebar/sidebar.html.twig' %}
                 {% block sidebarBody %}
