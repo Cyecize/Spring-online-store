@@ -1,6 +1,7 @@
 package com.cyecize.skatefixers.areas.products.services;
 
 import com.cyecize.skatefixers.areas.products.bindingModels.CreateProductBindingModel;
+import com.cyecize.skatefixers.areas.products.bindingModels.EditProductBindingModel;
 import com.cyecize.skatefixers.areas.products.entities.BaseProduct;
 import com.cyecize.skatefixers.areas.products.entities.Brand;
 import com.cyecize.skatefixers.areas.products.entities.Category;
@@ -18,6 +19,12 @@ public interface BaseProductService {
     void hideProduct(BaseProduct product);
 
     void createProduct(CreateProductBindingModel bindingModel, File image);
+
+    void enableOrDisableProduct(BaseProduct product, boolean isEnabled);
+
+    void editProduct(EditProductBindingModel bindingModel, Long id);
+
+    void editProduct(EditProductBindingModel bindingModel, File image,  Long id);
 
     BaseProduct findOneById(Long id);
 

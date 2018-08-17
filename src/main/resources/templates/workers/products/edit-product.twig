@@ -1,0 +1,92 @@
+{% extends '../index.twig' %}
+
+{% block title %}Edit Product {{ product.id }}{% endblock %}
+
+{% block workerBody %}
+    <div>
+        <h3 class="text-info">{{ dict.product ~ ': ' ~ dict.edit }}</h3>
+        <a href="/worker-panel">{{ dict.back }}</a>
+        <hr class="hr-dark">
+    </div>
+
+    <div class="">
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="productName">{{ dict.name }} <span class="text-danger">*</span> </label>
+                <input value="{{ product.productName }}" maxlength="100" id="name" placeholder="{{ dict.name }}"
+                       name="productName" required type="text" class="form-control">
+                <p class="text-danger">{{ util.getError('productName') }}</p>
+            </div>
+            <div class="form-group">
+                <label for="price">{{ dict.price }} <span class="text-danger">*</span></label>
+                <input value="{{ product.price }}" id="price" placeholder="0" name="price" required type="number"
+                       step="any" class="form-control">
+                <p class="text-danger">{{ util.getError('price') }}</p>
+            </div>
+            <div class="form-group">
+                <label for="quantity">{{ dict.quantity }} <span class="text-danger">*</span></label>
+                <input value="{{ product.quantity }}" id="quantity" placeholder="0" name="quantity" required
+                       type="number" step="1" class="form-control">
+                <p class="text-danger">{{ util.getError('quantity') }}</p>
+            </div>
+            <div class="form-group">
+                <label for="description">{{ dict.description }} </label>
+                <textarea id="description" placeholder="{{ dict.description }}" name="description"
+                          class="form-control">{{ product.description }}</textarea>
+                <p class="text-danger">{{ util.getError('description') }}</p>
+            </div>
+            <div class="form-group">
+                <label for="size">{{ dict.size }}</label>
+                <input value="{{ product.size }}" maxlength="20" id="size" placeholder="{{ dict.size }}" name="size"
+                       type="text" class="form-control">
+                <p class="text-danger">{{ util.getError('size') }}</p>
+            </div>
+            <div class="form-group">
+                <label for="file">{{ dict.image }} <span class="text-danger">*</span>TODO preview</label>
+                <input id="file" placeholder="file" name="file" type="file" class="form-control">
+                <p class="text-danger">{{ util.getError('file') }}</p>
+            </div>
+            <div class="form-group">
+                <label for="isEnabled">{{ dict.isEnabled }}</label>
+                <input {% if product.isEnabled %}checked{% endif %} id="isEnabled" placeholder="isEnabled"
+                       name="enabled" type="checkbox">
+                <p class="text-danger">{{ util.getError('isEnabled') }}</p>
+            </div>
+            <div class="form-group">
+                <label for="brand">{{ dict.brand }} <span class="text-danger">*</span></label>
+                <select id="brand" name="brand" required class="form-control">
+                    <option disabled selected value>{{ dict.select }}</option>
+                    {% for brand in viewModel.brands %}
+                        <option value="{{ brand.id }}" {% if product.brand.id == brand.id %} selected {% endif %}>{{ brand.brandName }}</option>
+                    {% endfor %}
+                </select>
+                <p class="text-danger">{{ util.getError('brand') }}</p>
+            </div>
+            <div class="form-group">
+                <label for="category">{{ dict.category }} <span class="text-danger">*</span></label>
+                <select id="category" name="category" required class="form-control">
+                    <option disabled selected value>{{ dict.select }}</option>
+                    {% for category in viewModel.categories %}
+                        <option value="{{ category.id }}" {% if product.category.id == category.id %} selected {% endif %}>{{ util.getLocalCategoryName(category) }}</option>
+                    {% endfor %}
+                </select>
+                <p class="text-danger">{{ util.getError('category') }}</p>
+            </div>
+            {% embed '../../partials/csrf.twig' %} {% endembed %}
+            <button type="submit" class="btn btn-dark">{{ dict.go }}</button>
+            {% if product.isEnabled %}
+                <a href="/products/hide/{{ product.id }}"
+                   class="btn btn-danger btn-outline-danger">{{ dict.disable }}</a>
+            {% else %}
+                <a href="/products/show/{{ product.id }}"
+                   class="btn btn-success btn-outline-success">{{ dict.enable }}</a>
+            {% endif %}
+
+            <!--<div class="form-group">
+            <label for=""></label>
+            <input value="" id="" placeholder="" name="" required type="" class="form-control">
+            {#<p class="text-danger">{{ util.getError('') }}</p>#}
+            </div>-->
+        </form>
+    </div>
+{% endblock %}

@@ -1,8 +1,10 @@
 package com.cyecize.skatefixers;
 
+import com.cyecize.skatefixers.areas.products.entities.Brand;
 import com.cyecize.skatefixers.areas.users.entities.UserRole;
 import com.cyecize.skatefixers.areas.users.enums.UserRoleType;
 import com.cyecize.skatefixers.areas.users.repositories.RoleRepository;
+import com.cyecize.skatefixers.util.ModelMerger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -11,7 +13,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.annotation.PostConstruct;
+import javax.management.relation.Role;
 import javax.swing.*;
+import java.util.Scanner;
 
 @SpringBootApplication
 @EnableAsync
@@ -20,6 +24,9 @@ public class SkateFixersApplication {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private ModelMerger modelMerger;
 
 
     @Value("${server.port}")

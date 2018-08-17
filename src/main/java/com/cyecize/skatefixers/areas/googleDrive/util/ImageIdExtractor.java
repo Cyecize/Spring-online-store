@@ -15,6 +15,6 @@ public class ImageIdExtractor {
         Matcher matcher = Pattern.compile("id=(.*?)&").matcher(link);
         if(matcher.find())
             return matcher.group(1);
-        return null;
+        return "";
     }
 }

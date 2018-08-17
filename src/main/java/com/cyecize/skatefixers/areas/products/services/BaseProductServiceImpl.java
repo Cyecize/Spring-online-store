@@ -3,6 +3,7 @@ package com.cyecize.skatefixers.areas.products.services;
 import com.cyecize.skatefixers.areas.googleDrive.services.GoogleDriveManager;
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.products.bindingModels.CreateProductBindingModel;
+import com.cyecize.skatefixers.areas.products.bindingModels.EditProductBindingModel;
 import com.cyecize.skatefixers.areas.products.entities.BaseProduct;
 import com.cyecize.skatefixers.areas.products.entities.Brand;
 import com.cyecize.skatefixers.areas.products.entities.Category;
@@ -10,6 +11,7 @@ import com.cyecize.skatefixers.areas.products.entities.products.Product;
 import com.cyecize.skatefixers.areas.products.repositories.BaseProductRepository;
 import com.cyecize.skatefixers.exceptions.JsonException;
 import com.cyecize.skatefixers.exceptions.NotFoundException;
+import com.cyecize.skatefixers.util.ModelMerger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +19,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -37,13 +40,16 @@ public class BaseProductServiceImpl implements BaseProductService {
 
     private final ModelMapper modelMapper;
 
+    private final ModelMerger modelMerger;
+
     private final GoogleDriveManager googleDriveManager;
 
     @Autowired
-    public BaseProductServiceImpl(BaseProductRepository productRepository, LocalLanguage localLanguage, ModelMapper modelMapper, GoogleDriveManager googleDriveManager) {
+    public BaseProductServiceImpl(BaseProductRepository productRepository, LocalLanguage localLanguage, ModelMapper modelMapper, ModelMerger modelMerger, GoogleDriveManager googleDriveManager) {
         this.productRepository = productRepository;
         this.localLanguage = localLanguage;
         this.modelMapper = modelMapper;
+        this.modelMerger = modelMerger;
         this.googleDriveManager = googleDriveManager;
     }
 
@@ -75,6 +81,33 @@ public class BaseProductServiceImpl implements BaseProductService {
     }
 
     @Override
+    public void enableOrDisableProduct(BaseProduct product, boolean isEnabled) {
+        product.setEnabled(isEnabled);
+        this.productRepository.saveAndFlush(product);
+    }
+
+    @Override
+    public void editProduct(EditProductBindingModel bindingModel, Long id) {
+        BaseProduct product = this.findOneById(id);
+        product = this.modelMerger.merge(bindingModel, product);
+        this.productRepository.saveAndFlush(product);
+    }
+
+    @Override
+    @Async
+    public void editProduct(EditProductBindingModel bindingModel, File image, Long id) {
+        this.editProduct(bindingModel, id);
+        BaseProduct product = this.findOneById(id);
+        this.googleDriveManager.deleteFile(product.extractId());
+        try{
+            product.setImage(this.googleDriveManager.uploadFile(image, PRODUCTS_FOLDER_ID, String.format("ImgForProdWIthId_%s", product.getId())));
+            this.productRepository.saveAndFlush(product);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public BaseProduct findOneById(Long id) {
         if (!this.productRepository.findById(id).isPresent())
             throw new NotFoundException(localLanguage.errors().productNotFound());
@@ -101,13 +134,13 @@ public class BaseProductServiceImpl implements BaseProductService {
 
     @Override
     public Page<BaseProduct> findProductByBrand(Brand brand, Pageable pageable) {
-        return this.productRepository.findBaseProductsByBrand(brand,pageable);
+        return this.productRepository.findBaseProductsByBrandAndIsEnabled(brand, true,pageable);
     }
 
     @Override
     public List<BaseProduct> findSimilarProducts(BaseProduct product, int limit) {
         Pageable pageable = PageRequest.of(0, limit);
-        return this.productRepository.findBaseProductsByCategoryOrderByWeeklyViewsDesc(product.getCategory(), pageable).stream()
+        return this.productRepository.findBaseProductsByCategoryAndIsEnabledOrderByWeeklyViewsDesc(product.getCategory(),true, pageable).stream()
                 .filter(p -> !p.getId().equals(product.getId())).collect(Collectors.toList());
     }
 
@@ -118,7 +151,7 @@ public class BaseProductServiceImpl implements BaseProductService {
 
     @Override
     public List<BaseProduct> findTrendyProducts() {
-        return productRepository.findTop6ByOrderByWeeklyViewsDesc();
+        return productRepository.findTop6ByIsEnabledOrderByWeeklyViewsDesc(true);
     }
 
     @Override

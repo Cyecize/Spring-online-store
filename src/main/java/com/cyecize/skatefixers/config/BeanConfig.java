@@ -1,6 +1,7 @@
 package com.cyecize.skatefixers.config;
 
 import com.cyecize.skatefixers.constants.WebConstants;
+import com.cyecize.skatefixers.util.ModelMerger;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
@@ -34,6 +35,9 @@ public class BeanConfig {
 
     private static final String GOOGLE_DRIVE_TOKENS_SAVE_LOCATION = WebConstants.SERVER_ROOT_FOLDER_PATH + "google_drive_credentials";
 
+
+    @Bean
+    public ModelMerger modelMerger() {return new ModelMerger();}
 
     @Bean
     public ModelMapper modelMapper() {

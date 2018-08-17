@@ -105,4 +105,8 @@ public interface Dictionary extends ErrorDictionary {
     String gallery();
 
     String product();
+
+    String disable();
+
+    String enable();
 }

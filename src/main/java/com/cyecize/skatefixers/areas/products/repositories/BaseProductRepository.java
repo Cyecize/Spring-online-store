@@ -15,16 +15,17 @@ import java.util.List;
 @Repository
 public interface BaseProductRepository extends JpaRepository<BaseProduct, Long> {
 
-    List<BaseProduct> findTop6ByOrderByWeeklyViewsDesc();
+
+    List<BaseProduct> findTop6ByIsEnabledOrderByWeeklyViewsDesc(Boolean isEnabled);
 
     Page<BaseProduct> findBaseProductsByIsEnabled(Boolean isEnabled, Pageable pageable);
 
-    Page<BaseProduct> findBaseProductsByBrand(Brand brand, Pageable pageable);
+    Page<BaseProduct> findBaseProductsByBrandAndIsEnabled(Brand brand, Boolean isEnabled, Pageable pageable);
 
-    @Query(value = "SELECT * FROM  products ORDER BY id DESC LIMIT ?1", nativeQuery = true)
+    @Query(value = "SELECT  * FROM products WHERE is_enabled = TRUE ORDER BY id DESC LIMIT ?1", nativeQuery = true)
     List<BaseProduct> findNewProductsLimit(int limit);
 
-    List<BaseProduct> findBaseProductsByCategoryOrderByWeeklyViewsDesc(Category category, Pageable pageable);
+    List<BaseProduct> findBaseProductsByCategoryAndIsEnabledOrderByWeeklyViewsDesc(Category category, Boolean isEnabled, Pageable pageable);
 
 
 }

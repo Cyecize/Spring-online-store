@@ -57,7 +57,7 @@ CREATE TABLE `brands` (
   `image` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_gds2u6k2vfeo1tkrtgwcyqj36` (`brand_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `brands` (
 
 LOCK TABLES `brands` WRITE;
 /*!40000 ALTER TABLE `brands` DISABLE KEYS */;
-INSERT INTO `brands` VALUES (1,'Element','http://skately.com/img/library/logos/large/element-skateboards.png'),(2,'DC','http://cdn2.bigcommerce.com/server1500/ac84d/products/523/images/1160/SPO-DCS-001e__68332.1315556717.380.380.jpg?c=2'),(3,'Nike Sb','http://ipadflava.com/wp-content/uploads/nike-sb-logo1.jpg'),(4,'Zero','https://zeroskateboards.com/wp-content/uploads/2015/08/zero-logo-fb.jpg'),(5,'Fallen','https://orig00.deviantart.net/363c/f/2007/248/b/a/fallen_rxwxtxfx_by_adrak.jpg'),(6,'Insomnia','https://yt3.ggpht.com/a-/AJLlDp3vadlpSGGhoKgW41AW6mD6vjjQNcydBdUAxg=s900-mo-c-c0xffffffff-rj-k-no'),(7,'Bones','https://www.warehouseskateboards.com/images/products/preview/1WBONROGWLF54WK.jpg'),(8,'Independent','https://drive.google.com/uc?id=1SOJK3X-wjr5fZWqoX2PzJUIg2AnESF9D&export=download'),(9,'Royal Trucks','https://drive.google.com/uc?id=1_CFVxIDeE1__phXK-kEDNWOB9gIpw4QI&export=download');
+INSERT INTO `brands` VALUES (1,'Element','https://drive.google.com/uc?id=1wh_rIU20SslhIWhtOqJSYkLX9kyeUMBg&export=download'),(2,'DC','http://cdn2.bigcommerce.com/server1500/ac84d/products/523/images/1160/SPO-DCS-001e__68332.1315556717.380.380.jpg?c=2'),(3,'Nike Sb','http://ipadflava.com/wp-content/uploads/nike-sb-logo1.jpg'),(4,'Zero','https://zeroskateboards.com/wp-content/uploads/2015/08/zero-logo-fb.jpg'),(5,'Fallen','https://orig00.deviantart.net/363c/f/2007/248/b/a/fallen_rxwxtxfx_by_adrak.jpg'),(6,'Insomnia','https://yt3.ggpht.com/a-/AJLlDp3vadlpSGGhoKgW41AW6mD6vjjQNcydBdUAxg=s900-mo-c-c0xffffffff-rj-k-no'),(7,'Bones','https://www.warehouseskateboards.com/images/products/preview/1WBONROGWLF54WK.jpg'),(8,'Independent','https://drive.google.com/uc?id=1SOJK3X-wjr5fZWqoX2PzJUIg2AnESF9D&export=download'),(9,'Royal Trucks','https://drive.google.com/uc?id=1_CFVxIDeE1__phXK-kEDNWOB9gIpw4QI&export=download'),(10,'Slaved','https://drive.google.com/uc?id=10i2EfiYBNKp7lijuDeoJ-_f2dqfNfdGR&export=download');
 /*!40000 ALTER TABLE `brands` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,9 +83,11 @@ CREATE TABLE `product_categories` (
   `category_name_latin` varchar(255) NOT NULL,
   `parent_category` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_5bi0laalmqm5q38g8wsipwxfx` (`category_name_cyrillic`),
+  UNIQUE KEY `UK_h4bx645v1j1m0bchvqy6wx5pd` (`category_name_latin`),
   KEY `FKtqtx4nhmyodqxppbbn4bekf1g` (`parent_category`),
   CONSTRAINT `FKtqtx4nhmyodqxppbbn4bekf1g` FOREIGN KEY (`parent_category`) REFERENCES `product_categories` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +96,7 @@ CREATE TABLE `product_categories` (
 
 LOCK TABLES `product_categories` WRITE;
 /*!40000 ALTER TABLE `product_categories` DISABLE KEYS */;
-INSERT INTO `product_categories` VALUES (1,'Обувки','Shoes',NULL),(2,'Дрехи','Clothes',NULL),(3,'Скейтборд','Skateboards',NULL),(4,'Аксесоари','Accessories',NULL),(5,'Дъги','Rainbows',4);
+INSERT INTO `product_categories` VALUES (1,'Обувки','Shoes',NULL),(2,'Дрехи','Clothes',NULL),(3,'Скейтборд','Skateboards',NULL),(4,'Аксесоари','Accessories',NULL),(5,'Дъги','Rainbows',4),(6,'Портмонета','Wallets',4),(13,'Слънчеви очила','Sunglasses',4);
 /*!40000 ALTER TABLE `product_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,21 +138,21 @@ CREATE TABLE `products` (
   `dtype` varchar(31) NOT NULL,
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `description` text,
-  `image` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `is_enabled` bit(1) DEFAULT NULL,
   `price` double DEFAULT NULL,
   `product_name` varchar(255) NOT NULL,
   `quantity` int(11) DEFAULT NULL,
-  `brand_id` bigint(20) NOT NULL,
-  `category_id` bigint(20) NOT NULL,
-  `weekly_views` int(11) DEFAULT NULL,
   `size` varchar(255) DEFAULT NULL,
+  `weekly_views` int(11) DEFAULT NULL,
+  `brand_id` bigint(20) NOT NULL,
+  `category_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKa3a4mpsfdf4d2y6r8ra3sc8mv` (`brand_id`),
   KEY `FK6t5dtw6tyo83ywljwohuc6g7k` (`category_id`),
   CONSTRAINT `FK6t5dtw6tyo83ywljwohuc6g7k` FOREIGN KEY (`category_id`) REFERENCES `product_categories` (`id`),
   CONSTRAINT `FKa3a4mpsfdf4d2y6r8ra3sc8mv` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +161,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES ('Product',1,'<p>Quite a good board </p>','https://insomniacollective.com/media/7/11052.png','',90,'СКЕЙТ ДЪСКА CHOCOLATE ALVAREZ CITY COWBOYS 8\" + ШКУРКА',11,1,3,55,'8'),('Product',2,'Insane board with kanadski klen','https://insomniacollective.com/media/7/11010.png','',120,'СКЕЙТБОРД ДЪСКА GIRL MALTO 93 TIL 7.75\" + ШКУРКА и допълнителни колелца и като цяло много други неша, може да попитате',10,6,3,13,'8'),('Product',3,'Quality Indi socks man','https://insomniacollective.com/media/7/3790.jpg','',18,'ЧОРАПИ INDEPENDENT FINISHLINE- 2 БР.',2,5,4,2,'standard'),('Product',4,'Very cool hat mane','https://insomniacollective.com/media/7/8217.jpg','',36,'ЗИМНА ШАПКА OSIRIS CLIP',11,2,4,15,NULL),('Product',5,'Характеристики на скейтборд комплекта:\r\n\r\nConcave: Medium\r\n\r\nРазмер: 7.6\" x 32\"\r\n\r\nСъстав: Hard Rock Maple - 7 Plies\r\n\r\nКолесари: Classic 5.0\r\n\r\nКолела: 52mm - 100A\r\n\r\nЛагери: Abec 5','https://insomniacollective.com/media/7/9261.jpg','',118,'СКЕЙТБОРД КОМПЛЕКТ ALOIKI TRIANGLE MC 7.6',2,6,3,3,'8.1'),('Product',6,'Състав:\r\nВъншна част: текстил\r\nВътрешна част: синтетика\r\nПодметка: каучук\r\n \r\n\r\nЗабележка: От вътрешната част на обувката има отвори за проветрение.','https://insomniacollective.com/media/7/10419.jpg','',106,'ОБУВКИ DC EVAN SMITH TX SE',13,2,1,73,NULL),('Product',7,'Състав:\r\nВъншна част: текстил и синтетична кожа\r\nВътрешна част: синтетика\r\nПодметка: каучук','https://insomniacollective.com/media/7/9182.jpg','',77,'ОБУВКИ DVS AVERSA ',2,5,1,56,NULL),('Product',8,'Характеристики на скейтборд комплекта:\r\n\r\nConcave: Medium\r\n\r\nРазмер: 7.6\" x 32\"\r\n\r\nСъстав: Hard Rock Maple - 7 Plies\r\n\r\nКолесари: Classic 5.0\r\n\r\nКолела: 52mm - 100A\r\n\r\nЛагери: Abec 5','https://thechive.files.wordpress.com/2018/03/weekend-morning-awesomeness-36-photos-171.jpg?quality=85&strip=info&w=600','',991.249,'Girl ass rainbow',1,7,5,152,'small'),('Product',9,'Rainbow in the forest','https://static.boredpanda.com/blog/wp-content/uploads/2016/10/best-action-photos-2016-red-bull-illume-48-57f6150f74455__880.jpg','',119.363,'Another rainbow',2,7,5,542,NULL),('Product',10,'Rainbow girl\r\nvery naas\r\n    -> good girl\r\n    -> good rainbow \r\n-----> what more do y want','https://st2.depositphotos.com/6367796/9267/v/950/depositphotos_92675558-stock-illustration-pop-art-rainbow-unicorn-woman.jpg','',19.9,'Rainbow six seige',1,4,5,9910,'Non xiztent'),('Product',11,'Like a \r\n      RAINBOW \r\n      INN\r\n      THE \r\nDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\r\nRRRRRKKKK\r\n\r\nYEAAAAAHH','https://ninecirclesblog.files.wordpress.com/2015/06/ronnie-james-dio.jpg','',200,'Rainbow in the dark',12,4,5,16,'World wide'),('Product',12,NULL,'https://orig00.deviantart.net/a14a/f/2010/264/b/8/rainbow_forest_by_twilightxgirl-d2z7jx6.png','',20,'Rainbow in the Forest',11,3,5,18,NULL);
+INSERT INTO `products` VALUES ('Product',1,'<p>Quite a good board </p>','https://insomniacollective.com/media/7/11052.png','',90,'СКЕЙТ ДЪСКА CHOCOLATE ALVAREZ CITY COWBOYS 8\" + ШКУРКА',11,'8',55,1,3),('Product',2,'Insane board with kanadski klen','https://insomniacollective.com/media/7/11010.png','',120,'СКЕЙТБОРД ДЪСКА GIRL MALTO 93 TIL 7.75\" + ШКУРКА и допълнителни колелца и като цяло много други неша, може да попитате',10,'8',13,6,3),('Product',3,'Quality Indi socks man','https://insomniacollective.com/media/7/3790.jpg','',18,'ЧОРАПИ INDEPENDENT FINISHLINE- 2 БР.',2,'standard',2,5,4),('Product',4,'Very cool hat mane','https://insomniacollective.com/media/7/8217.jpg','',36,'ЗИМНА ШАПКА OSIRIS CLIP',11,NULL,16,2,4),('Product',5,'Характеристики на скейтборд комплекта:\r\n\r\nConcave: Medium\r\n\r\nРазмер: 7.6\" x 32\"\r\n\r\nСъстав: Hard Rock Maple - 7 Plies\r\n\r\nКолесари: Classic 5.0\r\n\r\nКолела: 52mm - 100A\r\n\r\nЛагери: Abec 5','https://insomniacollective.com/media/7/9261.jpg','',118,'СКЕЙТБОРД КОМПЛЕКТ ALOIKI TRIANGLE MC 7.6',2,'8.1',5,6,3),('Product',6,'Състав:\r\nВъншна част: текстил\r\nВътрешна част: синтетика\r\nПодметка: каучук\r\n \r\n\r\nЗабележка: От вътрешната част на обувката има отвори за проветрение.','https://insomniacollective.com/media/7/10419.jpg','',106,'ОБУВКИ DC EVAN SMITH TX SE',13,NULL,73,2,1),('Product',7,'Състав:\r\nВъншна част: текстил и синтетична кожа\r\nВътрешна част: синтетика\r\nПодметка: каучук','https://insomniacollective.com/media/7/9182.jpg','',77,'ОБУВКИ DVS AVERSA ',2,NULL,59,5,1),('Product',8,'Характеристики на скейтборд комплекта:\r\n\r\nConcave: Medium\r\n\r\nРазмер: 7.6\" x 32\"\r\n\r\nСъстав: Hard Rock Maple - 7 Plies\r\n\r\nКолесари: Classic 5.0\r\n\r\nКолела: 52mm - 100A\r\n\r\nЛагери: Abec 5','https://thechive.files.wordpress.com/2018/03/weekend-morning-awesomeness-36-photos-171.jpg?quality=85&strip=info&w=600','\0',991.249,'Girl ass rainbow',1,'small',152,7,5),('Product',9,'Rainbow in the forest','https://static.boredpanda.com/blog/wp-content/uploads/2016/10/best-action-photos-2016-red-bull-illume-48-57f6150f74455__880.jpg','',119.363,'Another rainbow',2,NULL,542,7,5),('Product',10,'Rainbow girl\r\nvery naas\r\n    -> good girl\r\n    -> good rainbow \r\n-----> what more do y want','https://st2.depositphotos.com/6367796/9267/v/950/depositphotos_92675558-stock-illustration-pop-art-rainbow-unicorn-woman.jpg','',19.9,'Rainbow six seige',1,'Non xiztent',9910,4,5),('Product',11,'Like a \r\n      RAINBOW \r\n      INN\r\n      THE \r\nDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\r\nRRRRRKKKK\r\n\r\nYEAAAAAHH','https://ninecirclesblog.files.wordpress.com/2015/06/ronnie-james-dio.jpg','',200,'Rainbow in the dark mate',12,'World wide',25,4,5),('Product',12,'','https://orig00.deviantart.net/a14a/f/2010/264/b/8/rainbow_forest_by_twilightxgirl-d2z7jx6.png','',20,'Rainbow in the Forest',10,'',27,4,5),('Product',14,'','https://drive.google.com/uc?id=1W8HFVSlmPbYHx3II2fNtbM-JCcFvk1gG&export=download','',24,'СЛЪНЧЕВИ ОЧИЛА INDEPENDENT FOOLIN',10,'',3,8,13);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -207,7 +209,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_6dotkott2kjsp8vw4d0m25fb7` (`email`),
   UNIQUE KEY `UK_r43af9ap4edm43mmtq01oddj6` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -216,7 +218,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'ceci2205@abv.bg','','','','','$2a$10$D9bUa9j3115cP3snFx8z/uWLKU8WiZMtje7wy2o3AVnTxXHGU3aDa','cyecize'),(2,'smoke@abv.bg','','','','','$2a$10$6kpNxDxIqnXYz6FksJaJb.5JQ99yAwjTFBFV1V48RLv5B9ljI/nia','elsmokio');
+INSERT INTO `users` VALUES (1,'ceci2205@abv.bg','','','','','$2a$10$D9bUa9j3115cP3snFx8z/uWLKU8WiZMtje7wy2o3AVnTxXHGU3aDa','cyecize'),(2,'smoke@abv.bg','','','','','$2a$10$6kpNxDxIqnXYz6FksJaJb.5JQ99yAwjTFBFV1V48RLv5B9ljI/nia','elsmokio'),(3,'bosa@abv.bg','','','','','$2a$10$bMDCVpxG7FtQQE8zYKJgD.IfVM.r1ZYcmfT6s5bIZdIvF3ANB9Dpa','bosa');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -243,7 +245,7 @@ CREATE TABLE `users_roles` (
 
 LOCK TABLES `users_roles` WRITE;
 /*!40000 ALTER TABLE `users_roles` DISABLE KEYS */;
-INSERT INTO `users_roles` VALUES (1,1),(1,2),(1,3),(2,3);
+INSERT INTO `users_roles` VALUES (1,1),(1,2),(1,3),(2,3),(3,3),(3,2);
 /*!40000 ALTER TABLE `users_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -264,4 +266,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-14 20:24:20
+-- Dump completed on 2018-08-17 23:39:15

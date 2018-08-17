@@ -92,7 +92,7 @@ public class Category {
     }
 
     public List<BaseProduct> activeProductsRecursive(){
-        List<BaseProduct> products = new ArrayList<>(this.activeProducts());
+        List<BaseProduct> products = this.activeProducts().stream().filter(BaseProduct::isEnabled).collect(Collectors.toList());
         for(Category c : this.subCategories)
             products.addAll(c.activeProductsRecursive());
         return products;

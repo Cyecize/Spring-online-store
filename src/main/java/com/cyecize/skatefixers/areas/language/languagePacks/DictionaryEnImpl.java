@@ -67,6 +67,16 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String WEEKLY_VIEWS = "Weekly views";
     public static final String GALLERY = "Gallery";
     public static final String PRODUCT = "Product";
+    public static final String DISABLE = "Disable";
+    public static final String ENABLE = "Enable";
+
+    public String disable() {
+        return DISABLE;
+    }
+
+    public String enable() {
+        return ENABLE;
+    }
 
     public String product() {
         return PRODUCT;

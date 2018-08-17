@@ -68,6 +68,16 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String WEEKLY_VIEWS = "Седмични преглеждания";
     public static final String GALLERY = "Галерия";
     public static final String PRODUCT = "Стока";
+    public static final String DISABLE = "Скриване";
+    public static final String ENABLE = "Показване";
+
+    public String disable() {
+        return DISABLE;
+    }
+
+    public String enable() {
+        return ENABLE;
+    }
 
     public String product() {
         return PRODUCT;

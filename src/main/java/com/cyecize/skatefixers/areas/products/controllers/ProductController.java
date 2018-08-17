@@ -3,6 +3,9 @@ package com.cyecize.skatefixers.areas.products.controllers;
 import com.cyecize.skatefixers.areas.googleDrive.util.MultipartToFileConverter;
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.products.bindingModels.CreateProductBindingModel;
+import com.cyecize.skatefixers.areas.products.bindingModels.EditProductBindingModel;
+import com.cyecize.skatefixers.areas.products.bindingModels.validators.ValidImage;
+import com.cyecize.skatefixers.areas.products.bindingModels.validators.ValidImageValidator;
 import com.cyecize.skatefixers.areas.products.entities.BaseProduct;
 import com.cyecize.skatefixers.areas.products.services.BaseProductService;
 import com.cyecize.skatefixers.areas.products.services.BrandService;
@@ -19,6 +22,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -60,6 +64,44 @@ public class ProductController  extends BaseController {
             return "redirect:/products/create";
         this.productService.createProduct(bindingModel, MultipartToFileConverter.convert(bindingModel.getFile()));
         return "redirect:/worker-panel";
+    }
+
+    @GetMapping("/edit/{productId:[\\d]+}")
+    public ModelAndView editProductRequest(@PathVariable("productId") Long productId, ModelAndView modelAndView, Model model){
+       modelAndView.addObject(WebConstants.TWIG_BINDING_RESULT_OBJ_NAME, model.asMap().get(WebConstants.TWIG_BINDING_RESULT_OBJ_NAME));
+        modelAndView.addObject("product",  this.productService.findOneById(productId));
+        modelAndView.addObject("viewModel", new CreateEditProductViewModel(this.categoryService.findAll(), this.brandService.findAll()));
+        return view("workers/products/edit-product", modelAndView);
+    }
+
+    @PostMapping("/edit/{productId:[\\d]+}")
+    public String editProductAction(@Valid @ModelAttribute EditProductBindingModel bindingModel, BindingResult bindingResult, RedirectAttributes redirectAttributes, @PathVariable("productId") Long productId){
+        redirectAttributes.addFlashAttribute(WebConstants.TWIG_BINDING_RESULT_OBJ_NAME, bindingResult);
+        if(bindingResult.hasErrors())
+            return "redirect:/products/edit/"+productId;
+        if(bindingModel.getFile() != null && !bindingModel.getFile().isEmpty()){
+            if(!new ValidImageValidator().isValid(bindingModel.getFile(), null)){
+                bindingResult.addError(new FieldError("file", "file", "invalidImage"));
+                return "redirect:/products/edit/"+productId;
+            }
+            this.productService.editProduct(bindingModel, MultipartToFileConverter.convert(bindingModel.getFile()), productId);
+        }else {
+            this.productService.editProduct(bindingModel, productId);
+        }
+        return "redirect:/worker-panel";
+
+    }
+
+    @GetMapping("/hide/{productId:[\\d]+}")
+    public String hideAction(@PathVariable("productId") Long productId){
+        this.productService.enableOrDisableProduct(this.productService.findOneById(productId), false);
+        return "redirect:/products/edit/" + productId;
+    }
+
+    @GetMapping("/show/{productId:[\\d]+}")
+    public String showAction(@PathVariable("productId") Long productId){
+        this.productService.enableOrDisableProduct(this.productService.findOneById(productId), true);
+        return "redirect:/products/edit/" + productId;
     }
 
     @GetMapping("/{id:[\\d+]+}")
