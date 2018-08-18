@@ -17,7 +17,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4 slider-content">
-                                <h2>{{ sliderItem.banner.title }}</h2>
+                                <h2>{{ sliderItem.banner.title }} {% if informer.hasRole('ROLE_WORKER') %}<a href="/banners/edit/{{ sliderItem.banner.id }}">{{ dict.edit }}</a> {% endif %}</h2>
                                 <div class="slider-link">
                                     <a href="{{ sliderItem.banner.url }}" class="text-light">
                                         {{ dict.seeMore }} &nbsp;<i class="far fa-hand-point-right" aria-hidden="true"></i>

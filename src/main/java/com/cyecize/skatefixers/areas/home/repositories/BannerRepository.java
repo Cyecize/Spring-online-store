@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BannerRepository extends JpaRepository<Banner, Long> {
 
-    List<Banner> findBannersByIsDisabled(boolean disabled);
+    List<Banner> findBannersByIsDisabledOrderByIdDesc(Boolean disabled);
 
     Banner findFirstByIsDisabledOrderByIdDesc(Boolean isDisabled);
 }

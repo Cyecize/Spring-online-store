@@ -28,7 +28,13 @@
                             <p class="font-15em">{{ dict.products }}</p>
                             <ul class="list-group">
                                 <li class="list-group-item"><a href="/products/create">{{ dict._new }} {{ dict.product }}</a></li>
-
+                            </ul>
+                        </div>
+                        <div class="sidebar-item">
+                            <p class="font-15em">{{ dict.banner }}</p>
+                            <ul class="list-group">
+                                <li class="list-group-item"><a href="/banners/create">{{ dict.newBanner }}</a></li>
+                                <li class="list-group-item"><a href="/banners/edit-list">{{ dict.banner }}: {{ dict.edit }}</a></li>
                             </ul>
                         </div>
                     {% endblock %}

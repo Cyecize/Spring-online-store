@@ -1,0 +1,23 @@
+{% extends '../index.twig' %}
+{% block title %}Edit Banner {% endblock %}
+
+{% block workerBody %}
+    <div id="bannerEditHolder">
+        <h3 class="text-info">{{ dict.banner  ~ ': ' ~ dict.select }}</h3>
+        <select id="bannersList" class="form-control">
+            {% for banner in banners %}
+                <option value="{{ banner.id }}">{{ banner.title }}</option>
+            {% endfor %}
+        </select>
+        <button type="button" id="chooseBanner" class="btn btn-dark">{{ dict.select }}</button>
+
+        <script>
+            $(function () {
+                $('#chooseBanner').on('click', function () {
+                    var bannerId = $('#bannersList').val();
+                    location.href = "/banners/edit/" + bannerId;
+                });
+            });
+        </script>
+    </div>
+{% endblock %}

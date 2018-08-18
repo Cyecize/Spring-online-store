@@ -12,6 +12,7 @@ public class ImageIdExtractor {
     }
 
     public static String extractId(String link){
+        if(link == null) return "";
         Matcher matcher = Pattern.compile("id=(.*?)&").matcher(link);
         if(matcher.find())
             return matcher.group(1);

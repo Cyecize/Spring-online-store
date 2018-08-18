@@ -89,4 +89,129 @@
             </div>-->
         </form>
     </div>
+    <div>
+        <h3 class="text-info">{{ dict.gallery }}</h3>
+        <hr class="hr-dark">
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {% if product.gallery|length > 0 %}
+                <div class="d-flex flex-wrap align-items-center justify-content-around gallery-images-holder pt-2">
+
+                    {% for img in product.gallery %}
+                        <div imgId="{{ img.id }}" class="gallery-item">
+                            <img src="{{ img.imageUrl }}" width="100%" height="100%">
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <div class="text-center" style="height: 420px;">
+                <img id="productHighlightedPicture" src="{{ product.image }}" class="product-image"
+                     width="100%">
+            </div>
+        </div>
+    </div>
+    <div>
+        <h3 class="text-info">{{ dict.remove }}</h3>
+        <hr class="hr-dark">
+    </div>
+    <div>
+        <p class="text-warning">ImgId: <span id="selectedImgToRemove"></span></p>
+        <button type="button" id="removeImgBtn" class="btn btn-danger">{{ dict.remove }}</button>
+    </div>
+
+    <div>
+        <h3 class="text-info">{{ dict._new }} {{ dict.image }}</h3>
+        <hr class="hr-dark">
+    </div>
+    <div>
+        <input type="file" id="imgGalleryFile">
+        <br>
+        <button type="button" class="btn btn-dark" id="uploadImageBtn">{{ dict.select }}</button>
+    </div>
+
+    <script src="/styles/js/product-details.js"></script>
+    <script>
+        $(function () { //set imgToRemoveId
+            var IMAGE_FILE_SEND_NAME = 'imageFile';
+            var productId = {{ product.id }};
+            var header = '{{ _csrf.headerName }}';
+            var token = '{{ _csrf.token }}';
+
+            var idDisplayHolder = $('#selectedImgToRemove');
+            var galleryItems = $('.gallery-item');
+            var inputFile = $('#imgGalleryFile');
+            var uploadBtn = $('#uploadImageBtn');
+            var removeBtn = $('#removeImgBtn');
+
+            var removeImgId = null;
+
+            galleryItems.on('click', function (e) {
+                var id = $(this).attr('imgId');
+                idDisplayHolder.text(id);
+                removeImgId = id;
+            });
+
+            removeBtn.on('click', function (e) {
+                e.preventDefault();
+                if (removeImgId == null || isNaN(removeImgId)) {
+                    alert("Choose image!");
+                    return;
+                }
+                if (!confirm("Remove image with id: " + removeImgId))
+                    return;
+
+                $.ajax({
+                    method: "POST",
+                    url: "/gallery/remove",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader(header, token);
+                    },
+                    data: {imageId: Number(removeImgId)},
+                    success: function (data) {
+                        alert(data["message"]);
+                        location.reload();
+                    },
+                    error: function (err) {
+                        alert(err["message"]);
+                    }
+                });
+            });
+
+            uploadBtn.on('click', function () {
+                if(inputFile[0].files.length < 1){
+                    alert("Select a file!");
+                    return;
+                }
+                var formData = new FormData();
+                formData.append(IMAGE_FILE_SEND_NAME, inputFile[0].files[0]);
+
+                $.ajax({
+                    method: "POST",
+                    url: "/gallery/upload/"+productId,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader(header, token);
+                    },
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        alert(data["message"]);
+                        location.reload();
+                    },
+                    error: function (err) {
+                        alert(err['responseJSON']["message"]);
+                    }
+                });
+
+            });
+
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    <link type="text/css" rel="stylesheet" href="/styles/css/product-page.css">
 {% endblock %}

@@ -69,6 +69,32 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String PRODUCT = "Product";
     public static final String DISABLE = "Disable";
     public static final String ENABLE = "Enable";
+    public static final String IMAGE_WAS_REMOVED = "Image was removed";
+    public static final String IMAGE_WILL_BE_UPLOADED = "Image will be uploaded";
+    public static final String BANNER = "Banner";
+    public static final String NEW_BANNER = "New Banner";
+    public static final String TITLE = "Title";
+
+
+    public String banner() {
+        return BANNER;
+    }
+
+    public String newBanner() {
+        return NEW_BANNER;
+    }
+
+    public String title() {
+        return TITLE;
+    }
+
+    public String imageWillBeUploaded() {
+        return IMAGE_WILL_BE_UPLOADED;
+    }
+
+    public String imageWasRemoved() {
+        return IMAGE_WAS_REMOVED;
+    }
 
     public String disable() {
         return DISABLE;

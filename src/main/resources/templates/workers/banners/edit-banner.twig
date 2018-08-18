@@ -1,0 +1,41 @@
+{% extends '../index.twig' %}
+{% block title %} Edit Banner {% endblock %}
+
+{% block workerBody %}
+    <div>
+        <h3 class="text-info">{{ dict.banner }}: {{ dict.edit }}</h3>
+        <a href="/worker-panel">{{ dict.back }}</a>
+        <hr class="hr-dark">
+    </div>
+
+    <div class="">
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">{{ dict.title }} <span class="text-danger">*</span> </label>
+                <input value="{{ banner.title }}" maxlength="100" id="title" placeholder="{{ dict.title }}" name="title" required type="text" class="form-control">
+                <p class="text-danger">{{ util.getError('title') }}</p>
+            </div>
+
+            <div class="form-group">
+                <label for="url">URL <span class="text-danger">*</span> </label>
+                <input value="{{ banner.url }}" id="url" placeholder="{{ dict.url }}" name="url" required type="text" class="form-control">
+                <p class="text-danger">{{ util.getError('url') }}</p>
+            </div>
+
+            <div class="form-group">
+                <label for="isDisabled">Disabled <span class="text-danger"></span> </label>
+                <input {% if banner.isDisabled %}checked{% endif %} id="isDisabled"  name="disabled"  type="checkbox">
+                <p class="text-danger">{{ util.getError('isDisabled') }}</p>
+            </div>
+
+            <div class="form-group">
+                <label for="file">{{ dict.image }} <span class="text-danger">*</span></label>
+                <input  id="file" placeholder="file" name="file"  type="file" class="form-control">
+                <p class="text-danger">{{ util.getError('file') }}</p>
+            </div>
+
+            {% embed '../../partials/csrf.twig' %} {% endembed %}
+            <button type="submit" class="btn btn-dark">{{ dict.go }}</button>
+        </form>
+    </div>
+{% endblock %}

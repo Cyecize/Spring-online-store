@@ -70,6 +70,32 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String PRODUCT = "Стока";
     public static final String DISABLE = "Скриване";
     public static final String ENABLE = "Показване";
+    public static final String IMAGE_WAS_REMOVED = "Снимката беше премахната.";
+    public static final String IMAGE_WILL_BE_UPLOADED = "Снимката ще бъде качена.";
+    public static final String BANNER = "Банер";
+    public static final String NEW_BANNER = "Нов банер";
+    public static final String TITLE = "Заглавие";
+
+
+    public String banner() {
+        return BANNER;
+    }
+
+    public String newBanner() {
+        return NEW_BANNER;
+    }
+
+    public String title() {
+        return TITLE;
+    }
+
+    public String imageWillBeUploaded() {
+        return IMAGE_WILL_BE_UPLOADED;
+    }
+
+    public String imageWasRemoved() {
+        return IMAGE_WAS_REMOVED;
+    }
 
     public String disable() {
         return DISABLE;

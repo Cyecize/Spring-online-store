@@ -109,4 +109,14 @@ public interface Dictionary extends ErrorDictionary {
     String disable();
 
     String enable();
+
+    String imageWasRemoved();
+
+    String imageWillBeUploaded();
+
+    String banner();
+
+    String newBanner();
+
+    String title();
 }

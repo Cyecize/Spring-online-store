@@ -122,7 +122,6 @@
                         $.ajax({
                             type: "POST",
                             url: '/products/view/{{ product.id }}',
-                            data: token,
                             beforeSend: function (xhr) {
                                 xhr.setRequestHeader(header, token);
                             },
