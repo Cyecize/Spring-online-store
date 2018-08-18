@@ -55,8 +55,10 @@
                         </a>
                     </li>
                     <li class="nav-item search_container">
-                        <form action="#">
-                            <input type="search" class="header_search_input" required="required" placeholder="{{ dict.search }}">
+                        {% set searchUrl = '/search' %}
+                        {% if informer.hasRole('ROLE_WORKER') %} {% set searchUrl = '/search-worker' %} {% endif %}
+                        <form action="{{ searchUrl }}">
+                            <input type="search" name="search" class="header_search_input" required="required" placeholder="{{ dict.search }}">
                             <i class="fa fa-search header_search_icon" aria-hidden="true"></i>
                         </form>
                     </li>

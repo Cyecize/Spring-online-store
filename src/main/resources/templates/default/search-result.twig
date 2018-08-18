@@ -1,0 +1,52 @@
+{%  extends '../base.html.twig' %}
+{% block title %}Skate Fixers: {{ dict.search }} {% endblock %}
+
+{% block body %}
+    {% set title = viewModel.searchText %}
+    <main>
+        {% embed '../partials/home-banner.html.twig' with {'title':title} %} {% endembed %}
+
+        <div class="container">
+
+            <div class="row">
+                {% embed '../partials/sidebar/sidebar.html.twig' %}
+                    {#{% block sidebarBody %}#}
+
+                    {#{% endblock %}#}
+                {% endembed %}
+                <div class="col-lg-9">
+                    <section class="bg-gray popular-products-section p-1">
+                        <div class="text-center">
+                            <p class="font-2em">{{ dict.products }}</p>
+                        </div>
+                        {% if viewModel.products|length < 1 %}
+                            <h3 class="alert alert-warning">{{ dict.pageIsEmpty }}</h3>
+                        {% endif %}
+
+                        <div class="row">
+                            {% for product in viewModel.products %}
+                                {% embed '../partials/products/regular-product-cart.html.twig' with {'product':product} %} {% endembed %}
+                            {% endfor %}
+                        </div>
+                        <ul class="pagination">
+                            {% set pageable = viewModel.products %}
+                            {% set currentPage = pageable.getPageable().getPageNumber() %}
+                            <li class="page-item {% if currentPage < 1 %} disabled {% endif %}">
+                                <a class="page-link" href="?page={{ currentPage -1 }}&size={{ pageable.getPageable().getPageSize() }}&search={{ viewModel.searchText }}" tabindex="-1">{{ dict.previous }}</a>
+                            </li>
+
+                            {% for page in  util.range(0, pageable.getTotalPages() -1) %}
+                                <li class="page-item {% if currentPage ==  page %} active {% endif %}"><a class="page-link" href="?page={{ page }}&size={{ pageable.getPageable().getPageSize() }}&search={{ viewModel.searchText }}">{{ page + 1 }}</a></li>
+                            {% endfor %}
+                            <li class="page-item {% if currentPage >=  pageable.getTotalPages() -1 %} disabled {% endif %}">
+                                <a class="page-link" href="?page={{ currentPage + 1 }}&size={{ pageable.getPageable().getPageSize() }}&search={{ viewModel.searchText }}">{{ dict.next }}</a>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
