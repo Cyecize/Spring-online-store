@@ -51,6 +51,7 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public Page<BaseProduct> searchProducts(String text, Pageable pageable) {
+        text = text.replace(" ", "%");
         return this.productRepository.searchEnabled( text, pageable);
     }
 

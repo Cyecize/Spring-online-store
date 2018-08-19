@@ -26,7 +26,7 @@ public interface BaseProductRepository extends JpaRepository<BaseProduct, Long> 
     @Query("SELECT p FROM BaseProduct p WHERE p.productName LIKE %:text% OR  p.description LIKE %:text% ORDER BY p.weeklyViews DESC ")
     Page<BaseProduct> searchAll(@Param("text") String text, Pageable pageable);
 
-    @Query("SELECT p FROM BaseProduct p WHERE  p.isEnabled = true AND p.productName LIKE %:text% OR  p.description LIKE %:text% ORDER BY p.weeklyViews DESC ")
+    @Query("SELECT p FROM BaseProduct p WHERE  p.isEnabled = true AND (p.productName LIKE %:text% OR  p.description LIKE %:text%) ORDER BY p.weeklyViews DESC ")
     Page<BaseProduct> searchEnabled(@Param("text") String text, Pageable pageable);
 
     @Query(value = "SELECT  * FROM products WHERE is_enabled = TRUE ORDER BY id DESC LIMIT ?1", nativeQuery = true)

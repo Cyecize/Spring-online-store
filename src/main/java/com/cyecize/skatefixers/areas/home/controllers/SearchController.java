@@ -27,17 +27,23 @@ public class SearchController extends BaseController {
     }
 
     @GetMapping("/search")
-    public ModelAndView userSearchAction(@RequestParam("search") String text,  @PageableDefault(page = 0, size = 6) Pageable pageable){
-        String nonProd = this.searchService.searchNonProducts(text);
-        if(nonProd != null)
-            return super.redirect(nonProd);
-        return view("default/search-result", "viewModel", new SearchPageViewModel(text, this.searchService.searchAllProducts(text, pageable)));
+    public ModelAndView userSearchAction(@RequestParam("search") String text, @PageableDefault(size = 6) Pageable pageable) {
+        return this.finalizeSearch(text, pageable, () -> new SearchPageViewModel(text, searchService.searchProducts(text, pageable)));
     }
 
     @GetMapping("/search-worker")
     @PreAuthorize("hasAuthority('ROLE_WORKER')")
-    public ModelAndView workerSearchAction(@RequestParam("search") String text, ModelAndView modelAndView, @PageableDefault(page = 0, size = 6) Pageable pageable){
-
-        return view("default/search-result", modelAndView);
+    public ModelAndView workerSearchAction(@RequestParam("search") String text, @PageableDefault(size = 6) Pageable pageable) {
+        return this.finalizeSearch(text, pageable, () -> new SearchPageViewModel(text, searchService.searchAllProducts(text, pageable)));
     }
+
+    private ModelAndView finalizeSearch(String text, Pageable pageable, Searchable searchable) {
+        String nonProd = this.searchService.searchNonProducts(text);
+        if (nonProd != null) return super.redirect(nonProd);
+        return view("default/search-result", "viewModel", searchable.search());
+    }
+}
+
+interface Searchable {
+    SearchPageViewModel search();
 }
