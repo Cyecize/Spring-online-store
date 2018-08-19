@@ -51,9 +51,9 @@
                 <th >
                     {% if  util.hasUserRole('ROLE_ADMIN', user) == false %}
                         {% if util.hasUserRole('ROLE_WORKER', user) %}
-                            <a class="btn btn-danger btn-outline-danger" href="">Demote</a>
+                            <a class="btn btn-danger btn-outline-danger" href="/admin/users/demote/{{ user.id }}">Demote</a>
                         {% else %}
-                            <a class="btn btn-success btn-outline-success" href="">Promote</a>
+                            <a class="btn btn-success btn-outline-success" href="/admin/users/promote/{{ user.id }}">Promote</a>
                         {% endif %}
                     {% endif %}
                 </th>

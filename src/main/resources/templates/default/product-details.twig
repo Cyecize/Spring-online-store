@@ -121,7 +121,7 @@
                     setTimeout(function () {
                         $.ajax({
                             type: "POST",
-                            url: '/products/view/{{ product.id }}',
+                            url: '/products/view/{{ viewModel.product.id }}',
                             beforeSend: function (xhr) {
                                 xhr.setRequestHeader(header, token);
                             },

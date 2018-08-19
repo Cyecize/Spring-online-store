@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class ImageIdExtractor {
 
-    public static final String LINK_FORMAT = "https://drive.google.com/uc?id=%s&export=download";
+    public static final String LINK_FORMAT = "https://drive.google.com/uc?id=%s&";
 
     public static String setFormat(String id){
         return String.format(LINK_FORMAT, id) ;

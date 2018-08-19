@@ -35,5 +35,4 @@ public interface BaseProductRepository extends JpaRepository<BaseProduct, Long> 
     List<BaseProduct> findBaseProductsByCategoryAndIsEnabledOrderByWeeklyViewsDesc(Category category, Boolean isEnabled, Pageable pageable);
 
 
-
 }

@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -88,20 +89,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void changeUserRole(User user, UserRoleType roleType) {
-//        switch (roleType) {
-//            case ROLE_USER:
-//                user.setRoles(new ArrayList<UserRole>() {{
-//                    add(roleService.findRoleByName("ROLE"));
-//                }});
-//                break;
-//            case ROLE_ADMIN:
-//                user.setRoles(new ArrayList<>());
-//                user.addRole(this.roleService.findRoleByName("ADMIN"));
-//                user.addRole(this.roleService.findRoleByName("ADMIN"));
-//                user.addRole(this.roleService.findRoleByName("USER"));
-//                break;
-//        }
-//        this.userRepository.saveAndFlush(user); TODO totally refactor this shit
+        if(this.hasRole(UserRoleType.ROLE_ADMIN.name(), user))
+            throw new JsonException("Cannot edit admin!");
+        switch (roleType){
+            case ROLE_ADMIN:
+                throw new JsonException("Cannot set that role to user!");
+            case ROLE_USER:
+                user.setRoles(new ArrayList<>());
+                user.addRole(this.roleService.findRoleByName(UserRoleType.ROLE_USER.name()));
+                break;
+            case ROLE_WORKER:
+                user.addRole(this.roleService.findRoleByName(UserRoleType.ROLE_WORKER.name()));
+                break;
+        }
+
+        this.userRepository.saveAndFlush(user);
     }
 
     @Override

@@ -34,6 +34,8 @@ public class BaseProductServiceImpl implements BaseProductService {
 
     private static final String PRODUCTS_FOLDER_ID = "1iib1PmVquOSNJEfTOi53QO24V9juDNIG";
 
+    private static final String IMAGE_PREFIX = "ImgForProductId%s";
+
     private final BaseProductRepository productRepository;
 
     private final LocalLanguage localLanguage;
@@ -73,7 +75,7 @@ public class BaseProductServiceImpl implements BaseProductService {
         BaseProduct product = this.modelMapper.map(bindingModel, Product.class);
         this.productRepository.save(product);
         try {
-            product.setImage(this.googleDriveManager.uploadFile(image, PRODUCTS_FOLDER_ID, String.format("ImgForProductId%s", product.getId())));
+            product.setImage(this.googleDriveManager.uploadFile(image, PRODUCTS_FOLDER_ID, String.format(IMAGE_PREFIX, product.getId())));
             this.productRepository.save(product);
         } catch (IOException e) {
             e.printStackTrace();
@@ -100,7 +102,7 @@ public class BaseProductServiceImpl implements BaseProductService {
         BaseProduct product = this.findOneById(id);
         this.googleDriveManager.deleteFile(product.extractId());
         try{
-            product.setImage(this.googleDriveManager.uploadFile(image, PRODUCTS_FOLDER_ID, String.format("ImgForProdWIthId_%s", product.getId())));
+            product.setImage(this.googleDriveManager.uploadFile(image, PRODUCTS_FOLDER_ID, String.format(IMAGE_PREFIX, product.getId())));
             this.productRepository.saveAndFlush(product);
         }catch (IOException e){
             e.printStackTrace();
