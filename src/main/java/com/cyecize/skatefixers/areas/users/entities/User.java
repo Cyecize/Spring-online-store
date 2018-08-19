@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -39,6 +40,9 @@ public class User implements UserDetails {
     @Column(name = "is_credentials_non_expired")
     private boolean isCredentialsNonExpired;
 
+    @Column(name = "registered_on", nullable = true)
+    private LocalDateTime registeredOn;
+
     @ManyToMany(targetEntity = UserRole.class, fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id") ,inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
     private List<UserRole> roles;
@@ -50,7 +54,12 @@ public class User implements UserDetails {
         this.isAccountNonLocked = true;
         this.isCredentialsNonExpired = true;
         this.roles = new ArrayList<>();
+        this.registeredOn = LocalDateTime.now();
+    }
 
+    @PrePersist
+    public void onPersist(){
+        this.registeredOn = LocalDateTime.now();
     }
 
     @Transactional
@@ -141,4 +150,11 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    public LocalDateTime getRegisteredOn() {
+        return registeredOn;
+    }
+
+    public void setRegisteredOn(LocalDateTime registeredOn) {
+        this.registeredOn = registeredOn;
+    }
 }

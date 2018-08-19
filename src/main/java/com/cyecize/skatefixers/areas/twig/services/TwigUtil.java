@@ -1,6 +1,7 @@
 package com.cyecize.skatefixers.areas.twig.services;
 
 import com.cyecize.skatefixers.areas.products.entities.Category;
+import com.cyecize.skatefixers.areas.users.entities.User;
 import org.springframework.validation.BeanPropertyBindingResult;
 
 import java.time.format.DateTimeFormatter;
@@ -12,11 +13,15 @@ public interface TwigUtil {
 
     boolean hasErrors(String fieldName);
 
+    boolean hasUserRole(String role, User user);
+
     String getLocalCategoryName(Category category);
 
     String getError(String fieldName);
 
     String translate(String text);
+
+    String getRoles(User user);
 
     DateTimeFormatter simpleFormat();
 

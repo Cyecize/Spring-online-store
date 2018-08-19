@@ -1,0 +1,31 @@
+{% extends '../base.html.twig' %}
+
+{% block body %}
+    <main>
+        {% embed '../partials/home-banner.html.twig' with {'title':"Admins' panel" } %} {% endembed %}
+        <div class="container">
+            <div class="row">
+                {% embed '../partials/sidebar/sidebar.html.twig' %}
+                    {% block sidebarBody %}
+                        <div class="sidebar-item">
+                            <p class="font-15em">Users</p>
+                            <ul class="list-group">
+                                <li class="list-group-item"><a href="/admin/users/all">Show all users</a></li>
+                            </ul>
+                        </div>
+                    {% endblock %}
+                {% endembed %}
+                <div class="col-lg-9" id="section-content" style="display:none;">
+                    {% block adminBody %}
+                        <h3 class="alert alert-warning">Select option from the menu</h3>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        $(function () {
+            $('#section-content').fadeIn(300);
+        });
+    </script>
+{% endblock %}

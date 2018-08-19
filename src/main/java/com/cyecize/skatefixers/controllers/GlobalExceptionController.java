@@ -5,6 +5,7 @@ import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
 import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
 import com.cyecize.skatefixers.exceptions.JsonException;
 import com.cyecize.skatefixers.exceptions.NotFoundException;
+import com.cyecize.skatefixers.http.JsonResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -32,9 +33,8 @@ public class GlobalExceptionController extends BaseController {
 
     @ExceptionHandler({JsonException.class})
     @ResponseBody
-    public JsonException onJsonException(JsonException e, HttpServletResponse response){
+    public JsonResponse onJsonException(JsonException e, HttpServletResponse response){
         response.setStatus(e.getStatus().value());
-        return  new JsonException(e.getMessage(), e.getBody(), e.getStatus());
+        return  new JsonResponse(e.getMessage(), e.getStatus(), e.getBody());
     }
-
 }

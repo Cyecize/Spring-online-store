@@ -2,6 +2,8 @@ package com.cyecize.skatefixers.areas.twig.services;
 
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.products.entities.Category;
+import com.cyecize.skatefixers.areas.users.entities.User;
+import com.cyecize.skatefixers.areas.users.entities.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BeanPropertyBindingResult;
@@ -10,6 +12,7 @@ import org.springframework.validation.FieldError;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TwigUtilImpl implements TwigUtil {
@@ -50,6 +53,11 @@ public class TwigUtilImpl implements TwigUtil {
     }
 
     @Override
+    public boolean hasUserRole(String role, User user) {
+        return user.getRoles().stream().filter(r -> r.getAuthority().equals(role)).findFirst().orElse(null) != null;
+    }
+
+    @Override
     public String getError(String fieldName) {
         return String.join(", ", this.getErrors(fieldName));
     }
@@ -81,6 +89,11 @@ public class TwigUtilImpl implements TwigUtil {
     @Override
     public String translate(String text) {
         return this.localLanguage.forName(text);
+    }
+
+    @Override
+    public String getRoles(User user) {
+        return String.join("<br>", user.getRoles().stream().map(UserRole::getAuthority).collect(Collectors.toList()));
     }
 
 

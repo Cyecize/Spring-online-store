@@ -12,15 +12,15 @@ import java.util.List;
 public interface UserService extends UserDetailsService {
     void createUser(UserRegisterBindingModel bindingModel, BindingResult bindingResult);
 
+    void disableUser(User user);
+
+    void enableUser(User user);
+
     User findOneById(Long id);
 
     User findOneByUsername(String username);
 
     User findOneByEmail(String email);
-
-    void disableUser(User user);
-
-    void enableUser(User user);
 
     List<User> findAll();
 

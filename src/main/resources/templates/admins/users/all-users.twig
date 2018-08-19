@@ -1,0 +1,71 @@
+{% extends '../index.twig' %}
+
+{% block title %}All Users{% endblock %}
+
+{% block adminBody %}
+    <div>
+        <h3 class="text-info">All Users</h3>
+        <a href="/admin/panel">{{ dict.back }}</a>
+        <hr class="hr-dark">
+    </div>
+
+    <table class="table">
+        <thead class="rounded bg-dark p-0 text-light">
+        <tr>
+            <th scope="row">
+               #
+            </th>
+            <th scope="row">
+               Username
+            </th>
+            <th scope="row">
+               Roles
+            </th>
+            <th scope="row">
+               Registered On
+            </th>
+            <th scope="row">
+                Auth
+            </th>
+            <th scope="row">
+                Status
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            {#<hr>#}
+            <tr>
+                <th scope="row">
+                    {{ user.id }}
+                </th>
+                <th>
+                    <p class="text-dark">{{ user.username }}</p>
+                </th>
+                <th>
+                    <p class="text-dark">{{ util.getRoles(user)|raw }}</p>
+                </th>
+                <th>
+                    <p class="text-dark">{{ user.registeredOn.format(util.simpleFormat) }}</p>
+                </th>
+                <th >
+                    {% if  util.hasUserRole('ROLE_ADMIN', user) == false %}
+                        {% if util.hasUserRole('ROLE_WORKER', user) %}
+                            <a class="btn btn-danger btn-outline-danger" href="">Demote</a>
+                        {% else %}
+                            <a class="btn btn-success btn-outline-success" href="">Promote</a>
+                        {% endif %}
+                    {% endif %}
+                </th>
+                <th>
+                    {% if user.isEnabled %}
+                        <a class="btn btn-danger btn-outline-danger" href="/admin/users/disable/{{ user.id }}">Disable</a>
+                    {% else %}
+                        <a class="btn btn-success btn-outline-success" href="/admin/users/enable/{{ user.id }}">Enable</a>
+                    {% endif %}
+                </th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

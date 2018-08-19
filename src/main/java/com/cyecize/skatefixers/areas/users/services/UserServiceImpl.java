@@ -5,6 +5,7 @@ import com.cyecize.skatefixers.areas.users.entities.User;
 import com.cyecize.skatefixers.areas.users.entities.UserRole;
 import com.cyecize.skatefixers.areas.users.enums.UserRoleType;
 import com.cyecize.skatefixers.areas.users.repositories.UserRepository;
+import com.cyecize.skatefixers.exceptions.JsonException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,14 +38,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUser(UserRegisterBindingModel bindingModel, BindingResult result) {
-
-//        if (userRepository.findUserByUsername(bindingModel.getUsername()) != null)
-//            throw new UserBindingException("User already Xizt", "username", bindingModel,result);
-//        if (this.userRepository.findUserByUsernameOrEmail(bindingModel.getUsername(), bindingModel.getEmail()) != null)
-//            throw new UserBindingException("Email already exists", "email", bindingModel,result);
-//        if (userRepository.findUserByUcn(bindingModel.getUcn()) != null)
-//            throw new UserBindingException("Person with that ucn already exists", "ucn", bindingModel,result);
-
         User user = this.modelMapper.map(bindingModel, User.class);
         if (this.userRepository.findAll().size() < 1) {
             List<UserRole> roles = this.roleService.findAllRoles();
@@ -74,12 +67,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void disableUser(User user) {
+        if(this.hasRole(UserRoleType.ROLE_ADMIN.name(), user))
+            throw new JsonException("Cannot edit admin");
         user.setEnabled(false);
         this.userRepository.saveAndFlush(user);
     }
 
     @Override
     public void enableUser(User user) {
+        if(this.hasRole(UserRoleType.ROLE_ADMIN.name(), user))
+            throw new JsonException("Cannot edit admin");
         user.setEnabled(true);
         this.userRepository.saveAndFlush(user);
     }
@@ -113,5 +110,9 @@ public class UserServiceImpl implements UserService {
         if (user == null)
             throw new UsernameNotFoundException("Username was not found");
         return user;
+    }
+
+    private boolean hasRole(String role, User user){
+        return user.getRoles().stream().filter(r -> r.getAuthority().equals(role)).findFirst().orElse(null) != null;
     }
 }
