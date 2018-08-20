@@ -1,0 +1,45 @@
+{% extends '../index.twig' %}
+{% block title %}{{ dict.all }} {{ dict.addresses }}{% endblock %}
+
+{% block userBody %}
+    <div>
+        <h3 class="text-info">{{ dict.all }} {{ dict.addresses }}</h3>
+        <a href="/users/profile">{{ dict.back }}</a>
+        <hr class="hr-dark">
+    </div>
+    <div class="row">
+        {% for address in addresses %}
+            <div class="col-lg-12 bg-gray rounded m-1">
+                <p class="text-dark font-15em">{{ address.fullName }}</p><br>
+                <small>{{ address.phoneNumber }}</small>
+                <p class="text-info">{{ address.address }}</p>
+                <div class="row">
+                    <a href="/users/addresses/edit/{{ address.id }}" class="btn btn-dark">{{ dict.edit }}</a>
+                    <button addrId="{{ address.id }}" class="btn btn-danger removeAddressBtn">{{ dict.remove }}</button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(function () {
+            $('.removeAddressBtn').on('click', function (e) {
+                var id = $(this).attr('addrId');
+                if(!confirm("{{ dict.doYouWantToRemoveThisAddress }}"))
+                    return;
+                $.ajax({
+                    method:"POST",
+                    url:"/users/addresses/remove/"+id,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader(CSRF_HEADER, CSRF_TOKEN);
+                    },
+                    success:function (data) {
+                        location.reload();
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

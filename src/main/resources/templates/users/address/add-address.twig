@@ -1,0 +1,29 @@
+{% extends '../index.twig' %}
+{% block title %}{{ dict.newAddress }}{% endblock %}
+
+{% block userBody %}
+    <div>
+        <h3 class="text-info">{{ dict.newAddress }}</h3>
+        <a href="/users/profile">{{ dict.back }}</a>
+        <hr class="hr-dark">
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="fullName">{{ dict.name }}</label>
+            <input value="{{ address.fullName }}" id="fullName" placeholder="{{ dict.name }}" name="fullName" maxlength="200" required type="text" class="form-control">
+            <p class="text-danger">{{ util.getError('fullName') }}</p>
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">{{ dict.phoneNumber }}</label>
+            <input value="{{ address.phoneNumber }}" id="phoneNumber" placeholder="{{ dict.phoneNumber }}" maxlength="200" name="phoneNumber" required type="text" class="form-control">
+            <p class="text-danger">{{ util.getError('phoneNumber') }}</p>
+        </div>
+        <div class="form-group">
+            <label for="address">{{ dict.address }}</label>
+            <input value="{{ address.address }}" id="address" placeholder="{{ dict.address }}" maxlength="200" name="address" required type="text" class="form-control">
+            <p class="text-danger">{{ util.getError('address') }}</p>
+        </div>
+        {% embed '../../partials/csrf.twig' %} {% endembed %}
+        <button type="submit" class="btn btn-outline-success">{{ dict.go }}</button>
+    </form>
+{% endblock %}

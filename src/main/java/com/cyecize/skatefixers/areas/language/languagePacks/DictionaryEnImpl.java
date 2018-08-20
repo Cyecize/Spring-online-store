@@ -83,6 +83,31 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String TOTAL = "Total";
     public static final String PROCEED = "Proceed";
     public static final String SELECT_PROPER_VALUES = "Select proper values";
+    public static final String ADDRESS = "Address";
+    public static final String ADDRESSES = "Addresses";
+    public static final String NEW_ADDRESS = "New Address";
+    public static final String PHONE_NUMBER = "Phone number";
+    public static final String DO_YOU_WANT_TO_REMOVE_ADDRESS = "Do you really want to remove this address?";
+
+    public String doYouWantToRemoveThisAddress() {
+        return DO_YOU_WANT_TO_REMOVE_ADDRESS;
+    }
+
+    public String phoneNumber() {
+        return PHONE_NUMBER;
+    }
+
+    public String address() {
+        return ADDRESS;
+    }
+
+    public String newAddress() {
+        return NEW_ADDRESS;
+    }
+
+    public String addresses() {
+        return ADDRESSES;
+    }
 
 
     public String selectProperValues() {

@@ -24,13 +24,13 @@
     {% block stylesheets %}{% endblock %}
 
     <!-- jQuery -->
+    <script>
+        var CSRF_HEADER = '{{_csrf.headerName}}';
+        var CSRF_TOKEN = '{{_csrf.token}}';
+    </script>
     <script src="/styles/js/jQuery331.js"></script>
 </head>
 <body>
-<script>
-    var CSRF_HEADER = '{{_csrf.headerName}}';
-    var CSRF_TOKEN = '{{_csrf.token}}';
-</script>
 {% embed 'partials/header.html.twig' %} {% endembed %}
 {% block body %}{% endblock %}
 {% embed 'partials/footer.html.twig' %} {% endembed %}

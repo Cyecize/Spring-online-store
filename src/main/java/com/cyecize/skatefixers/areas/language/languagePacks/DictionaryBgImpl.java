@@ -84,7 +84,31 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String TOTAL = "Вс.";
     public static final String PROCEED = "Продължи";
     public static final String SELECT_PROPER_VALUES = "Изберете подходящи стойности";
+    public static final String ADDRESS = "Адрес";
+    public static final String ADDRESSES = "Адреси";
+    public static final String NEW_ADDRESS = "Нов адрес";
+    public static final String PHONE_NUMBER = "Тел. номер";
+    public static final String DO_YOU_WANT_TO_REMOVE_ADDRESS = "Наистина ли искате да изтриете този адрес?";
 
+    public String doYouWantToRemoveThisAddress() {
+        return DO_YOU_WANT_TO_REMOVE_ADDRESS;
+    }
+
+    public String phoneNumber() {
+        return PHONE_NUMBER;
+    }
+
+    public String address() {
+        return ADDRESS;
+    }
+
+    public String newAddress() {
+        return NEW_ADDRESS;
+    }
+
+    public String addresses() {
+        return ADDRESSES;
+    }
 
     public String selectProperValues() {
         return SELECT_PROPER_VALUES;
