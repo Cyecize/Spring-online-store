@@ -128,4 +128,9 @@ public interface Dictionary extends ErrorDictionary {
 
     String clear();
 
+    String quan();
+
+    String total();
+
+    String proceed();
 }

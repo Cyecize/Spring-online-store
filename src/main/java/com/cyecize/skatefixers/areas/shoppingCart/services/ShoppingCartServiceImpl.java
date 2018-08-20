@@ -113,8 +113,18 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
+    public void removeProduct(Long productId) {
+        this.currentCart = this.currentCart.stream().filter(ci -> !ci.getProduct().getId().equals(productId)).collect(Collectors.toList());
+    }
+
+    @Override
     public int getShoppingCartSize() {
         return this.currentCart.size();
+    }
+
+    @Override
+    public List<ShoppingCartItem> getShoppingCart() {
+        return this.currentCart;
     }
 
     private List<ShoppingCartItem> parseShoppingCart(String shoppingCartJson) throws Exception {

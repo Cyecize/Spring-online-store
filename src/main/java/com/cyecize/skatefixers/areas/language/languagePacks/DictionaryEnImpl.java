@@ -79,7 +79,27 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String SHOPPING_CART = "Shopping Cart";
     public static final String SHOPPING_CART_IS_EMPTY = "Shopping Cart is empty";
     public static final String CLEAR = "Clear";
+    public static final String QUAN = "Qt.";
+    public static final String TOTAL = "Total";
+    public static final String PROCEED = "Proceed";
+    public static final String SELECT_PROPER_VALUES = "Select proper values";
 
+
+    public String selectProperValues() {
+        return SELECT_PROPER_VALUES;
+    }
+
+    public String proceed() {
+        return PROCEED;
+    }
+
+    public String total() {
+        return TOTAL;
+    }
+
+    public String quan() {
+        return QUAN;
+    }
 
     public String shoppingCart() {
         return SHOPPING_CART;

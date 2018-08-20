@@ -38,4 +38,6 @@ public interface ErrorDictionary  {
 
     String errorAddingProductToCart();
 
+    String selectProperValues();
+
 }

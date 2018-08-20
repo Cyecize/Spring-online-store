@@ -14,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
@@ -62,14 +59,22 @@ public class ShoppingCartController extends BaseController {
                 }});
     }
 
-    @GetMapping("/")
-    public ModelAndView shoppingCartIndex(){
-        return null;
+    @GetMapping("/remove/{id:[\\d]+}")
+    @ResponseBody
+    public String removeProductAction(@PathVariable Long id, HttpServletResponse response){
+        this.shoppingCartService.removeProduct(id);
+        this.shoppingCartService.saveCart(response);
+        return "Product was cleared";
     }
 
     @GetMapping("/clear")
     public String clearCartAction(){
         this.shoppingCartService.clear();
         return "redirect:/cart";
+    }
+
+    @GetMapping("")
+    public ModelAndView shoppingCartIndex(){
+        return super.view("default/shopping-cart", "shoppingCart", this.shoppingCartService.getShoppingCart());
     }
 }

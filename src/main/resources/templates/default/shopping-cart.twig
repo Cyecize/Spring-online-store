@@ -1,5 +1,103 @@
 {% extends '../base.html.twig' %}
 {% block title %}Skate fixers: {{ dict.shoppingCart }}{% endblock %}
 {% block body %}
+    <main>
+        {% embed '../partials/home-banner.html.twig' with {'title':dict.shoppingCart} %} {% endembed %}
+        <div class="container">
 
+            <div class="row">
+                <div class="col-lg-9">
+                    <section class="bg-gray p-1">
+                        {% if shoppingCart|length < 1 %}
+                            <h3 class="text-warning">{{ dict.shoppingCartIsEmpty }}</h3>
+                        {% endif %}
+                        <table class="table table-striped" style="font-size: 0.9em;">
+                            <thead class="rounded bg-dark p-0 text-light">
+                            <tr style="font-size: 0.7em;">
+                                <th scope="col">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </th>
+                                <th scope="col">
+                                    {{ dict.image }}
+                                </th>
+                                <th scope="col">
+                                    {{ dict.name }}
+                                </th>
+                                <th scope="col">
+                                    {{ dict.quan }}
+                                </th>
+                                <th scope="col">
+                                    {{ dict.price }}
+                                </th>
+                                <th scope="col">
+                                    {{ dict.total }}
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for cartItem in shoppingCart %}
+                                <tr>
+                                    <th scope="row">
+                                        <input type="checkbox" class="removeProdCheckbox p-0"
+                                               prodId="{{ cartItem.product.id }}">
+                                    </th>
+                                    <td>
+                                        <a href="/products/{{ cartItem.product.id }}"> <img
+                                                    src="{{ cartItem.product.image }}" style="max-width: 50px;"></a>
+                                    </td>
+                                    <td>
+                                        {{ cartItem.product.productName }}
+                                    </td>
+                                    <td>
+                                        {{ cartItem.quantity }}
+                                    </td>
+                                    <td>
+                                        {{ cartItem.product.price }}
+                                    </td>
+                                    <td>
+                                        {{ cartItem.calcTotal }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <th scope="row"></th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    {% set total = 0 %} {% for ci in shoppingCart %}{% set total = total + ci.calcTotal %} {% endfor %}
+                                    {{ total }}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <hr class="hr-dark">
+                        <div class="text-right">
+                            <a href="/cart/clear" class="btn btn-outline-danger">{{ dict.clear }}</a>
+                            <a href="/cart/checkout" class="btn btn-outline-success">{{ dict.proceed }}</a>
+                        </div>
+                    </section>
+                </div>
+                {% embed '../partials/sidebar/sidebar.html.twig' %}
+                    {% block sidebarBody %}
+                        {% embed '../partials/sidebar/products.html.twig' with {'products':informer.getNewProducts, 'title':dict.newProducts} %} {% endembed %}
+                    {% endblock %}
+                {% endembed %}
+            </div>
+
+        </div>
+    </main>
 {% endblock %}
+
+
+{% block javascripts %}
+<script>
+    $(function () {
+        $('.removeProdCheckbox').on('click', function (e) {
+           var prodId = $(this).attr('prodId');
+           ordersController.removeFromCartRequest(prodId);
+        });
+    });
+</script>
+{% endblock%}

@@ -133,6 +133,18 @@
                     }, 3000);
                 };
             }
+
+
+            $('#orderBtn').on('click', function (e) {
+                e.preventDefault();
+                var quantity = $('#orderQuantity').val();
+                quantity = Number(quantity);
+                if(isNaN(quantity) || quantity < 1 || quantity > {{ viewModel.product.quantity }} || Math.ceil(quantity) !== quantity){
+                    alert('{{ dict.selectProperValues }}');
+                    return;
+                }
+                ordersController.addToCartRequest({{ viewModel.product.id }}, quantity);
+            });
         })
     </script>
 {% endblock %}

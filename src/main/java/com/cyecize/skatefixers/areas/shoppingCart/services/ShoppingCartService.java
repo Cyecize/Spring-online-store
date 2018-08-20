@@ -19,7 +19,10 @@ public interface ShoppingCartService {
 
     void saveCart(HttpServletResponse response);
 
+    void removeProduct(Long productId);
+
     int getShoppingCartSize();
 
+    List<ShoppingCartItem> getShoppingCart();
 
 }

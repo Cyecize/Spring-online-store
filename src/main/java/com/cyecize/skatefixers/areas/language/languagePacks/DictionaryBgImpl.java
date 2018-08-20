@@ -80,7 +80,27 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String SHOPPING_CART = "Количка";
     public static final String SHOPPING_CART_IS_EMPTY = "Количката е празна";
     public static final String CLEAR = "Изчистване";
+    public static final String QUAN = "К.";
+    public static final String TOTAL = "Вс.";
+    public static final String PROCEED = "Продължи";
+    public static final String SELECT_PROPER_VALUES = "Изберете подходящи стойности";
 
+
+    public String selectProperValues() {
+        return SELECT_PROPER_VALUES;
+    }
+
+    public String proceed() {
+        return PROCEED;
+    }
+
+    public String total() {
+        return TOTAL;
+    }
+
+    public String quan() {
+        return QUAN;
+    }
 
     public String shoppingCart() {
         return SHOPPING_CART;
