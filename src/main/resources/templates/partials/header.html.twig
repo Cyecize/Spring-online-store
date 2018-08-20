@@ -1,7 +1,8 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark stylish-trans-dark fixed-top" id="navbar-main">
         <div class="container" style="max-width: 1300px;">
-            <a class="navbar-brand font-kirang-hearang font-15em" href="/"><img src="/files/images/logo.png" class="" style="max-height: 50px;">Skate
+            <a class="navbar-brand font-kirang-hearang font-15em" href="/"><img src="/files/images/logo.png" class=""
+                                                                                style="max-height: 50px;">Skate
                 Fixers </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,10 +13,12 @@
                 <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="products-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ dict.products }}</a>
+                        <a class="nav-link dropdown-toggle" href="#" id="products-dropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ dict.products }}</a>
                         <div class="dropdown-menu" aria-labelledby="products-dropdown">
                             {% for cat in informer.getCategoriesToDisplay %}
-                                <a class="dropdown-item p-1" href="/categories/{{ cat.categoryNameLatin }}">{{ util.getLocalCategoryName(cat) }}</a>
+                                <a class="dropdown-item p-1"
+                                   href="/categories/{{ cat.categoryNameLatin }}">{{ util.getLocalCategoryName(cat) }}</a>
                             {% endfor %}
                             <a class="dropdown-item p-1" href="/categories">{{ dict.all }}</a>
                         </div>
@@ -32,7 +35,9 @@
                     {% endif %}
                     {% if informer.user %}
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="user-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ informer.user.username }}</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="user-dropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">{{ informer.user.username }}</a>
                             <div class="dropdown-menu" aria-labelledby="user-dropdown">
                                 <a class="dropdown-item p-1" href="#" id="logout">{{ dict.logout }}</a>
                                 <a class="dropdown-item p-1" href="#">{{ dict.profile }}</a>
@@ -49,8 +54,8 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item mr-2 d-flex align-items-center justify-content-center">
-                        <a href="#" class="shopping-cart ">
-                            <div class="shopping-cart-items-count">2</div>
+                        <a href="/cart" class="shopping-cart ">
+                            <div class="shopping-cart-items-count" style="display: none;" id="shoppingCartSizeCount"></div>
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         </a>
                     </li>
@@ -58,7 +63,8 @@
                         {% set searchUrl = '/search' %}
                         {% if informer.hasRole('ROLE_WORKER') %} {% set searchUrl = '/search-worker' %} {% endif %}
                         <form action="{{ searchUrl }}">
-                            <input type="search" name="search" class="header_search_input" required="required" placeholder="{{ dict.search }}">
+                            <input type="search" name="search" class="header_search_input" required="required"
+                                   placeholder="{{ dict.search }}">
                             <i class="fa fa-search header_search_icon" aria-hidden="true"></i>
                         </form>
                     </li>

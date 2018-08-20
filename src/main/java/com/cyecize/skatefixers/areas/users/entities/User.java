@@ -1,5 +1,6 @@
 package com.cyecize.skatefixers.areas.users.entities;
 
+import com.cyecize.skatefixers.areas.shoppingCart.entities.ShoppingCart;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -47,6 +48,8 @@ public class User implements UserDetails {
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id") ,inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
     private List<UserRole> roles;
 
+    @OneToOne(targetEntity = ShoppingCart.class, mappedBy = "user")
+    private ShoppingCart shoppingCart;
 
     public User(){
         this.isEnabled = true;
@@ -156,5 +159,13 @@ public class User implements UserDetails {
 
     public void setRegisteredOn(LocalDateTime registeredOn) {
         this.registeredOn = registeredOn;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 }

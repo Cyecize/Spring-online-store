@@ -11,6 +11,15 @@ import java.util.List;
 
 public interface TwigInformer {
 
+    void setUser(User principal);
+
+
+    boolean hasRole(String role);
+
+    Banner getBanner();
+
+    User getUser();
+
     List<Category> getCategoriesToDisplay();
 
     List<BaseProduct> getNewProducts();
@@ -19,12 +28,7 @@ public interface TwigInformer {
 
     List<Brand> getAllBrands();
 
-    Banner getBanner();
 
-    User getUser();
 
-    void setUser(User principal);
-
-    boolean hasRole(String role);
 
 }

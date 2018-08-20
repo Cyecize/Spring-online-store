@@ -74,6 +74,16 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String BANNER = "Banner";
     public static final String NEW_BANNER = "New Banner";
     public static final String TITLE = "Title";
+    public static final String ERROR_ADDING_PRODUCT_TO_CART = "Error adding product to cart";
+    public static final String PRODUCT_WAS_ADDED_TO_CART = "Product was added to cart";
+
+    public String errorAddingProductToCart() {
+        return ERROR_ADDING_PRODUCT_TO_CART;
+    }
+
+    public String productWasAddedToCart() {
+        return PRODUCT_WAS_ADDED_TO_CART;
+    }
 
 
     public String banner() {

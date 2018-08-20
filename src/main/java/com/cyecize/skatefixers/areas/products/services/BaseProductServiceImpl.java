@@ -118,7 +118,7 @@ public class BaseProductServiceImpl implements BaseProductService {
 
     @Override
     public Page<BaseProduct> findAll(Pageable pageable) {
-        return this.productRepository.findBaseProductsByIsEnabled(true, pageable);
+        return this.productRepository.findBaseProductsByIsEnabledTrueOrderByWeeklyViewsDesc( pageable);
     }
 
     @Override

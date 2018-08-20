@@ -36,4 +36,6 @@ public interface ErrorDictionary  {
 
     String categoryWasNotFound();
 
+    String errorAddingProductToCart();
+
 }

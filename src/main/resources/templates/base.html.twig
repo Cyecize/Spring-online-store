@@ -27,6 +27,10 @@
     <script src="/styles/js/jQuery331.js"></script>
 </head>
 <body>
+<script>
+    var CSRF_HEADER = '{{_csrf.headerName}}';
+    var CSRF_TOKEN = '{{_csrf.token}}';
+</script>
 {% embed 'partials/header.html.twig' %} {% endembed %}
 {% block body %}{% endblock %}
 {% embed 'partials/footer.html.twig' %} {% endembed %}
@@ -34,16 +38,13 @@
 {% embed 'partials/scripts.html.twig' %} {% endembed %}
 <script>
     $(function () {
-        var header = '{{_csrf.headerName}}';
-        var token = '{{_csrf.token}}';
 
         $('#logout').on('click', function () {
             $.ajax({
                 url: '/logout',
                 type: 'POST',
-                data: token,
                 beforeSend: function (xhr) {
-                    xhr.setRequestHeader(header, token);
+                    xhr.setRequestHeader(CSRF_HEADER, CSRF_TOKEN);
                 },
                 success: function (data) {
                     window.location = "/";

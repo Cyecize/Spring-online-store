@@ -119,4 +119,6 @@ public interface Dictionary extends ErrorDictionary {
     String newBanner();
 
     String title();
+
+    String productWasAddedToCart();
 }

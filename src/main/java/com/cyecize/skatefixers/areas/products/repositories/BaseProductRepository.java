@@ -19,7 +19,7 @@ public interface BaseProductRepository extends JpaRepository<BaseProduct, Long> 
 
     List<BaseProduct> findTop6ByIsEnabledOrderByWeeklyViewsDesc(Boolean isEnabled);
 
-    Page<BaseProduct> findBaseProductsByIsEnabled(Boolean isEnabled, Pageable pageable);
+    Page<BaseProduct> findBaseProductsByIsEnabledTrueOrderByWeeklyViewsDesc(Pageable pageable);
 
     Page<BaseProduct> findBaseProductsByBrandAndIsEnabled(Brand brand, Boolean isEnabled, Pageable pageable);
 

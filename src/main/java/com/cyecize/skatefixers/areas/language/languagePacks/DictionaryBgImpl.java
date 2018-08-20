@@ -75,7 +75,17 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String BANNER = "Банер";
     public static final String NEW_BANNER = "Нов банер";
     public static final String TITLE = "Заглавие";
+    public static final String ERROR_ADDING_PRODUCT_TO_CART = "Продукта не успя да се добави в количката";
+    public static final String PRODUCT_WAS_ADDED_TO_CART = "Продукт беше добавен в количката";
 
+
+    public String errorAddingProductToCart() {
+        return ERROR_ADDING_PRODUCT_TO_CART;
+    }
+
+    public String productWasAddedToCart() {
+        return PRODUCT_WAS_ADDED_TO_CART;
+    }
 
     public String banner() {
         return BANNER;

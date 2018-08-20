@@ -8,9 +8,9 @@ import com.cyecize.skatefixers.areas.products.entities.Category;
 import com.cyecize.skatefixers.areas.products.services.BaseProductService;
 import com.cyecize.skatefixers.areas.products.services.BrandService;
 import com.cyecize.skatefixers.areas.products.services.CategoryService;
+import com.cyecize.skatefixers.areas.shoppingCart.services.ShoppingCartService;
 import com.cyecize.skatefixers.areas.users.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,6 +34,7 @@ public class TwigInformerImpl implements TwigInformer {
         this.productService = productService;
         this.bannerService = bannerService;
         this.brandService = brandService;
+
     }
 
     @Override
@@ -76,4 +77,6 @@ public class TwigInformerImpl implements TwigInformer {
     public void setUser(User principal) {
         this.principal = principal;
     }
+
+
 }
