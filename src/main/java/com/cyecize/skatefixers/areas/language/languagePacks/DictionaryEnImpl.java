@@ -76,6 +76,22 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String TITLE = "Title";
     public static final String ERROR_ADDING_PRODUCT_TO_CART = "Error adding product to cart";
     public static final String PRODUCT_WAS_ADDED_TO_CART = "Product was added to cart";
+    public static final String SHOPPING_CART = "Shopping Cart";
+    public static final String SHOPPING_CART_IS_EMPTY = "Shopping Cart is empty";
+    public static final String CLEAR = "Clear";
+
+
+    public String shoppingCart() {
+        return SHOPPING_CART;
+    }
+
+    public String shoppingCartIsEmpty() {
+        return SHOPPING_CART_IS_EMPTY;
+    }
+
+    public String clear() {
+        return CLEAR;
+    }
 
     public String errorAddingProductToCart() {
         return ERROR_ADDING_PRODUCT_TO_CART;
@@ -84,7 +100,6 @@ public class DictionaryEnImpl implements Dictionary {
     public String productWasAddedToCart() {
         return PRODUCT_WAS_ADDED_TO_CART;
     }
-
 
     public String banner() {
         return BANNER;

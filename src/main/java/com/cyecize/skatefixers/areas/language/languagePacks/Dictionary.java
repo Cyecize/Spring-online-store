@@ -121,4 +121,11 @@ public interface Dictionary extends ErrorDictionary {
     String title();
 
     String productWasAddedToCart();
+
+    String shoppingCart();
+
+    String shoppingCartIsEmpty();
+
+    String clear();
+
 }
