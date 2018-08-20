@@ -72,7 +72,11 @@
                         </div>
                         <div class="row">
                             <div class="col-sm">
+                                {% if product.quantity > 0 %}
                                 <button id="orderBtn" class="orderBtn btn btn-dark">{{ dict.buy }}</button>
+                                {% else %}
+                                <button class="btn btn-danger">OUT OF STOCK</button>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

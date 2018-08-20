@@ -143,4 +143,16 @@ public interface Dictionary extends ErrorDictionary {
     String phoneNumber();
 
     String doYouWantToRemoveThisAddress();
+
+    String checkout();
+
+    String your();
+
+    String orders();
+
+    String awaiting();
+
+    String rejected();
+
+    String accepted();
 }

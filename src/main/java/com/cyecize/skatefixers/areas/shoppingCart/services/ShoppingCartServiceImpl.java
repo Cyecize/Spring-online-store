@@ -127,7 +127,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return this.currentCart;
     }
 
-    private List<ShoppingCartItem> parseShoppingCart(String shoppingCartJson) throws Exception {
+    @Override
+    public List<ShoppingCartItem> parseShoppingCart(String shoppingCartJson) throws Exception {
         try {
             List<ShoppingCartItem> shoppingCartItems = new ArrayList<>();
             Map productsMap = new Gson().fromJson(shoppingCartJson, Map.class);
@@ -140,7 +141,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         }
     }
 
-    private String encodeShoppingCart(List<ShoppingCartItem> shoppingCartItems) {
+    @Override
+    public String encodeShoppingCart(List<ShoppingCartItem> shoppingCartItems) {
         Map<Long, Integer> prodQuanPair = new HashMap<>();
         for (ShoppingCartItem shoppingCartItem : shoppingCartItems) {
             prodQuanPair.put(shoppingCartItem.getProduct().getId(), shoppingCartItem.getQuantity());

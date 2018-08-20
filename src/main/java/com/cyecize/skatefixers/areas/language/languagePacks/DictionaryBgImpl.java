@@ -89,6 +89,37 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String NEW_ADDRESS = "Нов адрес";
     public static final String PHONE_NUMBER = "Тел. номер";
     public static final String DO_YOU_WANT_TO_REMOVE_ADDRESS = "Наистина ли искате да изтриете този адрес?";
+    public static final String CHECKOUT = "Сметка";
+    public static final String YOUR = "Вашата";
+    public static final String ORDERS = "Поръчки";
+    public static final String AWAITING = "Чакаща";
+    public static final String REJECTED = "Отказана";
+    public static final String ACCEPTED = "Приета";
+
+
+    public String orders() {
+        return ORDERS;
+    }
+
+    public String awaiting() {
+        return AWAITING;
+    }
+
+    public String rejected() {
+        return REJECTED;
+    }
+
+    public String accepted() {
+        return ACCEPTED;
+    }
+
+    public String checkout() {
+        return CHECKOUT;
+    }
+
+    public String your() {
+        return YOUR;
+    }
 
     public String doYouWantToRemoveThisAddress() {
         return DO_YOU_WANT_TO_REMOVE_ADDRESS;

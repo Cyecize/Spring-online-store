@@ -88,6 +88,37 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String NEW_ADDRESS = "New Address";
     public static final String PHONE_NUMBER = "Phone number";
     public static final String DO_YOU_WANT_TO_REMOVE_ADDRESS = "Do you really want to remove this address?";
+    public static final String CHECKOUT = "Checkout";
+    public static final String YOUR = "Your";
+    public static final String ORDERS = "Orders";
+    public static final String AWAITING = "Awaiting";
+    public static final String REJECTED = "Rejected";
+    public static final String ACCEPTED = "Accepted";
+
+
+    public String orders() {
+        return ORDERS;
+    }
+
+    public String awaiting() {
+        return AWAITING;
+    }
+
+    public String rejected() {
+        return REJECTED;
+    }
+
+    public String accepted() {
+        return ACCEPTED;
+    }
+
+    public String checkout() {
+        return CHECKOUT;
+    }
+
+    public String your() {
+        return YOUR;
+    }
 
     public String doYouWantToRemoveThisAddress() {
         return DO_YOU_WANT_TO_REMOVE_ADDRESS;
@@ -108,7 +139,6 @@ public class DictionaryEnImpl implements Dictionary {
     public String addresses() {
         return ADDRESSES;
     }
-
 
     public String selectProperValues() {
         return SELECT_PROPER_VALUES;

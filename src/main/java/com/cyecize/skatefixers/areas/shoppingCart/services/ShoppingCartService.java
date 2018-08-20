@@ -23,6 +23,10 @@ public interface ShoppingCartService {
 
     int getShoppingCartSize();
 
+    String encodeShoppingCart(List<ShoppingCartItem> shoppingCartItems);
+
     List<ShoppingCartItem> getShoppingCart();
+
+    List<ShoppingCartItem> parseShoppingCart(String shoppingCartJson) throws Exception;
 
 }

@@ -1,0 +1,79 @@
+{% extends '../base.html.twig' %}
+{% block title %}Skate fixers: {{ dict.checkout }}{% endblock %}
+{% block body %}
+    <main>
+        {% embed '../partials/home-banner.html.twig' with {'title':dict.checkout} %} {% endembed %}
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-9">
+                    <section class="bg-gray p-1">
+                        {% if viewModel.isCartEmpty %}
+                            <h3 class="alert alert-warning">{{ dict.shoppingCartIsEmpty }}</h3>
+                        {% endif %}
+                        {% if viewModel.isAddressesEmpty %}
+                            {% embed '../partials/lang/' ~ locale ~ '/empty-address.html.twig' %} {% endembed %}
+                        {% endif %}
+
+                        <br>
+                        <section class="alert alert-info">
+                            <h4>Начин на доставка:</h4>
+                            <p>Продуктите се доставят до адрес или до офис с наложен платеж</p>
+                            <p>Ако предпочитате доставката ви да е до офис, моля напишете името на офиса в полето за
+                                <strong>адрес</strong>.</p>
+                            <p>Цена на доставката: 4лв.</p>
+                        </section>
+                        <br>
+                        <section class="alert alert-info">
+                            <h4>{{ dict.your }} {{ dict.shoppingCart }}</h4>
+                            <p class="text-success">{{ dict.price }}: <strong>{{ viewModel.total }}</strong></p>
+                            <br>
+                            {% for pr in viewModel.shoppingCart %}
+                                <p>{{ pr.product.productName }}</p>
+                            {% endfor %}
+                        </section>
+
+                        <form method="post">
+                            <div class="form-group">
+                                <h4>{{ dict.addresses }}</h4>
+                                {% for address in viewModel.addresses %}
+                                    <div class="row">
+                                        <div class="col-sm-1 d-flex align-items-center justify-content-center">
+                                            <input type="radio" name="addressId" value="{{ address.id }}" id="addr{{ address.id }}">
+                                        </div>
+                                        <div class="col-lg-9 bg-gray rounded d-flex justify-content-end">
+                                            <label for="addr{{ address.id }}" class="w-50 bg-light p-2 rounded">
+                                            <p class="text-dark font-15em">{{ address.fullName }}</p><br>
+                                            <small>{{ address.phoneNumber }}</small>
+                                            <p class="text-info">{{ address.address }}</p>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+                            {% embed '../partials/csrf.twig' %} {% endembed %}
+                            <button type="submit" id="checkoutBtn" class="btn btn-outline-success">{{ dict.go }}</button>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(function () {
+           $('#checkoutBtn').on('click', function (e) {
+               var size = document.querySelectorAll('input[name="addressId"]:checked').length;
+               if(size < 1)
+                   e.preventDefault();
+               if({{ viewModel.isCartEmpty }} || {{ viewModel.isAddressesEmpty }})
+                   e.preventDefault();
+           }) ;
+        });
+    </script>
+{% endblock %}

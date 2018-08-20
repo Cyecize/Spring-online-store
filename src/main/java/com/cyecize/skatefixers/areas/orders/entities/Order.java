@@ -1,5 +1,6 @@
 package com.cyecize.skatefixers.areas.orders.entities;
 
+import com.cyecize.skatefixers.areas.orders.enums.OrderStatus;
 import com.cyecize.skatefixers.areas.users.entities.Address;
 import com.cyecize.skatefixers.areas.users.entities.User;
 
@@ -29,15 +30,15 @@ public class Order {
     @Column(name = "total_price", nullable = false)
     private Double totalPrice;
 
-    @Column(name = "is_accepted")
-    private Boolean accepted;
+    @Column(name = "order_status")
+    private OrderStatus orderStatus;
 
     private LocalDateTime orderDate;
 
     public Order(){
         this.orderDate  = LocalDateTime.now();
         this.totalPrice = 0D;
-        this.accepted = false;
+        this.orderStatus = OrderStatus.AWAITING;
     }
 
     @PrePersist
@@ -85,12 +86,12 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    public Boolean getAccepted() {
-        return accepted;
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
     }
 
-    public void setAccepted(Boolean accepted) {
-        this.accepted = accepted;
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public LocalDateTime getOrderDate() {

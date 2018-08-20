@@ -1,7 +1,5 @@
 package com.cyecize.skatefixers.areas.users.bindingModels;
 
-import com.cyecize.skatefixers.areas.language.languagePacks.Dictionary;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 

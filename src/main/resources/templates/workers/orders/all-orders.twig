@@ -1,0 +1,22 @@
+{% extends '../index.twig' %}
+
+{% block title %}{{ dict.orders }}{% endblock %}
+
+{% block workerBody %}
+<div>
+    <h3 class="text-info">{{ dict.orders }}</h3>
+    <a href="/worker-panel">{{ dict.back }}</a>
+    <hr class="hr-dark">
+</div>
+<div class="row">
+    {% for orderView in viewModel %}
+        <div class="col-md-4 rounded bg-gray m-1">
+            <p class="font-15em">{{ orderView.order.orderStatus.name() }}, <small><strong class="text-info">${{ orderView.order.totalPrice }}</strong></small></p>
+            <p>{{ orderView.order.orderDate.format(util.simpleFormat) }}</p>
+            <a href="/users/show/{{ orderView.order.user.id }}">{{ dict.username }}: {{ orderView.order.user.username }}</a>
+            <br>
+            <a href="/orders/review/{{ orderView.order.id }}" class="btn btn-dark">{{ dict.details }}</a>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

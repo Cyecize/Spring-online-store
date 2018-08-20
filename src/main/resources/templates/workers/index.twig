@@ -37,6 +37,15 @@
                                 <li class="list-group-item"><a href="/banners/edit-list">{{ dict.banner }}: {{ dict.edit }}</a></li>
                             </ul>
                         </div>
+                        <div class="sidebar-item">
+                            <p class="font-15em">{{ dict.orders }}</p>
+                            <ul class="list-group">
+                                <li class="list-group-item"><a href="/orders/all">{{ dict.all }} {{ dict.orders }}</a></li>
+                                <li class="list-group-item"><a href="/orders/awaiting">Awaiting</a></li>
+                                <li class="list-group-item"><a href="/orders/rejected">Rejected</a></li>
+                                <li class="list-group-item"><a href="/orders/accepted">Accepted</a></li>
+                            </ul>
+                        </div>
                     {% endblock %}
                 {% endembed %}
                 <div class="col-lg-9" id="section-content" style="display:none;">
