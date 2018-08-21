@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
@@ -28,6 +31,9 @@ public class SkateFixersApplication {
     @Autowired
     private ModelMerger modelMerger;
 
+    @Autowired
+    private JavaMailSender mailSender;
+
 
     @Value("${server.port}")
     private String port;
@@ -40,6 +46,8 @@ public class SkateFixersApplication {
         timer.setRepeats(false);
         timer.start();
         this.initRoles();
+
+
     }
 
     public static void main(String[] args) {

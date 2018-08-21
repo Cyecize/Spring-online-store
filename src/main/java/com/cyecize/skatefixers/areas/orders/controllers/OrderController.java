@@ -2,14 +2,15 @@ package com.cyecize.skatefixers.areas.orders.controllers;
 
 
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
+import com.cyecize.skatefixers.areas.notifications.services.MailService;
 import com.cyecize.skatefixers.areas.orders.entities.Order;
 import com.cyecize.skatefixers.areas.orders.services.OrderService;
 import com.cyecize.skatefixers.areas.orders.viewModels.CheckoutViewModel;
 import com.cyecize.skatefixers.areas.shoppingCart.services.ShoppingCartService;
-import com.cyecize.skatefixers.areas.shoppingCart.viewModels.ShoppingCartItem;
 import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
 import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
 import com.cyecize.skatefixers.areas.users.entities.Address;
+import com.cyecize.skatefixers.areas.users.entities.User;
 import com.cyecize.skatefixers.areas.users.services.AddressService;
 import com.cyecize.skatefixers.areas.users.services.UserService;
 import com.cyecize.skatefixers.controllers.BaseController;
@@ -22,12 +23,13 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
-import java.util.List;
 
 @Controller
 @PreAuthorize("isFullyAuthenticated()")
 @RequestMapping("/checkout")
 public class OrderController extends BaseController {
+
+    private static final String ORDER_SENT_FORMAT = "Your order with id: %s was received, check your profile page for more info";
 
     private final ShoppingCartService shoppingCartService;
 
@@ -37,13 +39,16 @@ public class OrderController extends BaseController {
 
     private final OrderService orderService;
 
+    private final MailService mailService;
+
     @Autowired
-    public OrderController(LocalLanguage language, TwigUtil twigUtil, TwigInformer twigInformer, ShoppingCartService shoppingCartService, UserService userService, AddressService addressService, OrderService orderService) {
+    public OrderController(LocalLanguage language, TwigUtil twigUtil, TwigInformer twigInformer, ShoppingCartService shoppingCartService, UserService userService, AddressService addressService, OrderService orderService, MailService mailService) {
         super(language, twigUtil, twigInformer);
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
         this.addressService = addressService;
         this.orderService = orderService;
+        this.mailService = mailService;
     }
 
     @GetMapping("")
@@ -59,7 +64,9 @@ public class OrderController extends BaseController {
     @PostMapping("")
     public String checkoutAction(@RequestParam(value = "addressId") Long addressId, Principal principal, RedirectAttributes redirectAttributes){
         Address address = this.addressService.findById(addressId);
-        Order order = this.orderService.createOrder(this.userService.findOneByUsername(principal.getName()), address);
+        User user = this.userService.findOneByUsername(principal.getName());
+        Order order = this.orderService.createOrder(user, address);
+        this.mailService.sendMessageToUser(user, "Order received", String.format(ORDER_SENT_FORMAT, order.getId()));
         redirectAttributes.addFlashAttribute("order", order);
         this.shoppingCartService.clear();
         return "redirect:/checkout/success";
