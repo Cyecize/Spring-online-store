@@ -159,4 +159,16 @@ public interface Dictionary extends ErrorDictionary {
     String thisOrderCannotBeAccepted();
 
     String requested();
+
+    String newOrderReceived();
+
+    String orderStatusChangedNewStatusIs();
+
+    String notifications();
+
+    String removeAll();
+
+    String viewFullScreen();
+
+    String noNotifications();
 }

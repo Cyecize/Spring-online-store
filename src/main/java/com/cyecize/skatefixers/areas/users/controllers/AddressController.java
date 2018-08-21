@@ -2,7 +2,7 @@ package com.cyecize.skatefixers.areas.users.controllers;
 
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
-import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
+import com.cyecize.skatefixers.areas.twig.util.TwigUtil;
 import com.cyecize.skatefixers.areas.users.bindingModels.AddressBindingModel;
 import com.cyecize.skatefixers.areas.users.services.AddressService;
 import com.cyecize.skatefixers.areas.users.services.UserService;

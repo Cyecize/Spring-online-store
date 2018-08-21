@@ -20,6 +20,8 @@ body {
     0 fonts
 
     1 navbar
+        1.1 searchbox
+        1.2 notifications
 
     2 social button styles
 
@@ -203,6 +205,29 @@ nav, nav.navbar.shrink, nav.navbar.shrink button, nav.navbar.shrink input, nav.n
     transform: translateY(-50%);
 }
         /*end nabbar search */
+
+        /*navbar notifications*/
+#hidden-noti-bar {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    position: absolute;
+    top: 30px;
+    width: 500px;
+    max-height: 400px;
+    min-height: 70px;
+    left: 1%;
+    color: black;
+    background: #fff;
+    border: solid 1px #e6e6e6;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .0975);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .0975);
+    display: none;
+    overflow: auto;
+    z-index: 1000000;
+}
+
+        /*end navbar notifications*/
 
 /* end navbar */
 

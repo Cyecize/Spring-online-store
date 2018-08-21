@@ -7,7 +7,7 @@ import com.cyecize.skatefixers.areas.home.services.BannerService;
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.products.bindingModels.validators.ValidImageValidator;
 import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
-import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
+import com.cyecize.skatefixers.areas.twig.util.TwigUtil;
 import com.cyecize.skatefixers.constants.WebConstants;
 import com.cyecize.skatefixers.controllers.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;

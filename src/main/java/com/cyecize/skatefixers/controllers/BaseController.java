@@ -5,7 +5,7 @@ import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.users.entities.User;
 import com.cyecize.skatefixers.constants.WebConstants;
 import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
-import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
+import com.cyecize.skatefixers.areas.twig.util.TwigUtil;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BeanPropertyBindingResult;

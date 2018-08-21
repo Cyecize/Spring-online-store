@@ -4,9 +4,8 @@ import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.products.services.BaseProductService;
 import com.cyecize.skatefixers.areas.shoppingCart.bindingModels.AddCartItemBindingModel;
 import com.cyecize.skatefixers.areas.shoppingCart.services.ShoppingCartService;
-import com.cyecize.skatefixers.areas.shoppingCart.viewModels.ShoppingCartItem;
 import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
-import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
+import com.cyecize.skatefixers.areas.twig.util.TwigUtil;
 import com.cyecize.skatefixers.controllers.BaseController;
 import com.cyecize.skatefixers.exceptions.JsonException;
 import com.cyecize.skatefixers.http.JsonResponse;
@@ -20,8 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/cart")

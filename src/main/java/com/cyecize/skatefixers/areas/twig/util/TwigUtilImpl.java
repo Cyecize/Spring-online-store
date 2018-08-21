@@ -1,7 +1,8 @@
-package com.cyecize.skatefixers.areas.twig.services;
+package com.cyecize.skatefixers.areas.twig.util;
 
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.products.entities.Category;
+import com.cyecize.skatefixers.areas.twig.util.TwigUtil;
 import com.cyecize.skatefixers.areas.users.entities.User;
 import com.cyecize.skatefixers.areas.users.entities.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;

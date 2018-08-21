@@ -1,8 +1,9 @@
 package com.cyecize.skatefixers.areas.users.controllers;
 
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
+import com.cyecize.skatefixers.areas.notifications.services.NotificationService;
 import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
-import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
+import com.cyecize.skatefixers.areas.twig.util.TwigUtil;
 import com.cyecize.skatefixers.areas.users.services.UserService;
 import com.cyecize.skatefixers.controllers.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/users")
@@ -29,7 +32,6 @@ public class UserController  extends BaseController {
 
     @GetMapping("/profile")
     public ModelAndView profileAction(){
-
         return super.view("users/index");
     }
 

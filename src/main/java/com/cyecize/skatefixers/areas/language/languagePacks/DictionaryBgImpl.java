@@ -97,6 +97,37 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String ACCEPTED = "Приета";
     public static final String THIS_ORDER_CANNOT_BE_ACCEPTED = "Тази поръчка не може да бъде изпълнена";
     public static final String REQUESTED = "Заявени";
+    public static final String NEW_ORDER_RECEIVED = "Нова поръчка";
+    public static final String ORDER_STATUS_HAS_CHANGED = "Статуса на поръчкта ви е сменен на: ";
+    public static final String NOTIFICATIONS = "Известия";
+    public static final String REMOVE_ALL = "Изтриване на всички";
+    public static final String VIEW_FULL_SCREEN = "Преглед на цял екран";
+    public static final String NO_NOTIFICATIONS = "Нямате известия";
+
+
+    public String noNotifications() {
+        return NO_NOTIFICATIONS;
+    }
+
+    public String removeAll() {
+        return REMOVE_ALL;
+    }
+
+    public String viewFullScreen() {
+        return VIEW_FULL_SCREEN;
+    }
+
+    public String notifications() {
+        return NOTIFICATIONS;
+    }
+
+    public String newOrderReceived() {
+        return NEW_ORDER_RECEIVED;
+    }
+
+    public String orderStatusChangedNewStatusIs() {
+        return ORDER_STATUS_HAS_CHANGED;
+    }
 
     public String thisOrderCannotBeAccepted() {
         return THIS_ORDER_CANNOT_BE_ACCEPTED;

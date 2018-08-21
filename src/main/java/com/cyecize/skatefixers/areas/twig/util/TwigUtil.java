@@ -1,4 +1,4 @@
-package com.cyecize.skatefixers.areas.twig.services;
+package com.cyecize.skatefixers.areas.twig.util;
 
 import com.cyecize.skatefixers.areas.products.entities.Category;
 import com.cyecize.skatefixers.areas.users.entities.User;

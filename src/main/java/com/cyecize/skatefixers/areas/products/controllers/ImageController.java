@@ -6,7 +6,7 @@ import com.cyecize.skatefixers.areas.products.bindingModels.validators.ValidImag
 import com.cyecize.skatefixers.areas.products.services.BaseProductService;
 import com.cyecize.skatefixers.areas.products.services.GalleryService;
 import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
-import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
+import com.cyecize.skatefixers.areas.twig.util.TwigUtil;
 import com.cyecize.skatefixers.controllers.BaseController;
 import com.cyecize.skatefixers.exceptions.JsonException;
 import com.cyecize.skatefixers.http.JsonResponse;

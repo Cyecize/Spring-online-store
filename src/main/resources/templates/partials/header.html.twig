@@ -34,6 +34,12 @@
                         </li>
                     {% endif %}
                     {% if informer.user %}
+                        <li class="nav-item position-relative" >
+                            <span class="nav-link">
+                                <i class="fas fa-bell" aria-hidden="true" id="notificationsBtn"></i>
+                            </span>
+                            <div id="hidden-noti-bar" class="notifications-section"></div>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="user-dropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true"

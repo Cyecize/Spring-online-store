@@ -1,6 +1,7 @@
 package com.cyecize.skatefixers.areas.twig.services;
 
 import com.cyecize.skatefixers.areas.home.entities.Banner;
+import com.cyecize.skatefixers.areas.notifications.models.Notification;
 import com.cyecize.skatefixers.areas.products.entities.BaseProduct;
 import com.cyecize.skatefixers.areas.products.entities.Brand;
 import com.cyecize.skatefixers.areas.products.entities.Category;
@@ -13,6 +14,7 @@ public interface TwigInformer {
 
     void setUser(User principal);
 
+    int getNotificationsCount();
 
     boolean hasRole(String role);
 

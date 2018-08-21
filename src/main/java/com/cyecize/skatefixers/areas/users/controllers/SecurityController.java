@@ -6,7 +6,7 @@ import com.cyecize.skatefixers.areas.users.services.UserService;
 import com.cyecize.skatefixers.constants.WebConstants;
 import com.cyecize.skatefixers.controllers.BaseController;
 import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
-import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
+import com.cyecize.skatefixers.areas.twig.util.TwigUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

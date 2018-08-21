@@ -2,7 +2,7 @@ package com.cyecize.skatefixers.areas.admin.controllers;
 
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
-import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
+import com.cyecize.skatefixers.areas.twig.util.TwigUtil;
 import com.cyecize.skatefixers.areas.users.entities.User;
 import com.cyecize.skatefixers.areas.users.enums.UserRoleType;
 import com.cyecize.skatefixers.areas.users.services.UserService;

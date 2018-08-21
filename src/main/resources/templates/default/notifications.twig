@@ -1,0 +1,19 @@
+{% extends '../base.html.twig' %}
+{% block title %}Skate fixers: {{ dict.notifications }}{% endblock %}
+
+{% block body %}
+
+<main>
+    {% embed '../partials/home-banner.html.twig' with {'title':dict.notifications} %} {% endembed %}
+
+    <div class="container">
+
+        {% for noti in notis %}
+            {% embed '../partials/notifications/single-notification.html.twig' %} {% endembed %}
+        {% endfor %}
+
+    </div>
+
+</main>
+
+{% endblock %}

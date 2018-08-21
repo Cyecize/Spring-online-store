@@ -96,6 +96,36 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String ACCEPTED = "Accepted";
     public static final String THIS_ORDER_CANNOT_BE_ACCEPTED = "This order cannot be accepted";
     public static final String REQUESTED = "Requested";
+    public static final String NEW_ORDER_RECEIVED = "New order received";
+    public static final String ORDER_STATUS_HAS_CHANGED = "Order status has changed to ";
+    public static final String NOTIFICATIONS = "Notifications";
+    public static final String REMOVE_ALL = "Remove all";
+    public static final String VIEW_FULL_SCREEN = "View full screen";
+    public static final String NO_NOTIFICATIONS = "All good";
+
+    public String noNotifications() {
+        return NO_NOTIFICATIONS;
+    }
+
+    public String removeAll() {
+        return REMOVE_ALL;
+    }
+
+    public String viewFullScreen() {
+        return VIEW_FULL_SCREEN;
+    }
+
+    public String notifications() {
+        return NOTIFICATIONS;
+    }
+
+    public String newOrderReceived() {
+        return NEW_ORDER_RECEIVED;
+    }
+
+    public String orderStatusChangedNewStatusIs() {
+        return ORDER_STATUS_HAS_CHANGED;
+    }
 
     public String thisOrderCannotBeAccepted() {
         return THIS_ORDER_CANNOT_BE_ACCEPTED;

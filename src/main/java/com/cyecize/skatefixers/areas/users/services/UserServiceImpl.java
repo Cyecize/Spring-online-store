@@ -88,6 +88,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findByRole(UserRoleType roleType) {
+        return this.userRepository.findBySpecificRoles(roleType);
+    }
+
+    @Override
     public void changeUserRole(User user, UserRoleType roleType) {
         if(this.hasRole(UserRoleType.ROLE_ADMIN.name(), user))
             throw new JsonException("Cannot edit admin!");

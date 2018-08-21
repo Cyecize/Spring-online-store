@@ -34,7 +34,7 @@ CREATE TABLE `addresses` (
   PRIMARY KEY (`id`),
   KEY `FK1fa36y2oqhao3wgg2rw1pi459` (`user_id`),
   CONSTRAINT `FK1fa36y2oqhao3wgg2rw1pi459` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `addresses` (
 
 LOCK TABLES `addresses` WRITE;
 /*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
-INSERT INTO `addresses` VALUES (1,'ж.к. Младост 1, бл. 20, вход-г, ап. 2','Tsvetelin Nikolaev Yakimov ','876736973',1,''),(2,'Mladost 1 Block 2','Goran Ignatov','0876736973',1,'\0'),(3,'ж.к. Младост 1, бл. 20, вход-г, ап. 2','Goran Ignatov','876736973',3,''),(4,'No addr given mate srt','Georgi','7777777777',1,''),(5,'Искам да е до офис на SPEEDY МНТ','Горан ','089-238569-238',1,''),(6,'hahaha ne jiveq nikude','Big Smoke','087947949',2,'');
+INSERT INTO `addresses` VALUES (1,'ж.к. Младост 1, бл. 20, вход-г, ап. 2','Tsvetelin Nikolaev Yakimov ','876736973',1,''),(2,'Mladost 1 Block 2','Goran Ignatov','0876736973',1,'\0'),(3,'ж.к. Младост 1, бл. 20, вход-г, ап. 2','Goran Ignatov','876736973',3,''),(4,'No addr given mate srt','Georgi','7777777777',1,''),(5,'Искам да е до офис на SPEEDY МНТ','Горан ','089-238569-238',1,''),(6,'hahaha ne jiveq nikude','Big Smoke','087947949',2,''),(7,'Нямам и адрес :/','Фалшив Цеци','няям тел',4,'');
 /*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,6 +101,36 @@ INSERT INTO `brands` VALUES (1,'Bones','https://drive.google.com/uc?id=1i45AZA1H
 UNLOCK TABLES;
 
 --
+-- Table structure for table `notifications`
+--
+
+DROP TABLE IF EXISTS `notifications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notifications` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `content` varchar(255) NOT NULL,
+  `date` datetime DEFAULT NULL,
+  `href` varchar(255) NOT NULL,
+  `is_seen` bit(1) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK9y21adhxn0ayjhfocscqox7bh` (`user_id`),
+  CONSTRAINT `FK9y21adhxn0ayjhfocscqox7bh` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notifications`
+--
+
+LOCK TABLES `notifications` WRITE;
+/*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
+INSERT INTO `notifications` VALUES (16,'New order received','2018-08-21 21:14:19','/orders/review/17','\0',3),(18,'New order received','2018-08-21 21:16:46','/orders/review/18','',3),(20,'New order received','2018-08-21 21:22:38','/orders/review/19','\0',3),(22,'New order received','2018-08-21 22:21:12','/orders/review/20','',1),(23,'New order received','2018-08-21 22:21:12','/orders/review/20','\0',3),(24,'Order status has changed to REJECTED','2018-08-21 22:22:27','/users/orders/20','',4);
+/*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `orders`
 --
 
@@ -120,7 +150,7 @@ CREATE TABLE `orders` (
   KEY `FK32ql8ubntj5uh44ph9659tiih` (`user_id`),
   CONSTRAINT `FK32ql8ubntj5uh44ph9659tiih` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `FKhlglkvf5i60dv6dn397ethgpt` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +159,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,'2018-08-20 22:01:52',304,5,1,'{\"1\":1,\"17\":1,\"2\":1,\"22\":1,\"11\":1}',2),(2,'2018-08-20 22:15:14',138,3,3,'{\"17\":1,\"22\":1}',2),(3,'2018-08-20 23:21:54',2497.25,6,2,'{\"17\":1,\"1\":1,\"21\":1,\"22\":1,\"23\":1,\"8\":1,\"11\":1}',2),(4,'2018-08-20 23:22:12',2039.25,6,2,'{\"20\":1,\"21\":1,\"22\":1}',1),(5,'2018-08-21 09:59:20',266,6,2,'{\"17\":2,\"1\":1,\"22\":2}',1),(6,'2018-08-21 10:12:49',518,6,2,'{\"17\":1,\"22\":1,\"28\":2}',1);
+INSERT INTO `orders` VALUES (1,'2018-08-20 22:01:52',304,5,1,'{\"1\":1,\"17\":1,\"2\":1,\"22\":1,\"11\":1}',2),(2,'2018-08-20 22:15:14',138,3,3,'{\"17\":1,\"22\":1}',2),(3,'2018-08-20 23:21:54',2497.25,6,2,'{\"17\":1,\"1\":1,\"21\":1,\"22\":1,\"23\":1,\"8\":1,\"11\":1}',2),(4,'2018-08-20 23:22:12',2039.25,6,2,'{\"20\":1,\"21\":1,\"22\":1}',1),(5,'2018-08-21 09:59:20',266,6,2,'{\"17\":2,\"1\":1,\"22\":2}',1),(6,'2018-08-21 10:12:49',518,6,2,'{\"17\":1,\"22\":1,\"28\":2}',1),(8,'2018-08-21 13:36:45',1002,1,1,'{\"2\":1,\"22\":1,\"11\":8}',1),(9,'2018-08-21 13:43:28',118,3,3,'{\"17\":1}',2),(10,'2018-08-21 13:45:10',118,1,1,'{\"11\":1}',2),(11,'2018-08-21 15:30:09',19,1,1,'{\"24\":1}',1),(12,'2018-08-21 15:41:55',118,1,1,'{\"17\":1}',2),(13,'2018-08-21 19:08:22',274,6,2,'{\"17\":1,\"2\":1,\"11\":1}',2),(14,'2018-08-21 20:57:12',138,6,2,'{\"17\":1,\"22\":1}',2),(15,'2018-08-21 20:57:23',118,6,2,'{\"17\":1}',1),(16,'2018-08-21 21:05:04',255,3,3,'{\"16\":1,\"2\":1,\"27\":1}',2),(17,'2018-08-21 21:14:19',102,6,2,'{\"23\":1}',0),(18,'2018-08-21 21:16:46',38,6,2,'{\"2\":1}',0),(19,'2018-08-21 21:22:38',20,6,2,'{\"22\":1}',2),(20,'2018-08-21 22:21:12',667,7,4,'{\"18\":15,\"26\":1}',2);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -224,7 +254,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES ('Product',1,'Състав:\r\n100% памук','https://drive.google.com/uc?id=1GoSZocMqe3Fs1SGDngi-OORMNzj5pU3a&export=download','',10,'ДЕТСКА ТЕНИСКА INDEPENDENT OE CROSS',4,'Black M',7,4,7),('Product',2,'','https://drive.google.com/uc?id=1Uc790q8p55hY7UZRANqriWkxdY8-qjKC&','',38,'ТЕНИСКА DC ENDLESS FRONTIE',10,'Black S',5,7,7),('Product',3,'','https://drive.google.com/uc?id=1Qk_H9nIpnE2DGzhbALP-wCSf6_5OGJU-&export=download','',68,'КАЧУЛКА DC ELLIS PH',1,'Black M',0,7,8),('Product',4,'','https://drive.google.com/uc?id=1Eq_5OoBHKLrv1NEg8LBB3rNsaEd0H5Od&export=download','',134.12,'КАЧУЛКА DC REBEL STAR ZIP',1,'RED: M',1,7,8),('Product',5,'','https://drive.google.com/uc?id=1r4je01QE2GoZuaBbqsDnDnyNUJ1symu-&export=download','',134,'КАЧУЛКА DC REBEL STAR ZIP',1,'Gray: M',1,7,8),('Product',6,'Състав:\r\nВъншна част: естествена кожа и текстил\r\nВътрешна част: синтетика\r\nПодметка: каучук\r\n \r\n\r\nЗабележка: От вътрешната част на обувката има отвори за проветрение.','https://drive.google.com/uc?id=1ZtnKc8L4EaiJ-pt6DfC6_xoB0NcQG0nC&export=download','',100,'ОБУВКИ DC EVAN SMITH',2,'44',4,7,5),('Product',7,'Състав:\r\nВъншна част: синтетика и текстил\r\nВътрешна част: синтетика\r\nПодметка: каучук','https://drive.google.com/uc?id=1ZWNhlL8h__-xUBQ64PcdPyZat-nCbwga&export=download','',134,'ОБУВКИ DC HEATHROW',2,'44.5',3,7,5),('Product',8,'Състав:\r\nВъншна част: естествена кожа и текстил\r\nВътрешна част: синтетика\r\nПодметка: каучук','https://drive.google.com/uc?id=1QUOicNVnuPsyYiNXNgTXKcC1071S_qpN&export=download','',128,'ОБУВКИ DC LYNNFIELD S',1,'43',10,7,5),('Product',9,'Състав:\r\nВъншна част: естествена кожа и текстил\r\nВътрешна част: синтетика\r\nПодметка: каучук','https://drive.google.com/uc?id=1G7xXl-XJi-v8P7DzOCCpIgK7heG6Msyy&export=download','',128,'ОБУВКИ DC SWITCH S',1,'44',2,7,5),('Product',10,'Състав:\r\nВъншна част: текстил\r\nВътрешна част: синтетика\r\nПодметка: каучук','https://drive.google.com/uc?id=1BOlPMaMwKZo2ljk-isDYKGGGFAoqkD5V&export=download','',89,'ОБУВКИ DC TRASE TX',1,'42',5,7,5),('Product',11,'','https://drive.google.com/uc?id=1lgxDOq6jzoDnNDn6_Ae4u9AhlsjcUq4B&export=download','',118,'СКЕЙТБОРД ДЪСКА JART PEACE 8',2,'8',9,10,9),('Product',12,'','https://drive.google.com/uc?id=1jyegQi3jJbeANbg381v0BnvxrY783wTR&export=download','',90,'СКЕЙТБОРД ДЪСКА JART REINAISSANCE 8',2,'8',1,10,9),('Product',13,'Скейт дъска Insomnia Movie Freak 7.5\" е от серията Insomnia Revolution на магазин Insomnia и е произведена във фабриката на JART в Испания.','https://drive.google.com/uc?id=1EsR053xOahEms45rESaL2AhpTwU_Twjp&export=download','',50,'ДЪСКА INSOMNIA MOVIE FREAK 7.5',10,'7.5',0,8,9),('Product',14,'','https://drive.google.com/uc?id=17WT8exnkrBV7qX1qLYez8U_2_58X79q2&export=download','',50,'ДЪСКА INSOMNIA MAPS LOGO 7.5',10,'7.5',0,8,9),('Product',16,'','https://drive.google.com/uc?id=18sqy1aw408RUzxBERP99C6qegbsY74ud&','',90,'СКЕЙТБОРД ДЪСКА JART I WANT TO BELIEVE 7.87',10,'7.8',2,10,9),('Product',17,'All time greatest skaters\r\n     ->Garrett Hill\r\n     ->Chris Cole','https://drive.google.com/uc?id=1M_wzh1GOgnUGVY6xgQXlbRbXBEowMsvV&','',118,'Zero Team edition',7,'7.75',12,9,9),('Product',18,'','https://drive.google.com/uc?id=1G_1lEYT1h9-fkd9hf2_xSUXVZCMfZxvt&','',36,'ЧОРАПИ INDEPENDENT COLOURED STRIPES',10,'',1,4,13),('Product',19,'Състав:  \r\n40% Coolmax\r\n40% Памук\r\n18% Найлон\r\n2% ЛИкра','https://drive.google.com/uc?id=1hTSaWBIcWh_62ZmcDM4LZf9TBpzwPumt&','',28,'ЧОРАПИ INDEPENDENT TRUCK CO WI14',10,'',0,4,13),('Product',20,'','https://drive.google.com/uc?id=1xIiOICo1qZtyj8UFJx45OzCngNKZdlTh&','',18,'ЧОРАПИ INDEPENDENT FINISHLINE',0,'',2,4,13),('Product',21,'absolute\r\n           mad\r\n                  (lad)','https://drive.google.com/uc?id=1aZfPZMcAPao7hPBrvm0pSDEcE7sPTZk2&','',2001.25,'Hot ass rainbow',0,'EXTRA SMALL',5,5,16),('Product',22,'1 rog \r\ngotena macka','https://drive.google.com/uc?id=1DaKbe8z4HpATHFxcgdx3mo0ToY_Vzpwx&','',20,'Rainbow six seige',2,'',17,9,16),('Product',23,'LIKE A\r\n        RAINBOW IN THE\r\n             daaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n            rrrrrrrrrrrrrrrrrrrrrrrkkkkkkkk\r\nYEEEEAH','https://drive.google.com/uc?id=1V2T53bk1pKv-K98GJD7yPP1mhUmKXu8u&','',102,'Rainbow in the dark',1,'',2,9,16),('Product',24,'','https://drive.google.com/uc?id=1DM-O-aFWedDbLu_OPWMtZfsbpTr3fVYN&','',19,'Rainbow in the forest',0,'',4,5,16),('Product',25,'Скейтборд дъска Element.\r\nРазмер:\r\n- Width 8.3125\".\r\n- Length 32.1875\".\r\nДопълнителна информация:\r\n- Премиум 7-пластова кленова конструкция.\r\n- Лека и гъвкъва дъска.','https://drive.google.com/uc?id=1eQQP1OO-FbfgFIq2ZVAFA04rVBMp-IVz&','',127,'Element Mason Owl',10,'8.3',0,11,9),('Product',26,'Скейтборд дъска Element.\r\nРазмер:\r\n- Width 8.25\".\r\n- Length 31.933\".\r\nДопълнителна информация:\r\n- Премиум 7-пластова кленова конструкция.\r\n- Лека и гъвкъва дъска.','https://drive.google.com/uc?id=1oA_lQq_wjrou8RxyPQaDx-pBx4QvXwB-&','',127,' Element Barbee Goodwin',5,'8.2',0,11,9),('Product',27,'Скейтборд дъска Element.\r\nРазмер:\r\n- Width 8”.\r\n- Length 31.75\"\r\nДопълнителна информация:\r\n- Премиум 7-пластова кленова конструкция.\r\n- Лека и гъвкъва дъска.','https://drive.google.com/uc?id=15qSeXaIDYqS4eQtEAgdM_8D9BWY-kiIs&','',127,'Element YAWYE Orange',5,'8',2,11,9),('Product',28,'Скейтборд комплект Element.\r\nРазмер:\r\n- Width 8”.\r\n- Length 31.75\"\r\nДопълнителна информация:\r\n- Машинки: Element\r\n- Колелца: Element 52mm\r\n- Лагери: Abec 5','https://drive.google.com/uc?id=1H5yXlKWDRvWW0OYe35vbTdnZ_3PCHbGE&','',190,'Element Hatched Rasta 8 Skateboard Complete ',0,'8',2,11,10);
+INSERT INTO `products` VALUES ('Product',1,'Състав:\r\n100% памук','https://drive.google.com/uc?id=1GoSZocMqe3Fs1SGDngi-OORMNzj5pU3a&export=download','',10,'ДЕТСКА ТЕНИСКА INDEPENDENT OE CROSS',4,'Black M',8,4,7),('Product',2,'','https://drive.google.com/uc?id=1Uc790q8p55hY7UZRANqriWkxdY8-qjKC&','',38,'ТЕНИСКА DC ENDLESS FRONTIE',9,'Black S',5,7,7),('Product',3,'','https://drive.google.com/uc?id=1Qk_H9nIpnE2DGzhbALP-wCSf6_5OGJU-&export=download','',68,'КАЧУЛКА DC ELLIS PH',1,'Black M',0,7,8),('Product',4,'','https://drive.google.com/uc?id=1Eq_5OoBHKLrv1NEg8LBB3rNsaEd0H5Od&export=download','',134.12,'КАЧУЛКА DC REBEL STAR ZIP',1,'RED: M',1,7,8),('Product',5,'','https://drive.google.com/uc?id=1r4je01QE2GoZuaBbqsDnDnyNUJ1symu-&export=download','',134,'КАЧУЛКА DC REBEL STAR ZIP',1,'Gray: M',1,7,8),('Product',6,'Състав:\r\nВъншна част: естествена кожа и текстил\r\nВътрешна част: синтетика\r\nПодметка: каучук\r\n \r\n\r\nЗабележка: От вътрешната част на обувката има отвори за проветрение.','https://drive.google.com/uc?id=1ZtnKc8L4EaiJ-pt6DfC6_xoB0NcQG0nC&export=download','',100,'ОБУВКИ DC EVAN SMITH',2,'44',4,7,5),('Product',7,'Състав:\r\nВъншна част: синтетика и текстил\r\nВътрешна част: синтетика\r\nПодметка: каучук','https://drive.google.com/uc?id=1ZWNhlL8h__-xUBQ64PcdPyZat-nCbwga&export=download','',134,'ОБУВКИ DC HEATHROW',2,'44.5',3,7,5),('Product',8,'Състав:\r\nВъншна част: естествена кожа и текстил\r\nВътрешна част: синтетика\r\nПодметка: каучук','https://drive.google.com/uc?id=1QUOicNVnuPsyYiNXNgTXKcC1071S_qpN&export=download','',128,'ОБУВКИ DC LYNNFIELD S',1,'43',10,7,5),('Product',9,'Състав:\r\nВъншна част: естествена кожа и текстил\r\nВътрешна част: синтетика\r\nПодметка: каучук','https://drive.google.com/uc?id=1G7xXl-XJi-v8P7DzOCCpIgK7heG6Msyy&export=download','',128,'ОБУВКИ DC SWITCH S',1,'44',2,7,5),('Product',10,'Състав:\r\nВъншна част: текстил\r\nВътрешна част: синтетика\r\nПодметка: каучук','https://drive.google.com/uc?id=1BOlPMaMwKZo2ljk-isDYKGGGFAoqkD5V&export=download','',89,'ОБУВКИ DC TRASE TX',1,'42',5,7,5),('Product',11,'','https://drive.google.com/uc?id=1lgxDOq6jzoDnNDn6_Ae4u9AhlsjcUq4B&export=download','',118,'СКЕЙТБОРД ДЪСКА JART PEACE 8',2,'8',9,10,9),('Product',12,'','https://drive.google.com/uc?id=1jyegQi3jJbeANbg381v0BnvxrY783wTR&export=download','',90,'СКЕЙТБОРД ДЪСКА JART REINAISSANCE 8',2,'8',1,10,9),('Product',13,'Скейт дъска Insomnia Movie Freak 7.5\" е от серията Insomnia Revolution на магазин Insomnia и е произведена във фабриката на JART в Испания.','https://drive.google.com/uc?id=1EsR053xOahEms45rESaL2AhpTwU_Twjp&export=download','',50,'ДЪСКА INSOMNIA MOVIE FREAK 7.5',10,'7.5',0,8,9),('Product',14,'','https://drive.google.com/uc?id=17WT8exnkrBV7qX1qLYez8U_2_58X79q2&export=download','',50,'ДЪСКА INSOMNIA MAPS LOGO 7.5',10,'7.5',0,8,9),('Product',16,'','https://drive.google.com/uc?id=18sqy1aw408RUzxBERP99C6qegbsY74ud&','',90,'СКЕЙТБОРД ДЪСКА JART I WANT TO BELIEVE 7.87',10,'7.8',2,10,9),('Product',17,'All time greatest skaters\r\n     ->Garrett Hill\r\n     ->Chris Cole','https://drive.google.com/uc?id=1M_wzh1GOgnUGVY6xgQXlbRbXBEowMsvV&','',118,'Zero Team edition',6,'7.75',13,9,9),('Product',18,'','https://drive.google.com/uc?id=1G_1lEYT1h9-fkd9hf2_xSUXVZCMfZxvt&','',36,'ЧОРАПИ INDEPENDENT COLOURED STRIPES',10,'',2,4,13),('Product',19,'Състав:  \r\n40% Coolmax\r\n40% Памук\r\n18% Найлон\r\n2% ЛИкра','https://drive.google.com/uc?id=1hTSaWBIcWh_62ZmcDM4LZf9TBpzwPumt&','',28,'ЧОРАПИ INDEPENDENT TRUCK CO WI14',10,'',0,4,13),('Product',20,'','https://drive.google.com/uc?id=1xIiOICo1qZtyj8UFJx45OzCngNKZdlTh&','',18,'ЧОРАПИ INDEPENDENT FINISHLINE',0,'',2,4,13),('Product',21,'absolute\r\n           mad\r\n                  (lad)','https://drive.google.com/uc?id=1aZfPZMcAPao7hPBrvm0pSDEcE7sPTZk2&','',2001.25,'Hot ass rainbow',0,'EXTRA SMALL',5,5,16),('Product',22,'1 rog \r\ngotena macka','https://drive.google.com/uc?id=1DaKbe8z4HpATHFxcgdx3mo0ToY_Vzpwx&','',20,'Rainbow six seige',1,'',17,9,16),('Product',23,'LIKE A\r\n        RAINBOW IN THE\r\n             daaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n            rrrrrrrrrrrrrrrrrrrrrrrkkkkkkkk\r\nYEEEEAH','https://drive.google.com/uc?id=1V2T53bk1pKv-K98GJD7yPP1mhUmKXu8u&','',102,'Rainbow in the dark',1,'',2,9,16),('Product',24,'','https://drive.google.com/uc?id=1DM-O-aFWedDbLu_OPWMtZfsbpTr3fVYN&','',19,'Rainbow in the forest',0,'',4,5,16),('Product',25,'Скейтборд дъска Element.\r\nРазмер:\r\n- Width 8.3125\".\r\n- Length 32.1875\".\r\nДопълнителна информация:\r\n- Премиум 7-пластова кленова конструкция.\r\n- Лека и гъвкъва дъска.','https://drive.google.com/uc?id=1eQQP1OO-FbfgFIq2ZVAFA04rVBMp-IVz&','',127,'Element Mason Owl',10,'8.3',0,11,9),('Product',26,'Скейтборд дъска Element.\r\nРазмер:\r\n- Width 8.25\".\r\n- Length 31.933\".\r\nДопълнителна информация:\r\n- Премиум 7-пластова кленова конструкция.\r\n- Лека и гъвкъва дъска.','https://drive.google.com/uc?id=1oA_lQq_wjrou8RxyPQaDx-pBx4QvXwB-&','',127,' Element Barbee Goodwin',5,'8.2',1,11,9),('Product',27,'Скейтборд дъска Element.\r\nРазмер:\r\n- Width 8”.\r\n- Length 31.75\"\r\nДопълнителна информация:\r\n- Премиум 7-пластова кленова конструкция.\r\n- Лека и гъвкъва дъска.','https://drive.google.com/uc?id=15qSeXaIDYqS4eQtEAgdM_8D9BWY-kiIs&','',127,'Element YAWYE Orange',5,'8',2,11,9),('Product',28,'Скейтборд комплект Element.\r\nРазмер:\r\n- Width 8”.\r\n- Length 31.75\"\r\nДопълнителна информация:\r\n- Машинки: Element\r\n- Колелца: Element 52mm\r\n- Лагери: Abec 5','https://drive.google.com/uc?id=1H5yXlKWDRvWW0OYe35vbTdnZ_3PCHbGE&','',190,'Element Hatched Rasta 8 Skateboard Complete ',0,'8',2,11,10);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,7 +297,7 @@ CREATE TABLE `shopping_carts` (
   PRIMARY KEY (`id`),
   KEY `FK3iw2988ea60alsp0gnvvyt744` (`user_id`),
   CONSTRAINT `FK3iw2988ea60alsp0gnvvyt744` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -276,7 +306,7 @@ CREATE TABLE `shopping_carts` (
 
 LOCK TABLES `shopping_carts` WRITE;
 /*!40000 ALTER TABLE `shopping_carts` DISABLE KEYS */;
-INSERT INTO `shopping_carts` VALUES (1,'{}',1),(2,'{\"17\":1}',3),(18,'{\"17\":1}',2);
+INSERT INTO `shopping_carts` VALUES (1,'{}',1),(2,'{}',3),(18,'{}',2),(19,'{}',4);
 /*!40000 ALTER TABLE `shopping_carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,7 +330,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_6dotkott2kjsp8vw4d0m25fb7` (`email`),
   UNIQUE KEY `UK_r43af9ap4edm43mmtq01oddj6` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -309,7 +339,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'ceci2205@abv.bg','','','','','$2a$10$x8uNhQ9U/gJaKGF62ySLBexIwy/pda0FvEqSBoHCeE5XuUaty69ie','2018-08-19 15:15:58','cyecize'),(2,'smoke@abv.bg','','','','','$2a$10$4n.5HoKlCwABgjar0/Tk2eqPZBfB3/i7NH07gFjDcDt.hZxcYqvaK','2018-08-19 15:16:32','elsmokio'),(3,'bosa@abv.bg','','','','','$2a$10$cUSz20EQq2SI/nXk/Ie6j.pwF7iWs0CpZ98OfCNQpRnA4sqfXwNyG','2018-08-19 15:16:42','bosa');
+INSERT INTO `users` VALUES (1,'ceci2205@abv.bg','','','','','$2a$10$x8uNhQ9U/gJaKGF62ySLBexIwy/pda0FvEqSBoHCeE5XuUaty69ie','2018-08-19 15:15:58','cyecize'),(2,'smoke@abv.bg','','','','','$2a$10$4n.5HoKlCwABgjar0/Tk2eqPZBfB3/i7NH07gFjDcDt.hZxcYqvaK','2018-08-19 15:16:32','elsmokio'),(3,'bosa@abv.bg','','','','','$2a$10$cUSz20EQq2SI/nXk/Ie6j.pwF7iWs0CpZ98OfCNQpRnA4sqfXwNyG','2018-08-19 15:16:42','bosa'),(4,'cyecizefake@abv.bg','','','','','$2a$10$VklH1/xnveSvzD/y3vP7H.CjvAoInXuZYXkdUUpO3XXHBxqmoyPe2','2018-08-21 22:18:22','zzfake');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -336,7 +366,7 @@ CREATE TABLE `users_roles` (
 
 LOCK TABLES `users_roles` WRITE;
 /*!40000 ALTER TABLE `users_roles` DISABLE KEYS */;
-INSERT INTO `users_roles` VALUES (1,1),(1,2),(1,3),(3,3),(3,2),(2,3);
+INSERT INTO `users_roles` VALUES (1,1),(1,2),(1,3),(3,3),(3,2),(2,3),(4,3);
 /*!40000 ALTER TABLE `users_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -357,4 +387,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-21 11:23:29
+-- Dump completed on 2018-08-21 22:24:36

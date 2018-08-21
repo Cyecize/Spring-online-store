@@ -2,7 +2,7 @@ package com.cyecize.skatefixers.controllers;
 
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
-import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
+import com.cyecize.skatefixers.areas.twig.util.TwigUtil;
 import com.cyecize.skatefixers.exceptions.InternalException;
 import com.cyecize.skatefixers.exceptions.JsonException;
 import com.cyecize.skatefixers.exceptions.NotFoundException;

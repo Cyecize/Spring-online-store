@@ -16,6 +16,8 @@ public interface UserService extends UserDetailsService {
 
     void enableUser(User user);
 
+    void changeUserRole(User user, UserRoleType roleType);
+
     User findOneById(Long id);
 
     User findOneByUsername(String username);
@@ -24,5 +26,6 @@ public interface UserService extends UserDetailsService {
 
     List<User> findAll();
 
-    void changeUserRole(User user, UserRoleType roleType);
+    List<User> findByRole(UserRoleType roleType);
+
 }

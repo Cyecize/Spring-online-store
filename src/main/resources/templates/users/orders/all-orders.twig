@@ -1,0 +1,18 @@
+{% extends '../index.twig' %}
+
+{% block userBody %}
+    <div>
+        <h3 class="text-info">{{ dict.all }} {{ dict.orders }}</h3>
+        <a href="/users/profile">{{ dict.back }}</a>
+        <hr class="hr-dark">
+    </div>
+    <div>
+        {% for order in orders %}
+            <div class="col-md-4 rounded bg-gray m-1">
+                <p class="font-15em">{{ order.orderStatus.name() }}, <small><strong class="text-info">${{ order.totalPrice }}</strong></small></p>
+                <p>{{ order.orderDate.format(util.simpleFormat) }}</p>
+                <a href="/users/orders/review/{{ order.id }}" class="btn btn-dark">{{ dict.details }}</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+<div class="notification-container">
+    <div class="row m-0">
+        <div class="col-md-6">
+            <div class="notification-content">
+                <a href="{{ noti.href }}" class="notification-hyperlink text-dark" onclick="NotificationModalManager.viewNotification({{ noti.id }});">
+                    <p class="notification-text m-0 p-0">{{ noti.content }}</p>
+                    <small class="text-muted">({{ noti.date.format(util.simpleFormat) }})</small>
+                </a>
+            </div>
+        </div>
+        <div class="col text-right">
+            <button onclick="NotificationModalManager.removeNotification({{ noti.id }});" class="btn btn-{% if noti.seen %}info {% else %}default {% endif %} notification-btn remove-noti-btn mr-auto" notificationId="{{ noti.id }}">
+                {{ dict.remove }}
+            </button>
+        </div>
+    </div>
+</div>

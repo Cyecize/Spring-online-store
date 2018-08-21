@@ -8,7 +8,7 @@ import com.cyecize.skatefixers.areas.products.entities.Brand;
 import com.cyecize.skatefixers.areas.products.services.BaseProductService;
 import com.cyecize.skatefixers.areas.products.services.BrandService;
 import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
-import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
+import com.cyecize.skatefixers.areas.twig.util.TwigUtil;
 import com.cyecize.skatefixers.constants.WebConstants;
 import com.cyecize.skatefixers.controllers.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
