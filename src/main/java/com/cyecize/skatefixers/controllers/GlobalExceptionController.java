@@ -3,6 +3,7 @@ package com.cyecize.skatefixers.controllers;
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
 import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
+import com.cyecize.skatefixers.exceptions.InternalException;
 import com.cyecize.skatefixers.exceptions.JsonException;
 import com.cyecize.skatefixers.exceptions.NotFoundException;
 import com.cyecize.skatefixers.http.JsonResponse;
@@ -30,6 +31,15 @@ public class GlobalExceptionController extends BaseController {
         modelAndView.addObject("message", e.getMessage());
         return super.view("errors/not-found", modelAndView);
     }
+
+    @ExceptionHandler(InternalException.class)
+    public ModelAndView onInternalException(InternalException e){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("reason", e.getClass().getAnnotation(ResponseStatus.class).reason());
+        modelAndView.addObject("message", e.getMessage());
+        return view("errors/internal", modelAndView);
+    }
+
 
     @ExceptionHandler({JsonException.class})
     @ResponseBody

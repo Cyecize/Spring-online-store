@@ -3,6 +3,7 @@ package com.cyecize.skatefixers.areas.orders.controllers;
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.orders.enums.OrderStatus;
 import com.cyecize.skatefixers.areas.orders.services.OrderService;
+import com.cyecize.skatefixers.areas.orders.viewModels.WorkerOrderViewModel;
 import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
 import com.cyecize.skatefixers.areas.twig.services.TwigUtil;
 import com.cyecize.skatefixers.controllers.BaseController;
@@ -47,6 +48,18 @@ public class OrderWorkerController extends BaseController {
 
     @GetMapping("/review/{id:[\\d]+}")
     public ModelAndView reviewOrder(@PathVariable Long id){
-        return null;
+        WorkerOrderViewModel workerOrderViewModel =this.orderService.forgeWorkerOrderViewModel(this.orderService.findById(id));
+        return super.view("workers/orders/review-order", "viewModel", workerOrderViewModel);
+    }
+
+    @GetMapping("/accept/{id:[\\d]+}")
+    public ModelAndView acceptOrderAction(@PathVariable("id") Long id){
+        this.orderService.acceptOrder(this.orderService.findById(id));
+        return super.redirect("/orders/review/" + id);
+    }
+    @GetMapping("/reject/{id:[\\d]+}")
+    public ModelAndView rejectOrderAction(@PathVariable("id") Long id){
+        this.orderService.rejectOrder(this.orderService.findById(id));
+        return super.redirect("/orders/review/" + id);
     }
 }

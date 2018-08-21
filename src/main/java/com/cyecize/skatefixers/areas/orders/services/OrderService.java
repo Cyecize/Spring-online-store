@@ -10,7 +10,15 @@ import java.util.List;
 
 public interface OrderService {
 
+    void acceptOrder(Order order);
+
+    void rejectOrder(Order order);
+
     Order createOrder(User user, Address address);
+
+    Order findById(Long id);
+
+    WorkerOrderViewModel forgeWorkerOrderViewModel(Order order);
 
     List<Order> findAll();
 

@@ -22,7 +22,7 @@
 
                         <div class="row">
                             {% for product in viewModel.products %}
-                                {% embed '../partials/products/regular-product-cart.html.twig' with {'product':product} %} {% endembed %}
+                                {% embed '../partials/products/regular-product-cart.html.twig' with {'product':product} %}{% endembed %}
                             {% endfor %}
                         </div>
                         {% embed '../partials/products/pagination.html.twig' with {'pageable':viewModel.products} %} {% endembed %}

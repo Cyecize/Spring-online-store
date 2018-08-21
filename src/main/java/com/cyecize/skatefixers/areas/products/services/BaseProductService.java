@@ -18,6 +18,8 @@ public interface BaseProductService {
 
     void hideProduct(BaseProduct product);
 
+    void save(BaseProduct product);
+
     void createProduct(CreateProductBindingModel bindingModel, File image);
 
     void enableOrDisableProduct(BaseProduct product, boolean isEnabled);

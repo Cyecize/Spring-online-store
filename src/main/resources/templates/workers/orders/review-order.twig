@@ -1,0 +1,70 @@
+{% extends '../index.twig' %}
+
+{% block title %}Review Order {% endblock %}
+
+{% block workerBody %}
+    <div>
+        <h3 class="text-info">Edit order: {{ viewModel.order.id }}</h3>
+        <a href="/worker-panel">{{ dict.back }}</a>
+        <hr class="hr-dark">
+    </div>
+    {% if  viewModel.isExecutable == false %}
+        <h3 class="alert alert-warning">{{ dict.thisOrderCannotBeAccepted }}</h3>
+    {% endif %}
+    <h1>Status:
+        <small class="text-muted">{{ viewModel.order.orderStatus.name() }}</small>
+    </h1>
+    <h2>{{ dict.products }} (<small>{{ viewModel.shoppingCart|length }}</small>)
+    </h2>
+    <hr class="hr-dark">
+    <section>
+        {% for prodItem in viewModel.shoppingCart %}
+            <div class="rounded bg-trans-gray p-2 mt-1">
+                <h5><a href="/products/{{ prodItem.product.id }}"
+                       class="text-info">{{ prodItem.product.productName }}</a></h5>
+                <p class="text-muted">{{ dict.requested }}: {{ prodItem.quantity }}, {{ dict.quantity }}
+                    : {{ prodItem.product.quantity }}</p>
+                <small>{{ prodItem.calcTotal }}</small>
+            </div>
+        {% endfor %}
+    </section>
+    <h2>{{ dict.address }}</h2>
+    <hr class="hr-dark">
+    <section>
+        <div class="rounded bg-trans-gray p-2 mt-1">
+            {% set address = viewModel.order.address %}
+            <p>{{ dict.username }}: <a href="/users/show/{{ address.user.id }}">{{ address.user.username }}</a></p>
+            <p>{{ dict.name }}: {{ address.fullName }}</p>
+            <p>{{ dict.phoneNumber }}: {{ address.phoneNumber }}</p>
+            <p>{{ dict.address }}: {{ address.address }}</p>
+        </div>
+    </section>
+    <h2>{{ dict.price }}: <strong class="text-info">{{ viewModel.calcTotal }}</strong></h2>
+    <hr>
+    <section>
+        {% if viewModel.isAwaiting %}
+            {% if viewModel.isExecutable == true %}
+                <a href="/orders/accept/{{ viewModel.order.id }}" id="confirmOrderBtn" class="btn btn-outline-success">Accept</a>
+            {% endif %}
+            <a href="/orders/reject/{{ viewModel.order.id }}" id="rejectOrderBtn"
+               class="btn btn-outline-danger">Reject</a>
+        {% endif %}
+    </section>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(function () {
+           $('#confirmOrderBtn').on('click', function (e) {
+               if(!confirm("Confirming order will adjust product quantities, proceed?"))
+                   e.preventDefault();
+           }) ;
+           $('#rejectOrderBtn').on('click', function (e) {
+               if(!confirm("Rejecting order cannot be undone, proceed?"))
+                   e.preventDefault();
+           }) ;
+        });
+    </script>
+{% endblock %}

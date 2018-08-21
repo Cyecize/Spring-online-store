@@ -1,7 +1,7 @@
 <div class="col-lg-4 col-md-6 mb-4">
     <div class="card h-100">
         <a href="/products/{{ product.id }}"><img class="card-img-top" src="{{ product.image }}" height="200px"
-                         alt="{{ product.description }}"></a>
+                                                  alt="{{ product.description }}"></a>
         <div class="card-body">
             <h4 class="card-title">
                 <a href="/brands/{{ product.brand.brandName }}" class="text-success">{{ product.brand.brandName }}</a>
@@ -12,7 +12,21 @@
         <div class="card-footer">
             <small class="text-muted row">
                 <a class="col-md-5 btn btn-sm btn-success " href="/products/{{ product.id }}">{{ dict.details }}</a>
-                {% block disableBuyBtn %}<button prodId="{{ product.id }}" class="buy-product-btn col-md-5 btn btn-sm btn-dark ml-auto">{{ dict.buy }}</button>{% endblock %}
+                {% if  product.isEnabled %}
+                    {% block disableBuyBtn %}
+                        {% if product.quantity > 0 %}
+                        <button prodId="{{ product.id }}"
+                                class="buy-product-btn col-md-5 btn btn-sm btn-dark ml-auto">{{ dict.buy }}</button>
+                        {% else %}
+                            <button type="button" class="col-md-5 btn btn-sm btn-danger ml-auto">N/A</button>
+                        {% endif %}
+                    {% endblock %}
+                {% else %}
+                    {% if  informer.hasRole('ROLE_WORKER') %}
+                        <a class="col-md-5 btn btn-sm btn-dark ml-auto " href="/products/edit/{{ product.id }}">Edit</a>
+                    {% endif %}
+                {% endif %}
+
             </small>
         </div>
     </div>

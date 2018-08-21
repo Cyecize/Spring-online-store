@@ -95,7 +95,16 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String AWAITING = "Чакаща";
     public static final String REJECTED = "Отказана";
     public static final String ACCEPTED = "Приета";
+    public static final String THIS_ORDER_CANNOT_BE_ACCEPTED = "Тази поръчка не може да бъде изпълнена";
+    public static final String REQUESTED = "Заявени";
 
+    public String thisOrderCannotBeAccepted() {
+        return THIS_ORDER_CANNOT_BE_ACCEPTED;
+    }
+
+    public String requested() {
+        return REQUESTED;
+    }
 
     public String orders() {
         return ORDERS;

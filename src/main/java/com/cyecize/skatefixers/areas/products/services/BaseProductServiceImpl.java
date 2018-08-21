@@ -71,6 +71,11 @@ public class BaseProductServiceImpl implements BaseProductService {
     }
 
     @Override
+    public void save(BaseProduct product) {
+        this.productRepository.save(product);
+    }
+
+    @Override
     public void createProduct(CreateProductBindingModel bindingModel, File image) {
         BaseProduct product = this.modelMapper.map(bindingModel, Product.class);
         this.productRepository.save(product);
@@ -126,6 +131,7 @@ public class BaseProductServiceImpl implements BaseProductService {
         List<BaseProduct> products = category.activeProductsRecursive();
         return new PageImpl<>(
                 products.stream()
+                        .sorted(((o1, o2) -> o2.getId().compareTo(o1.getId())))
                         .skip(pageable.getOffset())
                         .limit(pageable.getPageSize())
                         .collect(Collectors.toList()),

@@ -155,4 +155,8 @@ public interface Dictionary extends ErrorDictionary {
     String rejected();
 
     String accepted();
+
+    String thisOrderCannotBeAccepted();
+
+    String requested();
 }

@@ -94,7 +94,16 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String AWAITING = "Awaiting";
     public static final String REJECTED = "Rejected";
     public static final String ACCEPTED = "Accepted";
+    public static final String THIS_ORDER_CANNOT_BE_ACCEPTED = "This order cannot be accepted";
+    public static final String REQUESTED = "Requested";
 
+    public String thisOrderCannotBeAccepted() {
+        return THIS_ORDER_CANNOT_BE_ACCEPTED;
+    }
+
+    public String requested() {
+        return REQUESTED;
+    }
 
     public String orders() {
         return ORDERS;
