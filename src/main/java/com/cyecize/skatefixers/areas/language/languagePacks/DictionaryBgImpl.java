@@ -103,7 +103,12 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String REMOVE_ALL = "Изтриване на всички";
     public static final String VIEW_FULL_SCREEN = "Преглед на цял екран";
     public static final String NO_NOTIFICATIONS = "Нямате известия";
+    public static final String OLD = "Стара";
 
+
+    public String old() {
+        return OLD;
+    }
 
     public String noNotifications() {
         return NO_NOTIFICATIONS;

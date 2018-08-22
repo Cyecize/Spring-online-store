@@ -102,6 +102,12 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String REMOVE_ALL = "Remove all";
     public static final String VIEW_FULL_SCREEN = "View full screen";
     public static final String NO_NOTIFICATIONS = "All good";
+    public static final String OLD = "Old";
+
+
+    public String old() {
+        return OLD;
+    }
 
     public String noNotifications() {
         return NO_NOTIFICATIONS;

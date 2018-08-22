@@ -1,0 +1,9 @@
+{% extends '../index.twig' %}
+
+{% block userBody %}
+    <form method="post">
+        <h2 class="alert alert-warning">If you proceed, you will NEVER be able to login again!</h2>
+        {% embed '../../partials/csrf.twig' %} {% endembed %}
+        <button type="submit" class="btn btn-danger">PROCEED</button>
+    </form>
+{% endblock %}

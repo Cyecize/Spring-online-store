@@ -112,6 +112,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void changePassword(String password, User user) {
+        user.setPassword(this.bCryptPasswordEncoder.encode(password));
+        this.userRepository.saveAndFlush(user);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User user = this.userRepository.findUserByUsernameOrEmail(s, s);
         if (user == null)

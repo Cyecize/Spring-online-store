@@ -1,0 +1,58 @@
+{% extends '../../base.html.twig' %}
+
+{% block body %}
+    <div class="navbar-filler"></div>
+    <div class="container">
+        <h3 class="text-muted">{{ user.username }}</h3>
+        <small class="text-muted">{{ user.registeredOn.format(util.simpleFormat) }}</small>
+        <hr>
+        {% if informer.hasRole('ROLE_WORKER') %}
+            <div class="row">
+
+                <div class="col-md-4">
+                    <h4>{{ user.email }}</h4>
+                    <form method="post" action="/users/workers/email-user/{{ user.id }}">
+                        <div class="form-group">
+                            <label for="topic">Topic</label>
+                            <input id="topic" name="topic" required maxlength="100" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required class="form-control"></textarea>
+                        </div>
+                        {% embed '../../partials/csrf.twig' %} {% endembed %}
+                        <button type="submit" class="btn btn-outline-primary">Send Email</button>
+                    </form>
+                </div>
+
+                <div class="col-md-4">
+                    <h4>Send notification</h4>
+                    <form method="post" action="/users/workers/notify-user/{{ user.id }}">
+                        <div class="form-group">
+                            <label for="url">URL</label>
+                            <input value="#" id="url" name="url" required maxlength="100" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required class="form-control"></textarea>
+                        </div>
+                        {% embed '../../partials/csrf.twig' %} {% endembed %}
+                        <button type="submit" class="btn btn-outline-primary">Send Notification</button>
+                    </form>
+                </div>
+
+            </div>
+
+        {% endif %}
+
+        {% if informer.hasRole('ROLE_ADMIN') %}
+            <h3>Admin</h3>
+            <hr>
+            {% if user.isEnabled %}
+                <a class="btn btn-danger btn-outline-danger" href="/admin/users/disable/{{ user.id }}">Disable</a>
+            {% else %}
+                <a class="btn btn-success btn-outline-success" href="/admin/users/enable/{{ user.id }}">Enable</a>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

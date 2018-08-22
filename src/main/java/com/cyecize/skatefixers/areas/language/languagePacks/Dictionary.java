@@ -171,4 +171,7 @@ public interface Dictionary extends ErrorDictionary {
     String viewFullScreen();
 
     String noNotifications();
+
+    String old();
+
 }

@@ -1,5 +1,7 @@
 package com.cyecize.skatefixers.areas.orders.controllers;
 
+import com.cyecize.skatefixers.areas.language.annotations.LocalLang;
+import com.cyecize.skatefixers.areas.language.enums.LanguageLocaleType;
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.notifications.services.MailService;
 import com.cyecize.skatefixers.areas.notifications.services.NotificationManager;
@@ -65,6 +67,7 @@ public class OrderWorkerController extends BaseController {
     }
 
     @GetMapping("/accept/{id:[\\d]+}")
+    @LocalLang(langType = LanguageLocaleType.BG)
     public ModelAndView acceptOrderAction(@PathVariable("id") Long id){
         Order order =this.orderService.findById(id);
         this.orderService.acceptOrder(order);
@@ -73,6 +76,7 @@ public class OrderWorkerController extends BaseController {
         return super.redirect("/orders/review/" + id);
     }
     @GetMapping("/reject/{id:[\\d]+}")
+    @LocalLang(langType = LanguageLocaleType.BG)
     public ModelAndView rejectOrderAction(@PathVariable("id") Long id){
         Order order = this.orderService.findById(id);
         this.orderService.rejectOrder(order);

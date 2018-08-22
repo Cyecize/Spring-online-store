@@ -25,13 +25,19 @@
 
     <!-- jQuery -->
     <script>
-        var CSRF_HEADER = '{{_csrf.headerName}}';
-        var CSRF_TOKEN = '{{_csrf.token}}';
+        var CSRF_HEADER = '{{ _csrf.headerName }}';
+        var CSRF_TOKEN = '{{ _csrf.token }}';
     </script>
     <script src="/styles/js/jQuery331.js"></script>
 </head>
 <body>
 {% embed 'partials/header.html.twig' %} {% endembed %}
+{% if info is defined %}
+    {% if  info|length > 0 %}
+        <div class="navbar-filler"></div>
+        <h2 class="alert alert-info">{{ info }}</h2>
+    {% endif %}
+{% endif %}
 {% block body %}{% endblock %}
 {% embed 'partials/footer.html.twig' %} {% endembed %}
 <!-- scripts -->
@@ -50,7 +56,7 @@
                     window.location = "/";
                     console.log("logged out");
                 },
-                error:console.error
+                error: console.error
             });
         });
     });
