@@ -174,4 +174,6 @@ public interface Dictionary extends ErrorDictionary {
 
     String old();
 
+    String messageSent();
+
 }

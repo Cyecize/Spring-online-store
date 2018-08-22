@@ -28,6 +28,8 @@ public interface BaseProductService {
 
     void editProduct(EditProductBindingModel bindingModel, File image,  Long id);
 
+    void resetViews();
+
     BaseProduct findOneById(Long id);
 
     Page<BaseProduct> findAll(Pageable pageable);

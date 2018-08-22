@@ -40,14 +40,12 @@ public class SkateFixersApplication {
 
     @PostConstruct
     public void onStartup(){
-        Timer timer = new Timer(2000, e -> {
+        Timer timer = new Timer(3000, e -> {
             System.out.println(String.format("Listening:http://localhost:%s", port));
         });
         timer.setRepeats(false);
         timer.start();
         this.initRoles();
-
-
     }
 
     public static void main(String[] args) {

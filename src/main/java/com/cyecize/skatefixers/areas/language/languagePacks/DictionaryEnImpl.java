@@ -103,6 +103,12 @@ public class DictionaryEnImpl implements Dictionary {
     public static final String VIEW_FULL_SCREEN = "View full screen";
     public static final String NO_NOTIFICATIONS = "All good";
     public static final String OLD = "Old";
+    public static final String MESSAGE_SENT = "Message sent";
+
+
+    public String messageSent() {
+        return MESSAGE_SENT;
+    }
 
 
     public String old() {

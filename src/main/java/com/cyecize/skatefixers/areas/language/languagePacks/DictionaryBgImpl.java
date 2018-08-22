@@ -104,7 +104,12 @@ public class DictionaryBgImpl implements Dictionary {
     public static final String VIEW_FULL_SCREEN = "Преглед на цял екран";
     public static final String NO_NOTIFICATIONS = "Нямате известия";
     public static final String OLD = "Стара";
+    public static final String MESSAGE_SENT = "Съобщението е изпратено.";
 
+
+    public String messageSent() {
+        return MESSAGE_SENT;
+    }
 
     public String old() {
         return OLD;

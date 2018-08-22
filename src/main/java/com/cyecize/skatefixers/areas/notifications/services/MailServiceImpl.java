@@ -7,13 +7,14 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MailServiceImpl implements MailService {
 
     private static final String FROM = "SKATE_FIXERS";
 
     private final JavaMailSender javaMailSender;
-
 
 
     @Autowired
@@ -31,6 +32,14 @@ public class MailServiceImpl implements MailService {
     @Async
     public void sendMessageToEmail(String email, String subject, String message) {
         this.javaMailSender.send(this.createMessage(email, subject, message));
+    }
+
+    @Override
+    @Async
+    public void sendMessageToUsers(List<User> byRole, String subject, String message) {
+        for (User user : byRole) {
+            this.sendMessageToUser(user, subject, message);
+        }
     }
 
     private SimpleMailMessage createMessage(String email, String subject, String message){

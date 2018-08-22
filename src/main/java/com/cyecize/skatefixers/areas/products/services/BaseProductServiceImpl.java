@@ -20,6 +20,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -112,6 +113,14 @@ public class BaseProductServiceImpl implements BaseProductService {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    @Scheduled(cron = "0 0 2 * * MON")
+    public void resetViews() {
+        List<BaseProduct> products  = this.productRepository.findAll();
+        products.forEach(p -> p.setWeeklyViews(0));
+        this.productRepository.saveAll(products);
     }
 
     @Override

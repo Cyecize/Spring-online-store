@@ -40,11 +40,11 @@ public class GlobalExceptionController extends BaseController {
         return view("errors/internal", modelAndView);
     }
 
-
     @ExceptionHandler({JsonException.class})
     @ResponseBody
     public JsonResponse onJsonException(JsonException e, HttpServletResponse response){
         response.setStatus(e.getStatus().value());
         return  new JsonResponse(e.getMessage(), e.getStatus(), e.getBody());
     }
+
 }
