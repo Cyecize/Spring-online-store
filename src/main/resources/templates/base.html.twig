@@ -9,6 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- facebook  -->
+    {#<meta property="fb:app_id" content="{% block fpApp %}{% endblock %}">#}
+    <meta property="og:type" content="{% block ogType %}website{% endblock %}"/>
+    {#<meta property="og:url" content="{% block ogUrl %}https://sibirskozdrave-montana.com/{% endblock %}"/>#}
+    <meta property="og:title" content="{% block ogTitle %}Skate Fixers{% endblock %}"/>
+    <meta property="og:image"
+          content="{% block ogImage %}{{ informer.getBanner().backgroundImageLink }}{% endblock %}"/>
+    <meta property="og:description" content="{% block ogDescription %}Skate fixers is the modern skateboard store made for casuals and pros.{% endblock %}"/>
+
     <!-- fonts -->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Cookie"/>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
