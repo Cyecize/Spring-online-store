@@ -11,7 +11,6 @@ import com.cyecize.skatefixers.areas.users.enums.UserRoleType;
 import com.cyecize.skatefixers.areas.users.services.UserService;
 import com.cyecize.skatefixers.constants.WebConstants;
 import com.cyecize.skatefixers.controllers.BaseController;
-import com.cyecize.skatefixers.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

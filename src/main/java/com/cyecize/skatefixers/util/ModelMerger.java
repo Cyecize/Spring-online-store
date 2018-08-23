@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 public class ModelMerger {
 
+    private static final String TYPE_MISMATCH ="Field type mismatch";
+
     public ModelMerger() {
 
     }
@@ -14,16 +16,19 @@ public class ModelMerger {
     public <D> D merge(Object source, D destination) {
         List<Field> destinationFields = this.getAllFields(destination.getClass());
         try {
-            for (Field field : source.getClass().getDeclaredFields()) {
+            for (Field field : this.getAllFields(source.getClass())) {
                 field.setAccessible(true);
                 Field destinationField = this.getField(field.getName(), destinationFields);
                 if (destinationField == null)
                     continue;
                 destinationField.setAccessible(true);
+                if(!destinationField.getClass().getTypeName().equals(field.getClass().getTypeName())) {
+                    throw new RuntimeException(TYPE_MISMATCH);
+                }
                 destinationField.set(destination, field.get(source));
             }
             return destination;
-        } catch (Exception e) {
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
         return destination;
