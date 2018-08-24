@@ -15,7 +15,7 @@ public class MultipartToFileConverter {
             File file = File.createTempFile("temp-file", multipartFile.getOriginalFilename());
             multipartFile.transferTo(file);
             return file;
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         throw new JsonException("Error uploading file!", new HashMap<>(), HttpStatus.INTERNAL_SERVER_ERROR);

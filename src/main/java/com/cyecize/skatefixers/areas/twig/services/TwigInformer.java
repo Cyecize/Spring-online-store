@@ -29,8 +29,4 @@ public interface TwigInformer {
     List<BaseProduct> getNewProducts(int limit);
 
     List<Brand> getAllBrands();
-
-
-
-
 }

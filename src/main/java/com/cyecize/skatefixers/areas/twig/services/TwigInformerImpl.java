@@ -38,7 +38,6 @@ public class TwigInformerImpl implements TwigInformer {
         this.productService = productService;
         this.bannerService = bannerService;
         this.brandService = brandService;
-
         this.notificationService = notificationService;
     }
 

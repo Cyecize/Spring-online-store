@@ -48,7 +48,7 @@ var NotificationModalManager = (function () {
 
     function showOrHideForm() {
         if (window.innerWidth < 991) {
-            location.href = "/user/notifications/mobile";
+            location.href = "/notifications/mobile";
             return;
         }
         if ($(notificationBar).css('display') == "none")
