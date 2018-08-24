@@ -10,6 +10,10 @@ public class WebConstants {
 
     public static final String TWIG_BINDING_RESULT_OBJ_NAME = "errorList";
 
+    public static final String CACHE_MAIN_CATEGORIES = "mainCategoreis";
+
+    public static final String CACHE_INFORMER_NEW_PRODUCTS = "informerNewProducts";
+
     public static final String SERVER_ROOT_FOLDER_PATH =
             SkateFixersApplication
                     .class

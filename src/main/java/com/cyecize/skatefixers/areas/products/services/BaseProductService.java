@@ -6,6 +6,7 @@ import com.cyecize.skatefixers.areas.products.entities.BaseProduct;
 import com.cyecize.skatefixers.areas.products.entities.Brand;
 import com.cyecize.skatefixers.areas.products.entities.Category;
 import com.cyecize.skatefixers.areas.products.entities.products.Product;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

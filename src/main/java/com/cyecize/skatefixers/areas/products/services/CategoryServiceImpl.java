@@ -4,10 +4,13 @@ import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.products.bindingModels.CategoryBindingModel;
 import com.cyecize.skatefixers.areas.products.entities.Category;
 import com.cyecize.skatefixers.areas.products.repositories.CategoryRepository;
+import com.cyecize.skatefixers.constants.WebConstants;
 import com.cyecize.skatefixers.exceptions.JsonException;
 import com.cyecize.skatefixers.exceptions.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,6 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @CacheEvict(cacheNames = {WebConstants.CACHE_MAIN_CATEGORIES,WebConstants.CACHE_MAIN_CATEGORIES}, allEntries = true)
     public void createCategory(CategoryBindingModel bindingModel) {
         Category parent = null;
         if(bindingModel.getParentCategoryId() != null && bindingModel.getParentCategoryId() > 0){
@@ -44,6 +48,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @CacheEvict(cacheNames = {WebConstants.CACHE_MAIN_CATEGORIES, WebConstants.CACHE_MAIN_CATEGORIES}, allEntries = true)
     public void editCategory(String categoryName, CategoryBindingModel bindingModel) {
         Category currentCategory = this.findOneByName(categoryName);
         Category parent = null;
@@ -59,6 +64,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @CacheEvict(cacheNames = { WebConstants.CACHE_MAIN_CATEGORIES,WebConstants.CACHE_MAIN_CATEGORIES}, allEntries = true)
     public void removeCategory(Long id) {
         if(!this.repository.findById(id).isPresent())
             throw new JsonException("Category was not found!");
@@ -66,6 +72,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Cacheable(cacheNames = WebConstants.CACHE_MAIN_CATEGORIES)
     public List<Category> findMainCategories() {
         return this.repository.findMainCategories();
     }

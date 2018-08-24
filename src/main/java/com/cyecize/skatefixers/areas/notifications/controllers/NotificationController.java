@@ -2,10 +2,12 @@ package com.cyecize.skatefixers.areas.notifications.controllers;
 
 import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.notifications.services.NotificationService;
+import com.cyecize.skatefixers.areas.shoppingCart.annotations.DisableShoppingCart;
 import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
 import com.cyecize.skatefixers.areas.twig.util.TwigUtil;
 import com.cyecize.skatefixers.areas.users.services.UserService;
 import com.cyecize.skatefixers.controllers.BaseController;
+import com.cyecize.skatefixers.exceptions.JsonException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -35,7 +37,11 @@ public class NotificationController extends BaseController {
     }
 
     @PostMapping("/request")
+    @DisableShoppingCart
+    @PreAuthorize("permitAll()")
     public ModelAndView notifications(Principal principal){
+        if(principal == null)
+            throw new JsonException("Not logged in!");
         return super.view("partials/notifications/notification-update-result", "notis",
                 this.notificationService.findByUser(this.userService.findOneByUsername(principal.getName())));
     }

@@ -9,11 +9,13 @@ import com.cyecize.skatefixers.areas.products.entities.Brand;
 import com.cyecize.skatefixers.areas.products.entities.Category;
 import com.cyecize.skatefixers.areas.products.entities.products.Product;
 import com.cyecize.skatefixers.areas.products.repositories.BaseProductRepository;
+import com.cyecize.skatefixers.constants.WebConstants;
 import com.cyecize.skatefixers.exceptions.JsonException;
 import com.cyecize.skatefixers.exceptions.NotFoundException;
 import com.cyecize.skatefixers.util.ModelMerger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -77,6 +79,7 @@ public class BaseProductServiceImpl implements BaseProductService {
     }
 
     @Override
+    @CacheEvict(cacheNames = WebConstants.CACHE_INFORMER_NEW_PRODUCTS, allEntries = true)
     public void createProduct(CreateProductBindingModel bindingModel, File image) {
         BaseProduct product = this.modelMapper.map(bindingModel, Product.class);
         this.productRepository.save(product);
@@ -89,12 +92,14 @@ public class BaseProductServiceImpl implements BaseProductService {
     }
 
     @Override
+    @CacheEvict(cacheNames = WebConstants.CACHE_INFORMER_NEW_PRODUCTS, allEntries = true)
     public void enableOrDisableProduct(BaseProduct product, boolean isEnabled) {
         product.setEnabled(isEnabled);
         this.productRepository.saveAndFlush(product);
     }
 
     @Override
+    @CacheEvict(cacheNames = WebConstants.CACHE_INFORMER_NEW_PRODUCTS, allEntries = true)
     public void editProduct(EditProductBindingModel bindingModel, Long id) {
         BaseProduct product = this.findOneById(id);
         product = this.modelMerger.merge(bindingModel, product);
@@ -103,6 +108,7 @@ public class BaseProductServiceImpl implements BaseProductService {
 
     @Override
     @Async
+    @CacheEvict(cacheNames = WebConstants.CACHE_INFORMER_NEW_PRODUCTS, allEntries = true)
     public void editProduct(EditProductBindingModel bindingModel, File image, Long id) {
         this.editProduct(bindingModel, id);
         BaseProduct product = this.findOneById(id);

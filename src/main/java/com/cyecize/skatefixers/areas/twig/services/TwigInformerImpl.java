@@ -11,7 +11,9 @@ import com.cyecize.skatefixers.areas.products.services.BaseProductService;
 import com.cyecize.skatefixers.areas.products.services.BrandService;
 import com.cyecize.skatefixers.areas.products.services.CategoryService;
 import com.cyecize.skatefixers.areas.users.entities.User;
+import com.cyecize.skatefixers.constants.WebConstants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -42,16 +44,19 @@ public class TwigInformerImpl implements TwigInformer {
     }
 
     @Override
+    @Cacheable(cacheNames = WebConstants.CACHE_MAIN_CATEGORIES)
     public List<Category> getCategoriesToDisplay() {
         return this.categoryService.findMainCategories();
     }
 
     @Override
+    @Cacheable(cacheNames = WebConstants.CACHE_INFORMER_NEW_PRODUCTS)
     public List<BaseProduct> getNewProducts() {
         return this.getNewProducts(6);
     }
 
     @Override
+    @Cacheable(cacheNames = WebConstants.CACHE_INFORMER_NEW_PRODUCTS)
     public List<BaseProduct> getNewProducts(int limit) {
         return this.productService.findNewProducts(limit);
     }
@@ -87,6 +92,5 @@ public class TwigInformerImpl implements TwigInformer {
         if (this.getUser() == null) return 0;
         return this.notificationService.findNotSeenByUser(this.getUser()).size();
     }
-
 
 }

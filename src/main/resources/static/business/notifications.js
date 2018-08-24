@@ -25,7 +25,7 @@ var NotificationModalManager = (function () {
     function removeNotification(id) {
         $.ajax({
             type: "POST",
-            url: "/notifications/remove/"+id,
+            url: "/notifications/remove/" + id,
             beforeSend: function (xhr) {
                 xhr.setRequestHeader(CSRF_HEADER, CSRF_TOKEN);
             },
@@ -37,7 +37,7 @@ var NotificationModalManager = (function () {
     function viewNotification(id) {
         $.ajax({
             type: "POST",
-            url: "/notifications/view/"+id,
+            url: "/notifications/view/" + id,
             beforeSend: function (xhr) {
                 xhr.setRequestHeader(CSRF_HEADER, CSRF_TOKEN);
             },
@@ -58,12 +58,12 @@ var NotificationModalManager = (function () {
     }
 
     function onDocumentClick(event) {
-        if(notificationBar == null) return;
+        if (notificationBar == null) return;
         if (event.target !== notificationBar && event.target !== notificationIcon && !hasClickedOnParentChild(notificationBar.getElementsByTagName('*'), event))
             $(notificationBar).hide(100);
     }
 
-    function update() {
+    function update(interval) {
         $.ajax({
             type: "POST",
             url: "/notifications/request",
@@ -71,7 +71,10 @@ var NotificationModalManager = (function () {
                 xhr.setRequestHeader(CSRF_HEADER, CSRF_TOKEN);
             },
             success: fillNotificationBarWithData,
-            error: console.error
+            error: function () {
+                if(interval !== undefined)
+                    clearInterval(interval);
+            }
         });
     }
 
@@ -95,11 +98,13 @@ var NotificationModalManager = (function () {
         update: update,
         removeAllNotifications: removeAllNotifications,
         removeNotification: removeNotification,
-        viewNotification:viewNotification,
+        viewNotification: viewNotification,
     };
 })();
 
 $(notificationIcon).on('click', NotificationModalManager.showOrHideForm);
 document.addEventListener('click', NotificationModalManager.onDocumentClick);
 NotificationModalManager.update();
-var clock = setInterval(NotificationModalManager.update, 4000);
+var clock = setInterval(function (args) {
+    NotificationModalManager.update(clock);
+}, 4000);

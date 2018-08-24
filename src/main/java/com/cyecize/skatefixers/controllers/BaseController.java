@@ -6,10 +6,15 @@ import com.cyecize.skatefixers.areas.users.entities.User;
 import com.cyecize.skatefixers.constants.WebConstants;
 import com.cyecize.skatefixers.areas.twig.services.TwigInformer;
 import com.cyecize.skatefixers.areas.twig.util.TwigUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 public abstract class BaseController {
 
@@ -24,6 +29,9 @@ public abstract class BaseController {
     private final TwigUtil twigUtil;
 
     protected final LocalLanguage language;
+
+    @Autowired
+    private HttpServletRequest request;
 
     protected BaseController(LocalLanguage language, TwigUtil twigUtil, TwigInformer twigInformer) {
         this.language = language;

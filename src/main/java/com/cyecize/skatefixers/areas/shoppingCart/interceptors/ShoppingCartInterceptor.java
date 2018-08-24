@@ -1,5 +1,6 @@
 package com.cyecize.skatefixers.areas.shoppingCart.interceptors;
 
+import com.cyecize.skatefixers.areas.shoppingCart.annotations.DisableShoppingCart;
 import com.cyecize.skatefixers.areas.shoppingCart.services.ShoppingCartService;
 import com.cyecize.skatefixers.constants.WebConstants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class ShoppingCartInterceptor  extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if(!(handler instanceof HandlerMethod))
             return true;
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        if(handlerMethod.getMethod().getAnnotation(DisableShoppingCart.class) != null)
+            return true;
         this.shoppingCartService.initCart(this.getCookie(request));
         return true;
     }
@@ -37,6 +41,9 @@ public class ShoppingCartInterceptor  extends HandlerInterceptorAdapter {
 
         if(!(handler instanceof HandlerMethod))
             return ;
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        if(handlerMethod.getMethod().getAnnotation(DisableShoppingCart.class) != null)
+            return;
         this.shoppingCartService.saveCart(response);
     }
 
