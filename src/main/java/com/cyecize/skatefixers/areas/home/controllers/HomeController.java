@@ -54,11 +54,11 @@ public class HomeController extends BaseController {
         return view("default/about");
     }
 
-    @GetMapping("/views/clear")
-    public  String clear(){
-        this.productService.resetViews(); //TODO PLEASE REMOVE ME AFTER EXAM
-        return "redirect:/";
-    }
+//    @GetMapping("/views/clear")
+//    public  String clear(){
+//        this.productService.resetViews();
+//        return "redirect:/";
+//    }
 
     @GetMapping("/contacts")
     public ModelAndView contactUs(ModelAndView modelAndView , Model model, @RequestParam(value = "info", required = false) String info){

@@ -60,7 +60,6 @@ public class ModelMergerTests {
 
     class MismatchClass {
         private Integer a;
-
         private String b;
     }
 
