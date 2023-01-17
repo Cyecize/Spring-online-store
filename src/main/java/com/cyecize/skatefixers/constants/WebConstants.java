@@ -14,13 +14,5 @@ public class WebConstants {
 
     public static final String CACHE_INFORMER_NEW_PRODUCTS = "informerNewProducts";
 
-    public static final String SERVER_ROOT_FOLDER_PATH =
-            SkateFixersApplication
-                    .class
-                    .getResource("")
-                    .toString()
-                    .replace("file:/", "")
-                    .replace("com/cyecize/skatefixers", "");
-
     public static final String APPLICATION_NAME = "Skate Fixers";
 }
