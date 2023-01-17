@@ -16,7 +16,7 @@ public class MultipartToFileConverter {
             multipartFile.transferTo(file);
             return file;
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         throw new JsonException("Error uploading file!", new HashMap<>(), HttpStatus.INTERNAL_SERVER_ERROR);
     }

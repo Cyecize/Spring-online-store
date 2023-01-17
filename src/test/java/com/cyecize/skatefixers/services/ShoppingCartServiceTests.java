@@ -7,14 +7,19 @@ import com.cyecize.skatefixers.areas.shoppingCart.repositories.ShoppingCartRepos
 import com.cyecize.skatefixers.areas.shoppingCart.services.ShoppingCartService;
 import com.cyecize.skatefixers.areas.shoppingCart.services.ShoppingCartServiceImpl;
 import com.cyecize.skatefixers.areas.shoppingCart.viewModels.ShoppingCartItem;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+@ExtendWith(MockitoExtension.class)
 public class ShoppingCartServiceTests {
 
     private static final int CART_ITEMS = 5;
@@ -29,53 +34,53 @@ public class ShoppingCartServiceTests {
 
     private List<ShoppingCartItem> shoppingCartItems;
 
-    @Before
-    public void onBefore(){
+    @BeforeEach
+    public void onBefore() {
         shoppingCartItems = new ArrayList<>();
         for (int i = 1; i <= CART_ITEMS; i++) {
             BaseProduct product = new Product();
-            product.setId((long)i);
+            product.setId((long) i);
             shoppingCartItems.add(new ShoppingCartItem(product, i));
         }
         shoppingCartService = new ShoppingCartServiceImpl(shoppingCartRepository, productService);
 
-        Mockito.when(this.productService.findOneById(Mockito.anyLong())).thenAnswer((a)->{
-           Product product = new Product();
-           product.setId(a.getArgument(0));
-           return product;
+        Mockito.when(this.productService.findOneById(Mockito.anyLong())).thenAnswer((a) -> {
+            Product product = new Product();
+            product.setId(a.getArgument(0));
+            return product;
         });
     }
 
     @Test
-    public void encodeShoppingCart_validShoppingCart_shouldParseToKVP_JSON(){
-        Assert.assertEquals("values dont match", ITEMS_JSON, this.shoppingCartService.encodeShoppingCart(this.shoppingCartItems));
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void encodeShoppingCart_NullValue_ShouldThrowNullPointer(){
-        this.shoppingCartService.encodeShoppingCart(null);
+    public void encodeShoppingCart_validShoppingCart_shouldParseToKVP_JSON() {
+        assertEquals(ITEMS_JSON, this.shoppingCartService.encodeShoppingCart(this.shoppingCartItems), "values dont match");
     }
 
     @Test
-    public void encodeShoppingCart_emptyArr_ShouldReturnEmptyJson(){
-        Assert.assertEquals("result not empty", "{}", this.shoppingCartService.encodeShoppingCart(new ArrayList<>()));
+    public void encodeShoppingCart_NullValue_ShouldThrowNullPointer() {
+        assertThrows(NullPointerException.class, () -> this.shoppingCartService.encodeShoppingCart(null));
     }
 
     @Test
-    public void parseShoppingCart_ValidJsonString_ReturnEntityRepresentation() throws Exception{
+    public void encodeShoppingCart_emptyArr_ShouldReturnEmptyJson() {
+        assertEquals("{}", this.shoppingCartService.encodeShoppingCart(new ArrayList<>()), "result not empty");
+    }
+
+    @Test
+    public void parseShoppingCart_ValidJsonString_ReturnEntityRepresentation() throws Exception {
         List<ShoppingCartItem> items = this.shoppingCartService.parseShoppingCart(ITEMS_JSON);
-        Assert.assertEquals("items size not equal", 5, items.size());
+        assertEquals(5, items.size(), "items size not equal");
         for (int i = 0; i < this.shoppingCartItems.size(); i++) {
             ShoppingCartItem exp = this.shoppingCartItems.get(i);
             ShoppingCartItem act = items.get(i);
-            Assert.assertEquals("id doesnt match", exp.getProduct().getId(), act.getProduct().getId());
-            Assert.assertEquals("quantity doesnt match", exp.getQuantity(), act.getQuantity());
+            assertEquals(exp.getProduct().getId(), act.getProduct().getId(), "id doesnt match");
+            assertEquals(exp.getQuantity(), act.getQuantity(), "quantity doesnt match");
         }
     }
 
-    @Test(expected = Exception.class)
-    public void parseShoppingCart_InvalidJsonString_ShouldThrowException() throws Exception{
+    @Test
+    public void parseShoppingCart_InvalidJsonString_ShouldThrowException() throws Exception {
         String json = "{nonValidIneger:2,3:3}";
-        this.shoppingCartService.parseShoppingCart(json);
+        assertThrows(Exception.class, () -> this.shoppingCartService.parseShoppingCart(json));
     }
 }

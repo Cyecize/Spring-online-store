@@ -2,15 +2,17 @@ package com.cyecize.skatefixers.utils;
 
 import com.cyecize.skatefixers.areas.googleDrive.util.MultipartToFileConverter;
 import com.cyecize.skatefixers.exceptions.JsonException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.io.File;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@ExtendWith(MockitoExtension.class)
 public class MultipartToFIleConverterTests {
 
-
-    @Test(expected = JsonException.class)
+    @Test
     public void convertTest_NullValue_ThrowJsonException(){
-        File file = MultipartToFileConverter.convert(null);
+        assertThrows(JsonException.class, () -> MultipartToFileConverter.convert(null));
     }
 }

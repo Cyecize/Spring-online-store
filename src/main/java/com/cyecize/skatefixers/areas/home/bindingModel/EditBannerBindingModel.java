@@ -1,10 +1,10 @@
 package com.cyecize.skatefixers.areas.home.bindingModel;
 
-import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class EditBannerBindingModel {
 
@@ -19,7 +19,7 @@ public class EditBannerBindingModel {
 
     @NotNull(message = "fieldCannotBeEmpty")
     @NotEmpty(message = "fieldCannotBeEmpty")
-    @Length(max = 254)
+    @Size(max = 254)
     private String url;
 
     public EditBannerBindingModel(){

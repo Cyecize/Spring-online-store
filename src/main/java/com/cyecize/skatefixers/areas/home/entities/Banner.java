@@ -1,7 +1,5 @@
 package com.cyecize.skatefixers.areas.home.entities;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import javax.persistence.*;
 
 @Entity

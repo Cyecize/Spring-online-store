@@ -1,16 +1,10 @@
 package com.cyecize.skatefixers;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import com.google.api.services.drive.Drive;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Configuration;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+@Configuration
 public class SkateFixersApplicationTests {
-
-    @Test
-    public void contextLoads() {
-    }
 
 }

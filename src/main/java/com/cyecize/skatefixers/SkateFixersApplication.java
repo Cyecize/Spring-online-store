@@ -1,6 +1,5 @@
 package com.cyecize.skatefixers;
 
-import com.cyecize.skatefixers.areas.products.entities.Brand;
 import com.cyecize.skatefixers.areas.users.entities.UserRole;
 import com.cyecize.skatefixers.areas.users.enums.UserRoleType;
 import com.cyecize.skatefixers.areas.users.repositories.RoleRepository;
@@ -10,16 +9,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.annotation.PostConstruct;
-import javax.management.relation.Role;
 import javax.swing.*;
-import java.util.Scanner;
 
 @SpringBootApplication
 @EnableAsync

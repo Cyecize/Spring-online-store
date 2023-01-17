@@ -7,12 +7,12 @@ import com.cyecize.skatefixers.areas.language.services.LocalLanguage;
 import com.cyecize.skatefixers.areas.users.bindingModels.validator.FieldMatch;
 import com.cyecize.skatefixers.areas.users.bindingModels.validator.UniqueEmail;
 import com.cyecize.skatefixers.areas.users.bindingModels.validator.UniqueUsername;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @FieldMatch(first = "password", second = "passwordConfirm", message = "passwordsDoNotMatch")
 public class UserRegisterBindingModel {
@@ -31,7 +31,7 @@ public class UserRegisterBindingModel {
 
     @NotNull(message = "passwordLengthIsLessThan")
     @NotEmpty(message = "passwordLengthIsLessThan" )
-    @Length(min = 6, message = "passwordLengthIsLessThan")
+    @Size(min = 6, message = "passwordLengthIsLessThan")
     private String password;
 
     private String passwordConfirm;

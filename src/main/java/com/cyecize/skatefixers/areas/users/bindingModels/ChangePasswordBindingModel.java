@@ -1,10 +1,10 @@
 package com.cyecize.skatefixers.areas.users.bindingModels;
 
 import com.cyecize.skatefixers.areas.users.bindingModels.validator.FieldMatch;
-import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @FieldMatch(first = "password", second = "passwordConfirm", message = "passwordsDoNotMatch")
 public class ChangePasswordBindingModel {
@@ -15,7 +15,7 @@ public class ChangePasswordBindingModel {
 
     @NotNull(message = "passwordLengthIsLessThan")
     @NotEmpty(message = "passwordLengthIsLessThan" )
-    @Length(min = 6, message = "passwordLengthIsLessThan")
+    @Size(min = 6, message = "passwordLengthIsLessThan")
     private String password;
 
     @NotNull(message = "passwordLengthIsLessThan")
